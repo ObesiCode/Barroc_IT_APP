@@ -1,91 +1,53 @@
-# [HTML5 Boilerplate](https://html5boilerplate.com/)
+<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-[![Build Status](https://travis-ci.org/h5bp/html5-boilerplate.svg)](https://travis-ci.org/h5bp/html5-boilerplate)
-[![devDependency Status](https://david-dm.org/h5bp/html5-boilerplate/dev-status.svg)](https://david-dm.org/h5bp/html5-boilerplate#info=devDependencies)
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+</p>
 
-HTML5 Boilerplate is a professional front-end template for building
-fast, robust, and adaptable web apps or sites.
+## About Laravel
 
-This project is the product of years of iterative development and
-community knowledge. It does not impose a specific development
-philosophy or framework, so you're free to architect your code in the
-way that you want.
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
 
-* Homepage: [https://html5boilerplate.com/](https://html5boilerplate.com/)
-* Source: [https://github.com/h5bp/html5-boilerplate](https://github.com/h5bp/html5-boilerplate)
-* Twitter: [@h5bp](https://twitter.com/h5bp)
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
+Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
 
-## Quick start
+## Learning Laravel
 
-Choose one of the following options:
+Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
 
-1. Download the latest stable release from
-   [html5boilerplate.com](https://html5boilerplate.com/).
-2. Clone the git repo — `git clone
-   https://github.com/h5bp/html5-boilerplate.git` - and checkout the
-   [tagged release](https://github.com/h5bp/html5-boilerplate/releases)
-   you'd like to use.
+If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
 
+## Laravel Sponsors
 
-## Features
+We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
 
-* HTML5 ready. Use the new elements with confidence.
-* Designed with progressive enhancement in mind.
-* Includes:
-  * [`Normalize.css`](https://necolas.github.com/normalize.css/)
-    for CSS normalizations and common bug fixes
-  * [`jQuery`](https://jquery.com/) via CDN with [SRI Hash](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) and a local fallback
-  * A custom build of [`Modernizr`](https://modernizr.com/) for feature
-    detection
-  * [`Apache Server Configs`](https://github.com/h5bp/server-configs-apache)
-    that, among other, improve the web site's performance and security
-* Placeholder CSS Media Queries.
-* Useful CSS helper classes.
-* Default print styles, performance optimized.
-* An optimized version of the Google Universal Analytics snippet.
-* Protection against any stray `console` statements causing JavaScript
-  errors in older browsers.
-* "Delete-key friendly." Easy to strip out parts you don't need.
-* Extensive inline and accompanying documentation.
-
-
-## Browser support
-
-* Chrome *(latest 2)*
-* Edge *(latest 2)*
-* Firefox *(latest 2)*
-* Internet Explorer 9+
-* Opera *(latest 2)*
-* Safari *(latest 2)*
-
-*This doesn't mean that HTML5 Boilerplate cannot be used in older browsers,
-just that we'll ensure compatibility with the ones mentioned above.*
-
-If you need legacy browser support you
-can use [HTML5 Boilerplate v4](https://github.com/h5bp/html5-boilerplate/tree/v4) (IE 6+, Firefox 3.6+, Safari 4+),
-or [HTML5 Boilerplate v5](https://github.com/h5bp/html5-boilerplate/tree/v5.0.0) (IE8+). They are no longer actively developed.
-
-
-## Documentation
-
-Take a look at the [documentation table of contents](dist/doc/TOC.md).
-This documentation is bundled with the project which makes it 
-available for offline reading and provides a useful starting point for
-any documentation you want to write about your project.
-
+- **[Vehikl](http://vehikl.com)**
+- **[Tighten Co.](https://tighten.co)**
+- **[British Software Development](https://www.britishsoftware.co)**
+- **[Styde](https://styde.net)**
+- [Fragrantica](https://www.fragrantica.com)
+- [SOFTonSOFA](https://softonsofa.com/)
+- [User10](https://user10.com)
+- [Soumettre.fr](https://soumettre.fr/)
 
 ## Contributing
 
-Hundreds of developers have helped to make the HTML5 Boilerplate. Anyone is welcome to [contribute](.github/CONTRIBUTING.md),
-however, if you decide to get involved, please take a moment to review
-the [guidelines](.github/CONTRIBUTING.md):
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
 
-* [Bug reports](.github/CONTRIBUTING.md#bugs)
-* [Feature requests](.github/CONTRIBUTING.md#features)
-* [Pull requests](.github/CONTRIBUTING.md#pull-requests)
+## Security Vulnerabilities
 
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
 ## License
 
-The code is available under the [MIT license](LICENSE.txt).
+The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
