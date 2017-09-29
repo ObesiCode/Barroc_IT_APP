@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/f', function () {
+    return view('finance');
+});
 
 Auth::routes();
 
