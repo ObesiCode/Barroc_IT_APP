@@ -18,6 +18,11 @@ Route::get('/f', function () {
     return view('finance');
 });
 
+Route::get('/admin', function () {
+    return view('admin');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
