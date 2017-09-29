@@ -9,7 +9,7 @@
 </head>
 <body>
 <form action="">
-    
+
     {{csrf_field()}}
 
 <div class="form-group">
