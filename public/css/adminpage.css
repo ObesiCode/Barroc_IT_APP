@@ -4,6 +4,20 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
 
  *//*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
+@font-face {
+    font-family: "Halfling";
+    src:
+            url("../static/fonts/glyphicons-halflings-regular.svg") format("svg");
+}
+
+
+
+#test
+{
+    background-color: #f3f3f3;
+    color: #f3f3f3;
+}
 .list-group-horizontal .list-group-item {
     display: inline-block;
 }
@@ -23,9 +37,66 @@
 }
 #linktext
 {
-    font-family: "";
-}
 
+    background-color: #ffffff;
+    color: #333;
+    font-family: "Helvetica Neue";
+    opacity:0.4;
+    font-size: 14px;
+
+    font-size: 30px;
+}
+#linktext:link
+{
+    background-color: #ffffff;
+    color: #333;
+}
+#projectable
+{
+    margin-top: 100px;
+    margin-left: 100px;
+    width: 30%;
+
+}
+#customertable
+{
+    margin-top: 100px;
+    margin-right: 100px;
+    margin-left:200px;
+    width: 30%;
+
+}
+#tableclass
+{
+    background-color: #f3f3f3;
+
+}
+#submitbutton
+{
+    width:550px;
+    color: #ffffff;
+    background-color: #CFC1B5;
+    border: 0px;
+    border-radius: 0px;
+
+}
+#help {
+    font-size:40px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+#inputtext
+{
+    font-family: "Helvetica Neue";
+    font-size:14px;
+}
+#tabletoptext
+{
+    font-family: "Helvetica Neue";
+    font-size: 24px;
+    color: #CFC1B5;
+}
 
 
 
