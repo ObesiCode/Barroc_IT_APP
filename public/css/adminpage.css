@@ -99,9 +99,6 @@
 }
 
 
-
-
-
 /*  sales pagin */
 
 #labeltext
@@ -137,13 +134,24 @@
 
 #salespanel
 {
-    margin-top: 50px;
+
+    padding-top: 50px;
+}
+
+
+#testing
+{
+    padding-left: 0;
+    padding-right: 0;
 }
 
 
 
 
-
+#customth
+{
+    border: none;
+}
 
 
 
