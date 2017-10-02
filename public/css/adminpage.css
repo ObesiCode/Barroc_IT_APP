@@ -107,7 +107,7 @@
 #labeltext
 {
     font-family: "Helvetica Neue";
-    font-size: 13px;
+    font-size: 19px;
     color: #CFC1B5;
 }
 
@@ -116,13 +116,29 @@
     color: #000;
 }
 
+.log
+{
+    height: 80px;
+    width: 160px;
+    margin-bottom: 25px;
+}
 
 
+#submitbuttonsales
+{
+    width:160px;
+    color: #ffffff;
+    background-color: #CFC1B5;
+    border: 0px;
+    border-radius: 0px;
+
+}
 
 
-
-
-
+#salespanel
+{
+    margin-top: 50px;
+}
 
 
 
