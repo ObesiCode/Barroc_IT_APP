@@ -21,6 +21,9 @@ Route::get('/f', function () {
 Route::get('/admin', function () {
     return view('admin');
 });
+Route::get('/sales', function () {
+    return view('sales');
+});
 
 Auth::routes();
 
