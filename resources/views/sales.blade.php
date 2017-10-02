@@ -52,7 +52,7 @@
                     <input type="text" class="balance" id="salesinput">
 
                     <label for="doa" id="labeltext">date of action</label>
-                    <input readonly type="text" class="doa" id="salesinput" value="{{\Carbon\Carbon::now()->format('l j F Y H:i:s')}}">
+                    <input readonly type="text" class="doa" id="salesinput" value="{{\Carbon\Carbon::now()->format('l j F Y ')}}">
 
                     <label for="la" id="labeltext">Last action</label>
                     <input type="text" class="la" id="salesinput">
@@ -70,6 +70,9 @@
         </div>
     </div>
     </div>
+    <div class="col-sm-4"></div>
+    .col-sm-4
+
 
 
 </div>
