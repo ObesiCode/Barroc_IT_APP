@@ -102,6 +102,19 @@
 
 
 
+/*  sales pagin */
+
+#labeltext
+{
+    font-family: "Helvetica Neue";
+    font-size: 13px;
+    color: #CFC1B5;
+}
+
+#salesinput
+{
+    color: #000;
+}
 
 
 
