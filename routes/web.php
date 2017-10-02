@@ -17,7 +17,9 @@ Route::get('/', function () {
 Route::get('/f', function () {
     return view('finance');
 });
-
+Route::get('/development', function () {
+    return view('development');
+});
 Route::get('/admin', function () {
     return view('admin');
 });
