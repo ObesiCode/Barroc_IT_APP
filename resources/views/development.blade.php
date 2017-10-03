@@ -82,32 +82,40 @@
                         </form>
                     </div>
                 </div>
-            <div class="col-sm-4" id="projectable">
-                <form action="">
-                    <table class="table table-bordered" id="tableclass">
-                        <thead>
-                        <tr>
-                            <th id="tabletoptext">Projectname</th>
-                            <th id="tabletoptext">Project_ID</th>
-                            <th id="tabletoptext">active</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><input type="text" name="projectname" id="inputtext"></td>
-                            <td><input type="text" name="projectID" id="inputtext"></td>
-                            <td><input type="checkbox" name="isactive" id="inputtext"></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <input type="submit" id="submitbutton" placeholder="Send">
-
-                </form>
             </div>
+            <div class="col-sm-4" id="testing"></div>
+                <div class="col-sm-4" id="testing">
+                    <form action="">
+                        {{csrf_field()}}
+                        <table class="table table-bordered" id="tableclass">
+                            <thead>
+                            <tr >
+                                <th id="customth"><label for="search" id="labeltext">Search</label> <input type="text" id="search" name="search" >
 
-            <div class="form-group">
-                    <input type="submit">
-            </div>
+                                </th>
+                                <th><input type="submit" id="submitbuttonsales"></th>
+                            </tr>
+                            <tr>
+                                <th id="tabletoptext">invoice-id</th>
+                                <th id="tabletoptext">Customer-id</th>
+                                <th id="tabletoptext">name</th>
+                                <th id="tabletoptext"><p>EDIT</p></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><input type="text" name="invoicid" id="inputtext"></td>
+                                <td><input type="text" name="customerid" id="inputtext"></td>
+                                <td><input type="text" name="name" id="inputtext"></td>
+                                <td><a href="#">EDIT</a></td>
+                            </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
             </div>
         </div>
     </body>
