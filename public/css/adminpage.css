@@ -153,8 +153,38 @@
     border: none;
 }
 
+/* login */
 
 
+
+body {
+    background: #eee ;
+}
+
+.wrapper {
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.form-signin {
+    max-width: 380px;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.formtitle
+{
+    color: #000000;
+    font-family: "Helvetica Neue";
+}
+#formlogin
+{
+    color: #000;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
 
 

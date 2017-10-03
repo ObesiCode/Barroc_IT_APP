@@ -9,56 +9,56 @@
             <h1>Customer</h1>
         </div>
         <div class="panel-body" id="">
-            <form action="">
+            <form action="{{route('salespost')}}" method="post">
                 {{csrf_field()}}
                  <div class="form-group col-xs-4" >
                      <label for="customer" id="labeltext">customer</label>
-                     <input type="text" class="customer" id="salesinput">
+                     <input type="text" class="customer" id="salesinput" name="customer">
 
                      <label for="prospect" id="labeltext">Prospect</label>
-                     <input type="text" class="prospect" id="salesinput">
+                     <input type="text" class="prospect" id="salesinput" name="prospect">
 
                      <label for="offernum" id="labeltext">Offer_number</label>
-                     <input type="text" class="offernum" id="salesinput">
+                     <input type="text" class="offernum" id="salesinput" name="offernum">
 
                      <label for="offerstatus" id="labeltext">Offer_status</label>
-                     <input type="text" class="offerstatus" id="salesinput">
+                     <input type="text" class="offerstatus" id="salesinput" name="offerstatus">
 
                      <label for="doa" id="labeltext">date of action</label>
-                     <input type="date" class="doa" id="salesinput">
+                     <input type="date" class="doa" id="salesinput" name="doa">
 
                      <label for="city" id="labeltext">city</label>
-                     <input type="text" class="city" id="salesinput">
+                     <input type="text" class="city" id="salesinput" name="city">
 
                      <label for="email" id="labeltext">Email</label>
-                     <input type="email" class="email" id="salesinput">
+                     <input type="email" class="email" id="salesinput" name="email">
 
                      <label for="adress" id="labeltext">Adress</label>
-                     <input type="text" class="adress" id="salesinput">
+                     <input type="text" class="adress" id="salesinput" name="adress">
 
                      <label for="number" id="labeltext">number</label>
-                     <input type="number" class="number" id="salesinput">
+                     <input type="number" class="number" id="salesinput" name="number">
 
                  </div>
                 <div class="form-group col-xs-4">
 
 
                     <label for="fax" id="labeltext">fax</label>
-                    <input type="text" class="fax" id="salesinput">
+                    <input type="text" class="fax" id="salesinput" name="fax">
 
                     <label for="banknm" id="labeltext">bank number</label>
-                    <input type="text" class="banknm" id="salesinput">
+                    <input type="text" class="banknm" id="salesinput" name="banknm">
 
                     <label for="balance" id="labeltext">balance</label>
-                    <input type="text" class="balance" id="salesinput">
+                    <input type="text" class="balance" id="salesinput" name="balance">
 
                     <label for="doa" id="labeltext">date of action</label>
-                    <input readonly type="text" class="doa" id="salesinput" value="{{\Carbon\Carbon::now()->format('l j F Y ')}}">
+                    <input readonly type="text" class="doa" id="salesinput" value="{{\Carbon\Carbon::now()->format('l j F Y ')}}" name="doac">
 
-                   
+
 
                     <label for="log" id="labeltext">Log</label>
-                    <input type="text" class="log" id="salesinput">
+                    <input type="text" class="log" id="salesinput" name="log">
 
 
                     <input type="submit" class="number" id="submitbuttonsales">

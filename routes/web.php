@@ -26,6 +26,12 @@ Route::get('/admin', function () {
 Route::get('/sales', function () {
     return view('sales');
 });
+Route::get('/inlogin', function () {
+    return view('login');
+});
+
+Route::post('/sales','SalesController@postsales')->name('salespost');
+
 
 Auth::routes();
 
