@@ -7,23 +7,34 @@
     <div class="panel panel-default" id="salespanel">
         <div class="panel-heading">
             <h1>Customer</h1>
+            <ul>
+                @if ($errors->any())
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+
+                    @endforeach
+                @endif
+            </ul>
         </div>
         <div class="panel-body" id="">
-            <form action="{{route('salespost')}}" method="post">
+            <form action="/sales" method="post">
                 {{csrf_field()}}
                  <div class="form-group col-xs-4" >
-                     <label for="customer" id="labeltext">customer</label>
+
+
+
+                     <label for="customer" id="labeltext">customer name</label>
                      <input type="text" class="customer" id="salesinput" name="customer">
 
                      <label for="prospect" id="labeltext">Prospect</label>
                      <input type="text" class="prospect" id="salesinput" name="prospect">
-
+                     <!--
                      <label for="offernum" id="labeltext">Offer_number</label>
                      <input type="text" class="offernum" id="salesinput" name="offernum">
 
                      <label for="offerstatus" id="labeltext">Offer_status</label>
                      <input type="text" class="offerstatus" id="salesinput" name="offerstatus">
-
+                        -->
                      <label for="doa" id="labeltext">date of action</label>
                      <input type="date" class="doa" id="salesinput" name="doa">
 
@@ -55,7 +66,11 @@
                     <label for="doa" id="labeltext">date of action</label>
                     <input readonly type="text" class="doa" id="salesinput" value="{{\Carbon\Carbon::now()->format('l j F Y ')}}" name="doac">
 
+                    <label for="lastaction" id="labeltext">Last Action</label>
+                    <input type="text" class="lastaction" id="salesinput" name="lastaction">
 
+                    <label for="nextaction" id="labeltext">Next Action</label>
+                    <input type="text" class="nextaction" id="salesinput" name="nextaction">
 
                     <label for="log" id="labeltext">Log</label>
                     <input type="text" class="log" id="salesinput" name="log">
@@ -73,63 +88,72 @@
                     <h1>Development</h1>
                 </div>
                 <div class="panel-body" id="">
-                    <form action="">
+                    <form action="/dev" method="post">
 
                         {{csrf_field()}}
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="projectname" id="labeltext">Project name</label>
-                                <input type="text" class="projectname" id="salesinput">
+                                <input type="text" class="projectname" id="salesinput" name="projectnaam">
                             </div>
                             <div class="form-group">
                                 <label for="projectid" id="labeltext">Project-ID</label>
-                                <input readonly type="text" class="projectid" id="salesinput">
+                                <input readonly type="text" class="projectid" id="salesinput" >
                             </div>
                             <div class="form-group">
                                 <label for="customername" id="labeltext">Customer name</label>
-                                <input type="text" class="customername" id="salesinput">
+                                <select name="Customer_ID" id="basicblack">
+                                    @foreach($a as $customerid)
+
+
+                                        <option id="basicblack" value={{$customerid->Customer_ID}}>{{$customerid->customer_name}}</option>
+
+
+                                    @endforeach
+                                </select>
                             </div>
+
                             <div class="form-group">
                                 <label for="email" id="labeltext">Email</label>
-                                <input type="email" class="email" id="salesinput">
+                                <input type="email" class="email" id="salesinput" name="email">
                             </div>
                             <div class="form-group">
                                 <label for="phonenumber" id="labeltext">Phone number</label>
-                                <input type="text" class="phonenumber" id="salesinput">
+                                <input type="text" class="phonenumber" id="salesinput" name="phonenumber">
                             </div>
                             <div class="form-group">
                                 <label for="offertenumber" id="labeltext">Offerte number</label>
-                                <input readonly type="number" class="offertenumber" id="salesinput">
+                                <input readonly type="number" class="offertenumber" id="salesinput" >
                             </div>
                             <div class="form-group">
                                 <label for="log" id="labeltext">Log</label>
-                                <input type="text" class="log" id="salesinput">
+                                <input type="text" class="log" id="salesinput" name="log" >
                             </div>
                         </div>
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="application" id="labeltext">Application</label>
-                                <input type="text" class="application" id="salesinput">
+                                <input type="text" class="application" id="salesinput" name="application">
                             </div>
                             <div class="form-group">
                                 <label for="hardware" id="labeltext">Hardware</label>
-                                <input type="text" class="hardware" id="salesinput">
+                                <input type="text" class="hardware" id="salesinput" name="hardware">
                             </div>
                             <div class="form-group">
                                 <label for="opsystem" id="labeltext">Operating system</label>
-                                <input type="text" class="opsystem" id="salesinput">
+                                <input type="text" class="opsystem" id="salesinput" name="operatingsystem">
                             </div>
                             <div class="form-group">
                                 <label for="contactperson" id="labeltext">Contact person</label>
-                                <input type="text" class="contactperson" id="salesinput">
+                                <input type="text" class="contactperson" id="salesinput" name="contactperson">
                             </div>
                             <div class="form-group">
                                 <label for="lastcontact" id="labeltext">Last contact</label>
-                                <input type="text" class="lastcontact" id="salesinput">
+                                <input type="text" class="lastcontact" id="salesinput" name="last_contact">
                             </div>
                             <div class="form-group">
                                 <label for="nextcontact" id="labeltext">Next contact</label>
-                                <input type="text" class="nextcontact" id="salesinput">
+                                <input type="text" class="nextcontact" id="salesinput" name="next_contact">
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="number" id="submitbuttonsales">
@@ -151,19 +175,24 @@
                 <th><input type="submit" id="submitbuttonsales"></th>
             </tr>
             <tr>
-                <th id="tabletoptext">invoice-id</th>
+
                 <th id="tabletoptext">Customer-id</th>
                 <th id="tabletoptext">name</th>
                 <th id="tabletoptext"><p>EDIT</p></th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td><input type="text" name="invoicid" id="inputtext"></td>
-                <td><input type="text" name="customerid" id="inputtext"></td>
-                <td><input type="text" name="name" id="inputtext"></td>
-                <td><a href="#">EDIT</a></td>
-            </tr>
+
+            @foreach($a as $sales)
+                <tr>
+                   <td><p style="color: black">{{$sales->Customer_ID}}</p></td>
+                    <td><p style="color: black">{{$sales->customer_name}}</p></td>
+                    <td><p style="color: black">test</p></td>
+                    <td><a href="#">EDIT</a></td>
+                </tr>
+
+                @endforeach
+
 
 
 

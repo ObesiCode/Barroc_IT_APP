@@ -11,6 +11,15 @@
 |
 */
 
+
+
+
+Route::get('sales','sales@index');
+Route::resource('sales','sales');
+Route::resource('dev','dev');
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,18 +31,17 @@ Route::get('/development', function () {
 });
 Route::get('/admin', function () {
     return view('admin');
-});
-Route::get('/sales', function () {
-    return view('sales');
+
+
 });
 Route::get('/inlogin', function () {
     return view('login');
 });
 
-Route::post('/sales','SalesController@postsales')->name('salespost');
 
 
 Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
