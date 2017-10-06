@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\dev;
+use App\log;
+use App\sales;
 use Illuminate\Http\Request;
-
-class sales extends Controller
+use Illuminate\Support\Facades\DB;
+class salescontroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +18,30 @@ class sales extends Controller
     {
         $sales = \App\sales::all();
         return view('sales')->with('a',$sales);
+    }
+    public function view($id)
+    {
+        $sales = \App\sales::all();
+        $user = sales::where('Customer_ID' ,$id)->get()->first();
+        $log = \App\log::all();
+        $log = $log->first();
+        $dev = dev::where('Customer_ID',$id)->get();
+
+
+        return view('salesviewer')->with('customer', $user)->with('a',$sales)->with('log',$log)->with('dev',$dev);
+
+    }
+    public function viewproject($id,$projectid)
+    {
+
+        $sales = \App\sales::all();
+        $user = sales::where('Customer_ID' ,$id)->get()->first();
+        $log = \App\log::all();
+        $log = $log->first();
+        $dev = dev::where('Customer_ID',$id)->get();
+        $projectid2 = dev::where('Project_ID',$projectid)->get()->first();
+
+        return view('salesviewer_projects')->with('customer', $user)->with('a',$sales)->with('log',$log)->with('dev',$dev)->with('project',$projectid2);
     }
 
     /**
@@ -76,6 +103,10 @@ class sales extends Controller
             $sales->saldo               =   $request->balance;
 
             $sales->save();
+
+            $log = new \App\log();
+            $log->log = $request->log;
+            $log->save();
 
 
 

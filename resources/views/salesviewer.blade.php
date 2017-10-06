@@ -24,10 +24,10 @@
 
 
                      <label for="customer" id="labeltext">customer name</label>
-                     <input type="text" class="customer" id="salesinput" name="customer">
+                     <input type="text" class="customer" id="salesinput" name="customer" value="{{$customer->customer_name}}">
 
                      <label for="prospect" id="labeltext">Prospect</label>
-                     <input type="text" class="prospect" id="salesinput" name="prospect">
+                     <input type="text" class="prospect" id="salesinput" name="prospect" value="{{$customer->prospect}}">
                      <!--
                      <label for="offernum" id="labeltext">Offer_number</label>
                      <input type="text" class="offernum" id="salesinput" name="offernum">
@@ -36,44 +36,44 @@
                      <input type="text" class="offerstatus" id="salesinput" name="offerstatus">
                         -->
                      <label for="doa" id="labeltext">date of action</label>
-                     <input type="date" class="doa" id="salesinput" name="doa">
+                     <input type="date" class="doa" id="salesinput" name="doa" value="{{$customer->date_of_action}}">
 
                      <label for="city" id="labeltext">city</label>
-                     <input type="text" class="city" id="salesinput" name="city">
+                     <input type="text" class="city" id="salesinput" name="city" value="{{$customer->city}}">
 
                      <label for="email" id="labeltext">Email</label>
-                     <input type="email" class="email" id="salesinput" name="email">
+                     <input type="email" class="email" id="salesinput" name="email" value="{{$customer->email}}">
 
                      <label for="adress" id="labeltext">Adress</label>
-                     <input type="text" class="adress" id="salesinput" name="adress">
+                     <input type="text" class="adress" id="salesinput" name="adress" value="{{$customer->adress}}">
 
                      <label for="number" id="labeltext">number</label>
-                     <input type="number" class="number" id="salesinput" name="number">
+                     <input type="number" class="number" id="salesinput" name="number" value="{{$customer->phonenumber}}">
 
                  </div>
                 <div class="form-group col-xs-4">
 
 
                     <label for="fax" id="labeltext">fax</label>
-                    <input type="text" class="fax" id="salesinput" name="fax">
+                    <input type="text" class="fax" id="salesinput" name="fax" value="{{$customer->faxnumber}}">
 
                     <label for="banknm" id="labeltext">bank number</label>
-                    <input type="text" class="banknm" id="salesinput" name="banknm">
+                    <input type="text" class="banknm" id="salesinput" name="banknm" value="{{$customer->bankaccountnumber}}">
 
                     <label for="balance" id="labeltext">balance</label>
-                    <input type="text" class="balance" id="salesinput" name="balance">
+                    <input type="text" class="balance" id="salesinput" name="balance" value="{{$customer->saldo}}">
 
                     <label for="doa" id="labeltext">date of action</label>
-                    <input readonly type="text" class="doa" id="salesinput" value="{{\Carbon\Carbon::now()->format('l j F Y ')}}" name="doac">
+                    <input readonly type="text" class="doa" id="salesinput" value="{{$customer->date_of_action}}" name="doac">
 
                     <label for="lastaction" id="labeltext">Last Action</label>
-                    <input type="text" class="lastaction" id="salesinput" name="lastaction">
+                    <input type="text" class="lastaction" id="salesinput" name="lastaction" value="{{$customer->last_action}}" >
 
                     <label for="nextaction" id="labeltext">Next Action</label>
-                    <input type="text" class="nextaction" id="salesinput" name="nextaction">
+                    <input type="text" class="nextaction" id="salesinput" name="nextaction" value="{{$customer->next_action}}">
 
                     <label for="log" id="labeltext">Log</label>
-                    <input type="text" class="log" id="salesinput" name="log">
+                    <input type="text" class="log" id="salesinput" name="log" value="">
 
 
                     <input type="submit" class="number" id="submitbuttonsales">
@@ -86,14 +86,23 @@
             <div class="panel panel-default" id="salespanel">
                 <div class="panel-heading">
                     <h1>Development</h1>
+                    <ul>
+                    @foreach($dev as $devel)
+
+                        <li><a href="sales/{{$customer->Customer_ID}}/{{$devel->Project_ID}}">{{$devel->projectname}}</a></li>
+
+                        @endforeach
+                    </ul>
                 </div>
                 <div class="panel-body" id="">
+
                     <form action="/dev" method="post">
 
                         {{csrf_field()}}
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="projectname" id="labeltext">Project name</label>
+
                                 <input type="text" class="projectname" id="salesinput" name="projectnaam">
                             </div>
                             <div class="form-group">

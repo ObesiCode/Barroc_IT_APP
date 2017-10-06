@@ -14,9 +14,11 @@
 
 
 
-Route::get('sales','sales@index');
-Route::resource('sales','sales');
-Route::resource('dev','dev');
+Route::get('sales','salescontroller@index');
+Route::get('sales/{id}','salescontroller@view');
+Route::get('sales/sales/{id}/{projectid}','salescontroller@viewproject');
+Route::resource('sales','salescontroller');
+Route::resource('dev','devcontroller');
 
 
 
