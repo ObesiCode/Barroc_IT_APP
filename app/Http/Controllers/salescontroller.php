@@ -17,7 +17,9 @@ class salescontroller extends Controller
     public function index()
     {
         $sales = \App\sales::all();
-        return view('sales')->with('a',$sales);
+        $log = \App\log::all();
+        $log = $log->first();
+        return view('sales')->with('a',$sales)->with('log',$log);
     }
     public function view($id)
     {
@@ -104,11 +106,12 @@ class salescontroller extends Controller
 
             $sales->save();
 
-            $log = new \App\log();
-            $log->log = $request->log;
-            $log->save();
+        $log = \App\log::find(1);
+        $log->log = $request->log;
 
+        $log->save();
 
+        return redirect('sales');
 
 
 
@@ -145,7 +148,55 @@ class salescontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        echo "test";
+    }
+    public function updateuser(Request $request)
+    {
+
+        $this->validate($request,[
+            'Customer_ID' => '|required|',
+            'customer' => 'required|min:3|string',
+            'prospect' => 'required|min:3|string',
+            'doa' => 'required|date',
+            'city' => 'required|min:1|string',
+            'email' => 'required|E-Mail',
+            'adress' => 'required|string',
+            'number' => 'required|string',
+            'fax' => 'required|string',
+            'banknm' => 'required|string',
+            'balance' => 'required|string',
+            'doac' => 'required|date',
+            'lastaction' => 'required|string',
+            'nextaction' => 'required|string',
+            'log' => 'required|string'
+        ]);
+        $customerid = $request->Customer_ID;
+
+        $sales = \App\sales::find($customerid);
+        $sales->adress              =   $request->adress;
+        $sales->bankaccountnumber   =   $request->banknm;
+        $sales->city                =   $request->city;
+        $sales->customer_name       =   $request->customer;
+        $sales->date_of_action      =   $request->doa;
+        $sales->email               =   $request->email;
+        $sales->faxnumber           =   $request->fax;
+        $sales->last_action         =   $request->lastaction;
+        $sales->next_action         =   $request->nextaction;
+        $sales->phonenumber         =   $request->number;
+        $sales->prospect            =   $request->prospect;
+        $sales->saldo               =   $request->balance;
+        $sales->save();
+
+        $log = \App\log::find(1);
+        $log->log = $request->log;
+
+        $log->save();
+
+
+
+
+        return redirect('sales');
+
     }
 
     /**

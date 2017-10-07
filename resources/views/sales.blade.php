@@ -3,18 +3,24 @@
 @section('content')
 
 <div class="main">
+
+        @if ($errors->any())
+            <div class="col-sm-12">
+                <ul class="list-group">
+                @foreach($errors->all() as $error)
+                    <li class="list-group-item list-group-item-danger">{{$error}}</li>
+
+                @endforeach
+                </ul>
+            </div>
+
+        @endif
+
     <div class="col-sm-4" id="testing">
     <div class="panel panel-default" id="salespanel">
         <div class="panel-heading">
             <h1>Customer</h1>
-            <ul>
-                @if ($errors->any())
-                    @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
 
-                    @endforeach
-                @endif
-            </ul>
         </div>
         <div class="panel-body" id="">
             <form action="/sales" method="post">
@@ -73,7 +79,9 @@
                     <input type="text" class="nextaction" id="salesinput" name="nextaction">
 
                     <label for="log" id="labeltext">Log</label>
-                    <input type="text" class="log" id="salesinput" name="log">
+                    <textarea rows="4" cols="50" class="log" id="salesinput" name="log" >{{$log->log}}</textarea>
+
+
 
 
                     <input type="submit" class="number" id="submitbuttonsales">
@@ -94,7 +102,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="projectname" id="labeltext">Project name</label>
-                                <input type="text" class="projectname" id="salesinput" name="projectnaam">
+                                <input type="text" class="projectname" id="salesinput" name="projectname">
                             </div>
                             <div class="form-group">
                                 <label for="projectid" id="labeltext">Project-ID</label>
@@ -102,7 +110,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="customername" id="labeltext">Customer name</label>
-                                <select name="Customer_ID" id="basicblack">
+                                <select name="Customer_ID" id="ctsm">
                                     @foreach($a as $customerid)
 
 
@@ -127,7 +135,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="log" id="labeltext">Log</label>
-                                <input type="text" class="log" id="salesinput" name="log" >
+                                <textarea rows="4" cols="50" class="log" id="salesinput" name="log" >{{$log->log}}</textarea>
                             </div>
                         </div>
                         <div class="col-xs-4">
@@ -164,8 +172,7 @@
             </div>
         </div>
     <div class="col-sm-4" id="testing">
-        <form action="">
-            {{csrf_field()}}
+        <div class="tableview" id="scrollablediv">
         <table class="table table-bordered" id="tableclass">
             <thead>
             <tr >
@@ -188,7 +195,9 @@
                    <td><p style="color: black">{{$sales->Customer_ID}}</p></td>
                     <td><p style="color: black">{{$sales->customer_name}}</p></td>
                     <td><p style="color: black">test</p></td>
-                    <td><a href="/sales/{{$sales->Customer_ID}}">EDIT</a></td>
+
+                    <td> <button type="button" class="btn btn-primary" > <a href="/sales/{{$sales->Customer_ID}}" id="basicblack">EDIT</a> </button> </td>
+
                 </tr>
 
                 @endforeach
@@ -198,7 +207,7 @@
 
             </tbody>
         </table>
-        </form>
+        </div>
     </div>
 
 

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\dev;
+use App\log;
+use App\sales;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class devcontroller extends Controller
 {
@@ -36,7 +40,7 @@ class devcontroller extends Controller
     {
 
         $this->validate($request,[
-            'projectnaam' => 'required|min:3|string',
+            'projectname' => 'required|min:3|string',
 
 
 
@@ -56,7 +60,7 @@ class devcontroller extends Controller
 
 
         $dev = new \App\dev();
-        $dev->projectname      =   $request->projectnaam;
+        $dev->projectname      =   $request->projectname;
         $dev->contactperson   =   $request->contactperson;
         $dev->Customer_ID                =   $request->Customer_ID;
         $dev->email       =   $request->email;
@@ -69,8 +73,92 @@ class devcontroller extends Controller
 
         $dev->save();
 
+        $log = \App\log::find(1);
+        $log->log = $request->log;
+
+        $log->save();
+
+        return redirect('sales');;
 
 
+
+    }
+
+
+    public function fakertest()
+    {
+
+
+        $faker = \Faker\Factory::create();
+        for ($i=0; $i < 10; $i++) {
+
+            $sales = new \App\sales();
+            $sales->adress              =   $faker->postcode;
+            $sales->bankaccountnumber   =   $faker->creditCardNumber;
+            $sales->city                =   $faker->city;
+            $sales->customer_name       =   $faker->company;
+            $sales->date_of_action      =   $faker->dateTime();
+            $sales->email               =   $faker->companyEmail;
+            $sales->faxnumber           =   $faker->isbn10;
+            $sales->last_action         =   $faker->state;
+            $sales->next_action         =   $faker->state;
+
+            $sales->phonenumber         =   $faker->numberBetween($min = 1, $max = 9000);
+            $sales->prospect            =   $faker->name;
+            $sales->saldo               =   250;
+
+            $sales->save();
+
+        }
+    }
+
+
+    public function updatedev(Request $request)
+    {
+        $this->validate($request,[
+            'projectname' => 'required|min:3|string',
+
+
+
+            'email' => 'required|E-Mail',
+            'phonenumber' => 'required|string',
+
+
+            'application' => 'required|string',
+            'hardware' => 'required|string',
+            'operatingsystem' => 'required',
+            'last_contact' => 'required|string',
+            'next_contact' => 'required|string',
+            'contactperson' => 'required|string'
+        ]);
+
+
+        $customerid = $request->projectid;
+
+        $dev = \App\dev::find($customerid);
+
+
+        $dev->projectname      =   $request->projectname;
+        $dev->contactperson   =   $request->contactperson;
+        $dev->Customer_ID                =   $request->customerid;
+        $dev->email       =   $request->email;
+        $dev->hardware      =   $request->hardware;
+        $dev->last_contact               =   $request->last_contact;
+        $dev->operatingsystem           =   $request->operatingsystem;
+        $dev->application =             $request->application;
+        $dev->next_contact       =   $request->next_contact;
+
+
+
+
+        $dev->save();
+
+        $log = \App\log::find(1);
+        $log->log = $request->log;
+
+        $log->save();
+
+        return redirect('sales');
     }
 
     /**

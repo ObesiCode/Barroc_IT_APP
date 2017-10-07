@@ -16,10 +16,12 @@
 
 Route::get('sales','salescontroller@index');
 Route::get('sales/{id}','salescontroller@view');
-Route::get('sales/sales/{id}/{projectid}','salescontroller@viewproject');
+Route::get('sales/{id}/{projectid}','salescontroller@viewproject');
 Route::resource('sales','salescontroller');
 Route::resource('dev','devcontroller');
-
+Route::post('sales/update','salescontroller@updateuser');
+Route::post('/sales/pru','devcontroller@updatedev');
+Route::get('/bug','devcontroller@fakertest');
 
 
 Route::get('/', function () {

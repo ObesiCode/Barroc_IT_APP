@@ -3,18 +3,23 @@
 @section('content')
 
 <div class="main">
+    @if ($errors->any())
+        <div class="col-sm-12">
+            <ul class="list-group">
+                @foreach($errors->all() as $error)
+                    <li class="list-group-item list-group-item-danger">{{$error}}</li>
+
+                @endforeach
+            </ul>
+        </div>
+
+    @endif
     <div class="col-sm-4" id="testing">
     <div class="panel panel-default" id="salespanel">
+        <button type="button" class="btn btn-primary"> <a href="/sales" id="basicblack">Go Back</a></button>
         <div class="panel-heading">
-            <h1>Customer</h1>
-            <ul>
-                @if ($errors->any())
-                    @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
+            <h1>Customer Update</h1>
 
-                    @endforeach
-                @endif
-            </ul>
         </div>
         <div class="panel-body" id="">
             <form action="/sales" method="post">
@@ -32,9 +37,11 @@
                      <label for="offernum" id="labeltext">Offer_number</label>
                      <input type="text" class="offernum" id="salesinput" name="offernum">
 
-                     <label for="offerstatus" id="labeltext">Offer_status</label>
-                     <input type="text" class="offerstatus" id="salesinput" name="offerstatus">
+
                         -->
+
+
+
                      <label for="doa" id="labeltext">date of action</label>
                      <input type="date" class="doa" id="salesinput" name="doa" value="{{$customer->date_of_action}}">
 
@@ -73,7 +80,7 @@
                     <input type="text" class="nextaction" id="salesinput" name="nextaction" value="{{$customer->next_action}}">
 
                     <label for="log" id="labeltext">Log</label>
-                    <input type="text" class="log" id="salesinput" name="log" value="">
+                    <textarea rows="4" cols="50" class="log" id="salesinput" name="log" >{{$log->log}}</textarea>
 
 
                     <input type="submit" class="number" id="submitbuttonsales">
@@ -85,29 +92,32 @@
     <div class="col-sm-4" id="testing">
             <div class="panel panel-default" id="salespanel">
                 <div class="panel-heading">
-                    <h1>Development</h1>
-                    <ul>
+                    <h1>Development Update</h1>
+                    <ul class="list-group"  id="scrollablesmalldiv" >
                     @foreach($dev as $devel)
 
-                        <li><a href="">{{$devel->projectname}}</a></li>
+                        <li class="list-group-item"><a href="\sales/{{$customer->Customer_ID}}/{{$devel->Project_ID}}">{{$devel->projectname}}</a></li>
 
                         @endforeach
                     </ul>
                 </div>
                 <div class="panel-body" id="">
 
-                    <form action="/dev" method="post">
+                    <form action="\sales/pru" method="post">
 
                         {{csrf_field()}}
                         <div class="col-xs-4">
                             <div class="form-group">
+
+                                <input type="hidden" name="customerid" value="{{$customer->Customer_ID}}">
+
                                 <label for="projectname" id="labeltext">Project name</label>
 
-                                <input type="text" class="projectname" id="salesinput" name="projectnaam"  value={{$project->projectname}}>
+                                <input type="text" class="projectname" id="salesinput" name="projectname"  value={{$project->projectname}}>
                             </div>
                             <div class="form-group">
                                 <label for="projectid" id="labeltext">Project-ID</label>
-                                <input readonly type="text" class="projectid" id="salesinput" value={{$project->Project_ID}}>
+                                <input readonly type="text" class="projectid" id="salesinput" name="projectid" value={{$project->Project_ID}}>
                             </div>
 
 
@@ -125,7 +135,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="log" id="labeltext">Log</label>
-                                <input type="text" class="log" id="salesinput" name="log" value="{{$log->log}}" >
+                                <textarea rows="4" cols="50" class="log" id="salesinput" name="log" >{{$log->log}}</textarea>
                             </div>
                         </div>
                         <div class="col-xs-4">
@@ -162,8 +172,7 @@
             </div>
         </div>
     <div class="col-sm-4" id="testing">
-        <form action="">
-            {{csrf_field()}}
+        <div class="tableview" id="scrollablediv">
         <table class="table table-bordered" id="tableclass">
             <thead>
             <tr >
@@ -183,10 +192,10 @@
 
             @foreach($a as $sales)
                 <tr>
-                   <td><p style="color: black">{{$sales->Customer_ID}}</p></td>
-                    <td><p style="color: black">{{$sales->customer_name}}</p></td>
-                    <td><p style="color: black">test</p></td>
-                    <td><a href="/sales/{{$sales->Customer_ID}}">EDIT</a></td>
+                   <td><p id="basicblack">{{$sales->Customer_ID}}</p></td>
+                    <td><p id="basicblack">{{$sales->customer_name}}</p></td>
+                    <td><p id="basicblack">test</p></td>
+                    <td> <button type="button" class="btn btn-primary"> <a href="/sales/{{$sales->Customer_ID}}" id="basicblack">EDIT</a> </button> </td>
                 </tr>
 
                 @endforeach
@@ -196,7 +205,7 @@
 
             </tbody>
         </table>
-        </form>
+        </div>
     </div>
 
 

@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class log extends Model
 {
     protected $table = "tbl_log";
+    protected $primaryKey = 'Log_ID';
 }
