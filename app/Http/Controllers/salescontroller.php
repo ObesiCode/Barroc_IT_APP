@@ -19,6 +19,8 @@ class salescontroller extends Controller
         $sales = \App\sales::all();
         $log = \App\log::all();
         $log = $log->first();
+
+
         return view('sales')->with('a',$sales)->with('log',$log);
     }
     public function view($id)
@@ -28,6 +30,14 @@ class salescontroller extends Controller
         $log = \App\log::all();
         $log = $log->first();
         $dev = dev::where('Customer_ID',$id)->get();
+
+
+
+        if (empty($user))
+        {
+            return redirect('sales');
+
+        }
 
 
         return view('salesviewer')->with('customer', $user)->with('a',$sales)->with('log',$log)->with('dev',$dev);
@@ -42,6 +52,12 @@ class salescontroller extends Controller
         $log = $log->first();
         $dev = dev::where('Customer_ID',$id)->get();
         $projectid2 = dev::where('Project_ID',$projectid)->get()->first();
+
+        if (empty($user))
+        {
+            return redirect('sales');
+
+        }
 
         return view('salesviewer_projects')->with('customer', $user)->with('a',$sales)->with('log',$log)->with('dev',$dev)->with('project',$projectid2);
     }
@@ -80,15 +96,22 @@ class salescontroller extends Controller
                 'city' => 'required|min:1|string',
                 'email' => 'required|E-Mail',
                 'adress' => 'required|string',
-                'number' => 'required|string',
+                'phonenumber' => 'required|string',
                 'fax' => 'required|string',
                 'banknm' => 'required|string',
                 'balance' => 'required|string',
                 'doac' => 'required|date',
                 'lastaction' => 'required|string',
                 'nextaction' => 'required|string',
-                'log' => 'required|string'
+
             ]);
+
+
+        if($request->log == null)
+        {
+            $request->log = "Log";
+        }
+
             $sales = new \App\sales();
             $sales->adress              =   $request->adress;
             $sales->bankaccountnumber   =   $request->banknm;
@@ -100,11 +123,14 @@ class salescontroller extends Controller
             $sales->last_action         =   $request->lastaction;
             $sales->next_action         =   $request->nextaction;
 
-            $sales->phonenumber         =   $request->number;
+            $sales->phonenumber         =   $request->phonenumber;
             $sales->prospect            =   $request->prospect;
             $sales->saldo               =   $request->balance;
 
             $sales->save();
+
+
+
 
         $log = \App\log::find(1);
         $log->log = $request->log;
@@ -161,15 +187,21 @@ class salescontroller extends Controller
             'city' => 'required|min:1|string',
             'email' => 'required|E-Mail',
             'adress' => 'required|string',
-            'number' => 'required|string',
+            'phonenumber' => 'required|string',
             'fax' => 'required|string',
             'banknm' => 'required|string',
             'balance' => 'required|string',
             'doac' => 'required|date',
             'lastaction' => 'required|string',
             'nextaction' => 'required|string',
-            'log' => 'required|string'
+
         ]);
+
+        if($request->log == null)
+        {
+            $request->log = "Log";
+        }
+
         $customerid = $request->Customer_ID;
 
         $sales = \App\sales::find($customerid);
@@ -182,7 +214,7 @@ class salescontroller extends Controller
         $sales->faxnumber           =   $request->fax;
         $sales->last_action         =   $request->lastaction;
         $sales->next_action         =   $request->nextaction;
-        $sales->phonenumber         =   $request->number;
+        $sales->phonenumber         =   $request->phonenumber;
         $sales->prospect            =   $request->prospect;
         $sales->saldo               =   $request->balance;
         $sales->save();

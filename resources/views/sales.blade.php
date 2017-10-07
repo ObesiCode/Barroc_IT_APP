@@ -53,21 +53,20 @@
                      <label for="adress" id="labeltext">Adress</label>
                      <input type="text" class="adress" id="salesinput" name="adress">
 
-                     <label for="number" id="labeltext">number</label>
-                     <input type="number" class="number" id="salesinput" name="number">
-
+                     <label for="phonenumber" id="labeltext">Phone number</label>
+                     <input type="text" class="phonenumber" id="salesinput" name="phonenumber">
                  </div>
                 <div class="form-group col-xs-4">
 
 
                     <label for="fax" id="labeltext">fax</label>
-                    <input type="text" class="fax" id="salesinput" name="fax">
+                    <input type="number" class="fax" id="salesinput" name="fax">
 
                     <label for="banknm" id="labeltext">bank number</label>
-                    <input type="text" class="banknm" id="salesinput" name="banknm">
+                    <input type="number" class="banknm" id="salesinput" name="banknm">
 
                     <label for="balance" id="labeltext">balance</label>
-                    <input type="text" class="balance" id="salesinput" name="balance">
+                    <input type="number" class="balance" id="salesinput" name="balance">
 
                     <label for="doa" id="labeltext">date of action</label>
                     <input readonly type="text" class="doa" id="salesinput" value="{{\Carbon\Carbon::now()->format('l j F Y ')}}" name="doac">

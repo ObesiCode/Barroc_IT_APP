@@ -4,9 +4,9 @@
 <div class="header">
         <div class="row">
             <div class="links">
-                    <div class="col-sm-4 text-center list-group-item" id="linktext"><a href="#" class="" id="linktext">Sales</a></div>
-                    <div class="col-sm-4 text-center list-group-item" id="linktext"><a href="#" class="" id="linktext">Finance</a></div>
-                    <div class="col-sm-4 text-center list-group-item" id="linktext"><a href="#" class="" id="linktext">Development</a></div>
+                    <div class="col-sm-4 text-center list-group-item" id="linktext"><a href="/sales" class="" id="linktext">Sales</a></div>
+                    <div class="col-sm-4 text-center list-group-item" id="linktext"><a href="/finance" class="" id="linktext">Finance</a></div>
+                    <div class="col-sm-4 text-center list-group-item" id="linktext"><a href="/development" class="" id="linktext">Development</a></div>
             </div>
         </div>
 </div>
@@ -14,7 +14,13 @@
 
 
         <div class="col-sm-4" id="projectable">
-            <form action="">
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <h3>Projects</h3>
+                </div>
+                <div class="panel-body">
+            <div id="scrollablediv">
                 
             <table class="table table-bordered" id="tableclass">
                 <thead>
@@ -25,43 +31,82 @@
             </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><input type="text" name="projectname" id="inputtext"></td>
-                    <td><input type="text" name="projectID" id="inputtext"></td>
-                    <td><input type="checkbox" name="isactive" id="inputtext"></td>
-                </tr>
+                @foreach($development as $project)
+                    <tr>
+                        <td id="basicblack">{{$project->projectname}}</td>
+                        <td id="basicblack">{{$project->Project_ID}}</td>
+
+                        @if($project->is_active == 1)
+                            <td id="basicblack">Active</td>
+                            @else
+                            <td id="basicblack">InActive</td>
+                            @endif
+                        <td id="basicblack"><a href="{{$project->Project_ID}}">EDIT</a></td>
+
+                    </tr>
+
+
+                    @endforeach
+
                 </tbody>
 
             </table>
-                <input type="submit" id="submitbutton" placeholder="Send">
-                
-            </form>
+
+            </div>
+            </div>
+
+
+
+            </div>
         </div>
 
 
         <div class="col-sm-4" id="customertable">
-            <form action="">
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <h3>Customer</h3>
+                </div>
+
+                <div class="panel-body">
+
+                <div id="scrollablediv">
             <table class="table table-bordered" id="tableclass">
                 <thead>
                 <tr>
                     <th id="tabletoptext">CustomerName</th>
                     <th id="tabletoptext">CustomerID</th>
-                    <th id="tabletoptext">Active</th>
+                    <th id="tabletoptext">saldo</th>
+
                 </tr>
                 </thead>
+
                 <tbody>
-                <tr>
-                    <td><input type="text" name="Customername" id="inputtext"></td>
-                    <td><input type="text" name="customerid" id="inputtext"></td>
-                    <td><input type="checkbox" name="customerisactive" id="inputtext"></td>
-                </tr>
+
+                    @foreach($customer as $user)
+                        <tr>
+                            <td id="basicblack">{{$user->customer_name}}</td>
+                            <td id="basicblack">{{$user->Customer_ID}}</td>
+
+                            @if($user->saldo <= 0)
+                                <td id="basicblack" class="alert-danger">{{$user->saldo}}</td>
+                            @else
+                            <td id="basicblack">{{$user->saldo}}</td>
+                            @endif
+                            <td id="basicblack"><a href="{{$user->Customer_ID}}">EDIT</a></td>
+                        </tr>
+                        @endforeach
+
 
 
 
                 </tbody>
+
             </table>
-                <input type="submit" id="submitbutton" placeholder="Send">
-            </form>
+                </div>
+            </div>
+                </div>
+
         </div>
 
 

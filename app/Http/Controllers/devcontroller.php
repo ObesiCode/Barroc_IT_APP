@@ -17,7 +17,7 @@ class devcontroller extends Controller
      */
     public function index()
     {
-        //
+        return view('development');
     }
 
     /**
@@ -56,8 +56,10 @@ class devcontroller extends Controller
             'contactperson' => 'required|string'
         ]);
 
-        $customerid =
-
+        if($request->log == null)
+        {
+            $request->log = "Log";
+        }
 
         $dev = new \App\dev();
         $dev->projectname      =   $request->projectname;
@@ -69,6 +71,7 @@ class devcontroller extends Controller
         $dev->operatingsystem           =   $request->operatingsystem;
         $dev->application =             $request->application;
         $dev->next_contact       =   $request->next_contact;
+        $dev->isactive = 1;
 
 
         $dev->save();
@@ -133,6 +136,12 @@ class devcontroller extends Controller
         ]);
 
 
+        if($request->log == null)
+        {
+            $request->log = "Log";
+        }
+
+
         $customerid = $request->projectid;
 
         $dev = \App\dev::find($customerid);
@@ -147,7 +156,7 @@ class devcontroller extends Controller
         $dev->operatingsystem           =   $request->operatingsystem;
         $dev->application =             $request->application;
         $dev->next_contact       =   $request->next_contact;
-
+        $dev->isactive = 1;
 
 
 

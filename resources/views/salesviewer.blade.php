@@ -20,6 +20,7 @@
         <button type="button" class="btn btn-primary"> <a href="/sales" id="basicblack">Go Back</a></button>
         <div class="panel-heading">
             <h1>Customer Update</h1>
+            <h4>{{$customer->customer_name}}</h4>
 
         </div>
         <div class="panel-body" id="">
@@ -56,21 +57,21 @@
                      <label for="Customer_ID" id="labeltext">Customer_ID</label>
                      <input readonly type="text" class="Cusomter_ID" id="salesinput" name="Customer_ID" value="{{$customer->Customer_ID}}">
 
-                     <label for="number" id="labeltext">number</label>
-                     <input type="number" class="number" id="salesinput" name="number" value="{{$customer->phonenumber}}">
 
+                     <label for="phonenumber" id="labeltext">Phone number</label>
+                     <input type="text" class="phonenumber" id="salesinput" name="phonenumber" value="{{$customer->phonenumber}}">
                  </div>
                 <div class="form-group col-xs-4">
 
 
                     <label for="fax" id="labeltext">fax</label>
-                    <input type="text" class="fax" id="salesinput" name="fax" value="{{$customer->faxnumber}}">
+                    <input type="number" class="fax" id="salesinput" name="fax" value="{{$customer->faxnumber}}">
 
                     <label for="banknm" id="labeltext">bank number</label>
-                    <input type="text" class="banknm" id="salesinput" name="banknm" value="{{$customer->bankaccountnumber}}">
+                    <input type="number" class="banknm" id="salesinput" name="banknm" value="{{$customer->bankaccountnumber}}">
 
                     <label for="balance" id="labeltext">balance</label>
-                    <input type="text" class="balance" id="salesinput" name="balance" value="{{$customer->saldo}}">
+                    <input type="number" class="balance" id="salesinput" name="balance" value="{{$customer->saldo}}">
 
                     <label for="doa" id="labeltext">date of action</label>
                     <input readonly type="text" class="doa" id="salesinput" value="{{$customer->date_of_action}}" name="doac">
@@ -96,14 +97,20 @@
             <div class="panel panel-default" id="salespanel">
                 <div class="panel-heading">
                     <h1>Development Create</h1>
-
+                    <h4>{{$customer->customer_name}}</h4>
                     <ul class="list-group"  id="scrollablesmalldiv" >
+
+
                         @foreach($dev as $devel)
 
-                            <li class="list-group-item"><a href="\sales/{{$customer->Customer_ID}}/{{$devel->Project_ID}}">{{$devel->projectname}}</a></li>
+                            @if($devel->is_active == 1)
+                                <li class="list-group-item"><a href="\sales/{{$customer->Customer_ID}}/{{$devel->Project_ID}}">{{$devel->projectname}}</a></li>
+                                @endif
+
+
 
                         @endforeach
-                    </ul>
+                    </ul>s
                 </div>
                 <div class="panel-body" id="">
 
@@ -114,7 +121,7 @@
                             <div class="form-group">
                                 <label for="projectname" id="labeltext">Project name</label>
 
-                                <input type="text" class="projectname" id="salesinput" name="projectnaam">
+                                <input type="text" class="projectname" id="salesinput" name="projectname">
                             </div>
                             <div class="form-group">
                                 <label for="projectid" id="labeltext">Project-ID</label>
@@ -123,13 +130,11 @@
                             <div class="form-group">
                                 <label for="customername" id="labeltext">Customer name</label>
                                 <select name="Customer_ID" id="ctsm">
-                                    @foreach($a as $customerid)
 
 
-                                        <option id="basicblack" value={{$customerid->Customer_ID}}>{{$customerid->customer_name}}</option>
 
+                                        <option id="basicblack" value={{$customer->Customer_ID}}>{{$customer->customer_name}}</option>
 
-                                    @endforeach
                                 </select>
                             </div>
 

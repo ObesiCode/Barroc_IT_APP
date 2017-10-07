@@ -54,21 +54,21 @@
                      <label for="adress" id="labeltext">Adress</label>
                      <input type="text" class="adress" id="salesinput" name="adress" value="{{$customer->adress}}">
 
-                     <label for="number" id="labeltext">number</label>
-                     <input type="number" class="number" id="salesinput" name="number" value="{{$customer->phonenumber}}">
 
+                     <label for="phonenumber" id="labeltext">Phone number</label>
+                     <input type="text" class="phonenumber" id="salesinput" name="phonenumber">
                  </div>
                 <div class="form-group col-xs-4">
 
 
                     <label for="fax" id="labeltext">fax</label>
-                    <input type="text" class="fax" id="salesinput" name="fax" value="{{$customer->faxnumber}}">
+                    <input type="number" class="fax" id="salesinput" name="fax" value="{{$customer->faxnumber}}">
 
                     <label for="banknm" id="labeltext">bank number</label>
-                    <input type="text" class="banknm" id="salesinput" name="banknm" value="{{$customer->bankaccountnumber}}">
+                    <input type="number" class="banknm" id="salesinput" name="banknm" value="{{$customer->bankaccountnumber}}">
 
                     <label for="balance" id="labeltext">balance</label>
-                    <input type="text" class="balance" id="salesinput" name="balance" value="{{$customer->saldo}}">
+                    <input type="number" class="balance" id="salesinput" name="balance" value="{{$customer->saldo}}">
 
                     <label for="doa" id="labeltext">date of action</label>
                     <input readonly type="text" class="doa" id="salesinput" value="{{$customer->date_of_action}}" name="doac">
@@ -96,8 +96,10 @@
                     <ul class="list-group"  id="scrollablesmalldiv" >
                     @foreach($dev as $devel)
 
-                        <li class="list-group-item"><a href="\sales/{{$customer->Customer_ID}}/{{$devel->Project_ID}}">{{$devel->projectname}}</a></li>
 
+                                @if($devel->is_active == 1)
+                        <li class="list-group-item"><a href="\sales/{{$customer->Customer_ID}}/{{$devel->Project_ID}}">{{$devel->projectname}}</a></li>
+                            @endif
                         @endforeach
                     </ul>
                 </div>

@@ -24,20 +24,18 @@ Route::post('/sales/pru','devcontroller@updatedev');
 Route::get('/bug','devcontroller@fakertest');
 
 
+Route::get('finance','financecontroller@index');
+
+Route::get('admin','admin@index');
+
+Route::get('development','devcontroller@index');
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/f', function () {
-    return view('finance');
-});
-Route::get('/development', function () {
-    return view('development');
-});
-Route::get('/admin', function () {
-    return view('admin');
 
 
-});
+
+
 Route::get('/inlogin', function () {
     return view('login');
 });
