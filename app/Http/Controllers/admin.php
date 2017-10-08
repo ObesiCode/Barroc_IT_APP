@@ -23,7 +23,7 @@ class admin extends Controller
         $financ =\App\finance::all();
 
 
-        return view('admin')->with('customer',$sales)->with('development',$dev)->with('finance',$financ);
+        return view('admin/admin')->with('customer',$sales)->with('development',$dev)->with('finance',$financ);
     }
 
     /**
@@ -147,7 +147,7 @@ class admin extends Controller
 
 
 
-        return view('admincustomer')->with('user',$user);
+        return view('admin/admincustomer')->with('user',$user);
     }
 
     public function changeproject($id)
@@ -156,7 +156,7 @@ class admin extends Controller
 
 
 
-        return view('adminprojects')->with('project',$project);
+        return view('admin/adminprojects')->with('project',$project);
     }
 
     /**

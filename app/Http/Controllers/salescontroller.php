@@ -22,7 +22,7 @@ class salescontroller extends Controller
         $log = $log->first();
 
 
-        return view('sales')->with('a',$sales)->with('log',$log);
+        return view('sales/sales')->with('a',$sales)->with('log',$log);
     }
     public function view($id)
     {
@@ -36,12 +36,12 @@ class salescontroller extends Controller
 
         if (empty($user))
         {
-            return redirect('sales');
+            return redirect('sales/sales');
 
         }
 
 
-        return view('salesviewer')->with('customer', $user)->with('a',$sales)->with('log',$log)->with('dev',$dev);
+        return view('sales/salesviewer')->with('customer', $user)->with('a',$sales)->with('log',$log)->with('dev',$dev);
 
     }
     public function viewproject($id,$projectid)
@@ -56,11 +56,11 @@ class salescontroller extends Controller
 
         if (empty($projectid2))
         {
-            return redirect('sales');
+            return redirect('sales/sales');
 
         }
 
-        return view('salesviewer_projects')->with('customer', $user)->with('a',$sales)->with('log',$log)->with('dev',$dev)->with('project',$projectid2);
+        return view('sales/salesviewer_projects')->with('customer', $user)->with('a',$sales)->with('log',$log)->with('dev',$dev)->with('project',$projectid2);
     }
 
     /**
