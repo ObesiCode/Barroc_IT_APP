@@ -81,7 +81,7 @@ class devcontroller extends Controller
 
         $log->save();
 
-        return redirect('sales');;
+        return redirect('sales?msg');;
 
 
 
@@ -113,8 +113,8 @@ class devcontroller extends Controller
 
 
             $dev = new \App\dev();
-            $dev->Customer_ID = $i;
-            $dev->projectname = $faker->address;
+            $dev->Customer_ID = $i + 1;
+            $dev->projectname = $faker->name;
             $dev->email = $faker->email;
             $dev->operatingsystem = "windows";
             $dev->application = $faker->userName;
@@ -125,7 +125,7 @@ class devcontroller extends Controller
             $dev->is_active = $faker->numberBetween($min= 0,$max = 1);
 
             $dev->save();
-            $sales->save();
+
         }
         echo "done";
 
@@ -185,7 +185,7 @@ class devcontroller extends Controller
 
         $log->save();
 
-        return redirect('sales');
+        return redirect('sales?msg');
     }
 
     /**

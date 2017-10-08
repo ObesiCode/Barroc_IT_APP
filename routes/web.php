@@ -38,6 +38,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/bugtesting',function (){
+    return view('bugtesting');
+});
+
 
 
 

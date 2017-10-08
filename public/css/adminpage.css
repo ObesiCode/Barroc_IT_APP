@@ -16,7 +16,7 @@
 #test
 {
     background-color: #f3f3f3;
-    color: #f3f3f3;
+
 }
 .list-group-horizontal .list-group-item {
     display: inline-block;
@@ -86,6 +86,20 @@
     bottom: 0;
     right: 0;
 }
+#helptext {
+    font-size:13px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    padding-top: 0;
+
+}
+#helpbutton2 {
+    font-size:20px;
+    position: absolute;
+    bottom: 20px;
+    right: 1000px;
+}
 #inputtext
 {
     font-family: "Helvetica Neue";
@@ -151,6 +165,12 @@
     width: 170px;
 }
 
+#tableadmintext
+{
+    color:#000000;
+    font-size: 20px;
+}
+
 
 #customth
 {
@@ -160,6 +180,10 @@
 /* login */
 
 
+#projectable
+{
+    width:700px;
+}
 
 body {
     background: #eee ;

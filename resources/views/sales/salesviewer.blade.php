@@ -17,7 +17,9 @@
     <div class="col-sm-4" id="testing">
 
     <div class="panel panel-default" id="salespanel">
-        <button type="button" class="btn btn-primary"> <a href="/sales" id="basicblack">Go Back</a></button>
+        <form action="/sales">
+            <input type="submit" class="btn-primary" value="Go Back" />
+        </form>
         <div class="panel-heading">
             <h1>Customer Update</h1>
             <h4>{{$customer->customer_name}}</h4>
@@ -212,10 +214,17 @@
 
             @foreach($a as $sales)
                 <tr>
-                   <td><p style="color: black">{{$sales->Customer_ID}}</p></td>
-                    <td><p style="color: black">{{$sales->customer_name}}</p></td>
-                    <td><p style="color: black">test</p></td>
-                    <td> <button type="button" class="btn btn-primary"> <a href="/sales/{{$sales->Customer_ID}}" id="basicblack">EDIT</a> </button> </td>
+                    <td><p id="basicblack">{{$sales->Customer_ID}}</p></td>
+                    <td><p id="basicblack">{{$sales->customer_name}}</p></td>
+                    <td><p id="basicblack">test</p></td>
+
+                    <td>
+                        <form action="/sales/{{$sales->Customer_ID}}">
+                            <input type="submit" class="btn-primary" value="edit" />
+                        </form>
+
+                    </td>
+
                 </tr>
 
                 @endforeach

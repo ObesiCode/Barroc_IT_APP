@@ -12,6 +12,16 @@
 </div>
     <div class="main" id="test">
 
+        <div class="col-sm-12" id="dissapear">
+            <ul class="list-group" id="helptext">
+                <li class="list-group-item" >
+                    <p>this page is used to search through all user info</p>
+                    <p>use the <b>edit button</b> in the tables to edit that specific user or project.</p>
+                    <button type="button"  onclick="show();" class="btn btn-info" id="helpbutton2">toggle</button>
+                </li>
+            </ul>
+
+        </div>
 
         <div class="col-sm-4" id="projectable">
             <div class="panel panel-default">
@@ -33,11 +43,17 @@
                 </thead>
                 <tbody>
                 @foreach($development as $project )
-                    <tr>
-                        <td id="basicblack">{{$project->projectname}} <b> customerID: {{$project->Customer_ID}}</b> </td>
-                        <td id="basicblack">{{$project->Project_ID}}</td>
+                    <ul class="list-group">
+                        <tr>
+                        <td id="basicblack" class="list-group">
+                            <li class="list-group-item">{{$project->projectname}}</li>
+                            <li class="list-group-item"><b> customerID: {{$project->Customer_ID}}</b></li>
 
-                        <td id="basicblack">
+                        </td>
+
+                        <td id="tableadmintext">{{$project->Project_ID}}</td>
+
+                        <td id="tableadmintext">
                         @foreach($finance as $fnc)
 
                             @if($project->Project_ID == $fnc->Project_ID)
@@ -52,9 +68,15 @@
                             @else
                             <td id="basicblack" class="alert-danger">InActive</td>
                             @endif
-                        <td id="basicblack"><a href="admin/pr/{{$project->Project_ID}}">EDIT</a></td>
+                        <td id="basicblack">
 
-                    </tr>
+                            <form action="admin/pr/{{$project->Project_ID}}">
+                                <input type="submit" class="btn-primary" value="edit" />
+                            </form>
+                        </td>
+
+                        </tr>
+                    </ul>
 
 
                     @endforeach
@@ -97,14 +119,18 @@
                     @foreach($customer as $user)
                         <tr>
                             <td id="basicblack">{{$user->customer_name}}</td>
-                            <td id="basicblack">{{$user->Customer_ID}}</td>
+                            <td id="tableadmintext">{{$user->Customer_ID}}</td>
 
                             @if($user->saldo <= 0)
                                 <td id="basicblack" class="alert-danger">{{$user->saldo}}</td>
                             @else
                             <td id="basicblack" class="alert-success">{{$user->saldo}}</td>
                             @endif
-                            <td id="basicblack"><a href="admin/cst/{{$user->Customer_ID}}">EDIT</a></td>
+                            <td id="basicblack">
+                                <form action="admin/cst/{{$user->Customer_ID}}">
+                                    <input type="submit" class="btn-primary" value="edit" />
+                                </form>
+
                         </tr>
                         @endforeach
 
@@ -123,7 +149,25 @@
 
     </div>
     <footer>
-        <button type="button" class="btn btn-info" id="help">Info</button>
+        <script>
+
+            document.getElementById("dissapear").style.visibility = "hidden";
+
+
+            function show()
+            {
+                document.getElementById("dissapear").style.visibility = "hidden";
+            }
+            function dissapear()
+            {
+
+
+                document.getElementById("dissapear").style.visibility = "visible";
+
+            }
+
+        </script>
+        <button type="button"  onclick="dissapear();" class="btn btn-info" id="help">Info</button>
     </footer>
 
 @endsection

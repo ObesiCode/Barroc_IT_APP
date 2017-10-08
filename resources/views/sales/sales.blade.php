@@ -16,6 +16,14 @@
 
         @endif
 
+    @if(isset( $_GET['msg']) != null)
+        <div class="col-sm-12">
+            <ul class="list-group-item">
+                <li class="list-group-item list-group-item-success"> succesfull action taken  </li>
+            </ul>
+        </div>
+        @endif
+
     <div class="col-sm-4" id="testing">
     <div class="panel panel-default" id="salespanel">
         <div class="panel-heading">
@@ -191,11 +199,16 @@
 
             @foreach($a as $sales)
                 <tr>
-                   <td><p style="color: black">{{$sales->Customer_ID}}</p></td>
-                    <td><p style="color: black">{{$sales->customer_name}}</p></td>
-                    <td><p style="color: black">test</p></td>
+                   <td><p id="basicblack">{{$sales->Customer_ID}}</p></td>
+                    <td><p id="basicblack">{{$sales->customer_name}}</p></td>
+                    <td><p id="basicblack">test</p></td>
 
-                    <td> <button type="button" class="btn btn-primary" > <a href="/sales/{{$sales->Customer_ID}}" id="basicblack">EDIT</a> </button> </td>
+                    <td>
+                        <form action="/sales/{{$sales->Customer_ID}}">
+                            <input type="submit" class="btn-primary" value="edit" />
+                        </form>
+
+                    </td>
 
                 </tr>
 

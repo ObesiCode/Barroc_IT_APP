@@ -139,7 +139,7 @@ class salescontroller extends Controller
 
         $log->save();
 
-        return redirect('sales');
+        return redirect('sales?msg');
 
 
 
@@ -230,7 +230,7 @@ class salescontroller extends Controller
 
 
 
-        return redirect('sales');
+        return redirect('sales?msg');
 
     }
 
