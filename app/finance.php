@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class finance extends Model
 {
-    //
+    protected $table = "tbl_offertes";
+    protected $primaryKey = "Offerte_ID";
 }

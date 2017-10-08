@@ -7,6 +7,7 @@ use App\log;
 use App\sales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\logcontroller;
 class salescontroller extends Controller
 {
     /**
@@ -53,7 +54,7 @@ class salescontroller extends Controller
         $dev = dev::where('Customer_ID',$id)->get();
         $projectid2 = dev::where('Project_ID',$projectid)->get()->first();
 
-        if (empty($user))
+        if (empty($projectid2))
         {
             return redirect('sales');
 
@@ -132,6 +133,7 @@ class salescontroller extends Controller
 
 
 
+
         $log = \App\log::find(1);
         $log->log = $request->log;
 
@@ -176,6 +178,7 @@ class salescontroller extends Controller
     {
         echo "test";
     }
+
     public function updateuser(Request $request)
     {
 
@@ -191,7 +194,7 @@ class salescontroller extends Controller
             'fax' => 'required|string',
             'banknm' => 'required|string',
             'balance' => 'required|string',
-            'doac' => 'required|date',
+
             'lastaction' => 'required|string',
             'nextaction' => 'required|string',
 

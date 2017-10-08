@@ -27,21 +27,32 @@
             <tr>
                 <th id="tabletoptext">Projectname</th>
                 <th id="tabletoptext">Project_ID</th>
+                <th id="tabletoptext">Offerte_ID</th>
                 <th id="tabletoptext">active</th>
             </tr>
                 </thead>
                 <tbody>
-                @foreach($development as $project)
+                @foreach($development as $project )
                     <tr>
-                        <td id="basicblack">{{$project->projectname}}</td>
+                        <td id="basicblack">{{$project->projectname}} <b> customerID: {{$project->Customer_ID}}</b> </td>
                         <td id="basicblack">{{$project->Project_ID}}</td>
 
-                        @if($project->is_active == 1)
-                            <td id="basicblack">Active</td>
-                            @else
-                            <td id="basicblack">InActive</td>
+                        <td id="basicblack">
+                        @foreach($finance as $fnc)
+
+                            @if($project->Project_ID == $fnc->Project_ID)
+                          {{$fnc->Offerte_ID}}
+
                             @endif
-                        <td id="basicblack"><a href="{{$project->Project_ID}}">EDIT</a></td>
+                        @endforeach
+                           </td>
+
+                        @if($project->is_active == 1)
+                            <td id="basicblack" class="alert-success">Active</td>
+                            @else
+                            <td id="basicblack" class="alert-danger">InActive</td>
+                            @endif
+                        <td id="basicblack"><a href="admin/pr/{{$project->Project_ID}}">EDIT</a></td>
 
                     </tr>
 
@@ -91,9 +102,9 @@
                             @if($user->saldo <= 0)
                                 <td id="basicblack" class="alert-danger">{{$user->saldo}}</td>
                             @else
-                            <td id="basicblack">{{$user->saldo}}</td>
+                            <td id="basicblack" class="alert-success">{{$user->saldo}}</td>
                             @endif
-                            <td id="basicblack"><a href="{{$user->Customer_ID}}">EDIT</a></td>
+                            <td id="basicblack"><a href="admin/cst/{{$user->Customer_ID}}">EDIT</a></td>
                         </tr>
                         @endforeach
 

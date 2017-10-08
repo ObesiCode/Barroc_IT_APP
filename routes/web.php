@@ -25,8 +25,13 @@ Route::get('/bug','devcontroller@fakertest');
 
 
 Route::get('finance','financecontroller@index');
-
+Route::get('admin/cst/{id}','admin@changeuser');
+Route::get('admin/pr/{id}','admin@changeproject');
 Route::get('admin','admin@index');
+Route::post('admin/userupdate','admin@updateuseradmin');
+Route::post('admin/updateproject','admin@updateproject');
+
+
 
 Route::get('development','devcontroller@index');
 Route::get('/', function () {

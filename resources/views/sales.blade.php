@@ -175,7 +175,7 @@
         <table class="table table-bordered" id="tableclass">
             <thead>
             <tr >
-                <th id="customth"><label for="search" id="labeltext">Search</label> <input type="text" id="search" name="search" >
+                <th id="customth"><label for="search" id="labeltext">Search</label> <input type="text" id="basicblack" name="search" >
 
                 </th>
                 <th><input type="submit" id="submitbuttonsales"></th>

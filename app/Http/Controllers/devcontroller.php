@@ -71,7 +71,7 @@ class devcontroller extends Controller
         $dev->operatingsystem           =   $request->operatingsystem;
         $dev->application =             $request->application;
         $dev->next_contact       =   $request->next_contact;
-        $dev->isactive = 1;
+        $dev->is_active = 1;
 
 
         $dev->save();
@@ -93,7 +93,7 @@ class devcontroller extends Controller
 
 
         $faker = \Faker\Factory::create();
-        for ($i=0; $i < 10; $i++) {
+        for ($i=0; $i < 30; $i++) {
 
             $sales = new \App\sales();
             $sales->adress              =   $faker->postcode;
@@ -108,11 +108,27 @@ class devcontroller extends Controller
 
             $sales->phonenumber         =   $faker->numberBetween($min = 1, $max = 9000);
             $sales->prospect            =   $faker->name;
-            $sales->saldo               =   250;
+            $sales->saldo               =   $faker->numberBetween($min= -1000,$max = 5000);
 
+
+
+            $dev = new \App\dev();
+            $dev->Customer_ID = $i;
+            $dev->projectname = $faker->address;
+            $dev->email = $faker->email;
+            $dev->operatingsystem = "windows";
+            $dev->application = $faker->userName;
+            $dev->hardware = "pc";
+            $dev->contactperson = $faker->name;
+            $dev->last_contact         =   $faker->state;
+            $dev->next_contact        =   $faker->state;
+            $dev->is_active = $faker->numberBetween($min= 0,$max = 1);
+
+            $dev->save();
             $sales->save();
-
         }
+        echo "done";
+
     }
 
 
@@ -156,7 +172,9 @@ class devcontroller extends Controller
         $dev->operatingsystem           =   $request->operatingsystem;
         $dev->application =             $request->application;
         $dev->next_contact       =   $request->next_contact;
-        $dev->isactive = 1;
+        $dev->is_active = 1;
+
+
 
 
 
