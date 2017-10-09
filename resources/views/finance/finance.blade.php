@@ -16,13 +16,12 @@
                     <h1>Customer</h1>
                 </div>
                 <div class="panel-body">
-                    <form action="">
+                    <form action="finance" method="post">
                         <div class="form-group col-xs-4">
-                            <label for="invoice_id"> Invoice Id</label>
+                            <!--<label for="invoice_id"> Invoice Id</label>
                             <input type="text" id="invoice_id">
+                            -->
 
-                            <label for="offer-number">offer-number</label>
-                            <input type="text" id="offer-number">
 
                             <label for="Doa"> Date Of Action</label>
                             <input type="text" id="Doa">
@@ -33,14 +32,11 @@
                             <label for="Cus_id">Customer ID</label>
                             <input type="text" id="Cus_id">
 
-                            <label for="Cus_name">Customer Name</label>
-                            <input type="text" id="Cus_name">
 
                             <label for="Email"> Email</label>
                             <input type="email" id="Email">
 
-                            <label for="Phone"> Phone Number</label>
-                            <input type="text" id="phone">
+
 
                         </div>
                         <div class="form-group col-xs-4 submit">

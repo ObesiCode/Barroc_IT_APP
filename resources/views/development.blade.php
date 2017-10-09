@@ -17,7 +17,7 @@
                         <h1>Development</h1>
                     </div>
                     <div class="panel-body" id="">
-                        <form action="">
+                        <form action="" method="post">
 
                             {{csrf_field()}}
                             <div class="col-xs-4">

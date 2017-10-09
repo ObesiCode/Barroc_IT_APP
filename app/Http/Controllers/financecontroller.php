@@ -14,7 +14,7 @@ class financecontroller extends Controller
     public function index()
     {
 
-        return view('finance');
+        return view('finance/finance');
     }
 
     /**
@@ -36,7 +36,48 @@ class financecontroller extends Controller
     public function store(Request $request)
     {
         //
+
+        $this->validate($request,[
+
+
+
+
+            'Doa' => 'required|Date',
+            'Email' => 'required|Email',
+            'payment' => 'required|int',
+            'cus_id' => 'required|Int'
+
+
+        ]);
+        if($request->log == null)
+        {
+            $request->log = "Log";
+        }
+
+        $finance = new \App\finance();
+        $finance->date_of_action       =   $request->Doa;
+        $finance->Customer_ID       =   $request->cus_id;
+        $finance->email             =   $request->email;
+        $finance->payement_data          =   $request->payment;
+
+
+        $finance->save();
+
+        $log = \App\log::find(1);
+        $log->log = $request->log;
+
+        $log->save();
+
+        return redirect('sales?msg');
+
+
+
     }
+
+
+
+
+
 
     /**
      * Display the specified resource.

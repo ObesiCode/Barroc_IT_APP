@@ -25,6 +25,8 @@ Route::get('/bug','devcontroller@fakertest');
 
 
 Route::get('finance','financecontroller@index');
+Route::post('finance','financecontroller@store');
+
 Route::get('admin/cst/{id}','admin@changeuser');
 Route::get('admin/pr/{id}','admin@changeproject');
 Route::get('admin','admin@index');
