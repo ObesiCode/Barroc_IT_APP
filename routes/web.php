@@ -23,6 +23,8 @@ Route::post('sales/update','salescontroller@updateuser');
 Route::post('/sales/pru','devcontroller@updatedev');
 Route::get('/bug','devcontroller@fakertest');
 
+Route::post('/search/sales','salescontroller@search');
+
 
 Route::get('finance','financecontroller@index');
 Route::post('finance','financecontroller@store');

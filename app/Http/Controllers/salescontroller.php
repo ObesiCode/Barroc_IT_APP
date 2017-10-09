@@ -244,4 +244,20 @@ class salescontroller extends Controller
     {
         //
     }
+    public function search(Request $request)
+    {
+        $user = sales::where('customer_name','LIKE' ,'%'.$request->search.'%')->get();
+
+        $adress = sales::where('adress','LIKE','%'.$request->search.'%')->get();
+
+        $city = sales::where('city','LIKE','%'.$request->search.'%')->get();
+
+        $email =  sales::where('email','LIKE','%'.$request->search.'%')->get();
+
+
+
+
+        return view('searchsales')->with('user',$user)->with('adress',$adress)->with('city',$city)->with('email',$email);
+    }
+
 }

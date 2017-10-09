@@ -201,7 +201,7 @@
                 <tr>
                     <td><p id="basicblack">{{$sales->Customer_ID}}</p></td>
                     <td><p id="basicblack">{{$sales->customer_name}}</p></td>
-                    <td><p id="basicblack">test</p></td>
+
 
                     <td>
                         <form action="/sales/{{$sales->Customer_ID}}">
