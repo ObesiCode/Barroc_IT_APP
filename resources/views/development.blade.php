@@ -1,15 +1,6 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Development</title>
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('css/developmentpage.css') }}">
-    </head>
-    <body>
+@extends('layouts.layoutbasictop')
+
+@section('content')
     <div class="main">
         <div class="container">
             <div class="navbar-header">
@@ -155,19 +146,30 @@
                                 <th><input type="submit" id="submitbuttonsales"></th>
                             </tr>
                             <tr>
-                                <th id="tabletoptext">invoice-id</th>
                                 <th id="tabletoptext">Customer-id</th>
                                 <th id="tabletoptext">name</th>
                                 <th id="tabletoptext"><p>EDIT</p></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td><input type="text" name="invoicid" id="inputtext"></td>
-                                <td><input type="text" name="customerid" id="inputtext"></td>
-                                <td><input type="text" name="name" id="inputtext"></td>
-                                <td><a href="#">EDIT</a></td>
-                            </tr>
+
+                            @foreach($a as $sales)
+                                <tr>
+                                    <td><p id="basicblack">{{$sales->Customer_ID}}</p></td>
+                                    <td><p id="basicblack">{{$sales->customer_name}}</p></td>
+                                    <td><p id="basicblack">test</p></td>
+
+                                    <td>
+                                        <form action="/sales/{{$sales->Customer_ID}}">
+                                            <input type="submit" class="btn-primary" value="edit" />
+                                        </form>
+
+                                    </td>
+
+                                </tr>
+
+                            @endforeach
+
 
 
 
@@ -177,5 +179,10 @@
                 </div>
             </div>
         </div>
-    </body>
-</html>
+
+    <script src="{{ asset('js/app.js') }}"></script>
+@endsection
+
+<script src="{{ asset('js/app.js') }}"></script>
+
+@extends('layouts.layoutbasicbottom')

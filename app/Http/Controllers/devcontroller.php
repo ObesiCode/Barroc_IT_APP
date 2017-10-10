@@ -17,7 +17,14 @@ class devcontroller extends Controller
      */
     public function index()
     {
-        return view('development');
+        $sales = \App\sales::all();
+        $log = \App\log::all();
+        $log = $log->first();
+
+
+
+
+        return view('development')->with('a',$sales)->with('log',$log);
     }
 
     /**
