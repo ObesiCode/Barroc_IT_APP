@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\logcontroller;
 class salescontroller extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -35,6 +35,7 @@ Route::get('admin','admin@index');
 Route::post('admin/userupdate','admin@updateuseradmin');
 Route::post('admin/updateproject','admin@updateproject');
 
+Route::get('loginuser','loginuser@loginuserstuf');
 
 
 Route::get('development','devcontroller@index');

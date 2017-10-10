@@ -13,6 +13,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/adminpage.css') }}">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/adminpage.css') }}">
+    <link rel="script" href="../../assets/js/helpfunctie.js">
 </head>
 <body>
     <div id="app">

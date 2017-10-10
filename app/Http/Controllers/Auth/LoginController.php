@@ -32,7 +32,7 @@ class LoginController extends Controller
         return 'name';
     }
 
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/loginuser';
 
     /**
      * Create a new controller instance.
