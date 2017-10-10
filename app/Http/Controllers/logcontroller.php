@@ -17,10 +17,10 @@ class logcontroller extends Controller
     }
 
 
-    public function inputlog($derequest)
+    public function inputlog(Request $request)
     {
         $log = \App\log::find(1);
-        $log->log = $derequest->log;
+        $log->log = $request->log;
 
         $log->save();
     }

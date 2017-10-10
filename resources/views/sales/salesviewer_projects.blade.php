@@ -241,10 +241,14 @@
         <table class="table table-bordered" id="tableclass">
             <thead>
             <tr >
-                <th id="customth"><label for="search" id="labeltext">Search</label> <input type="text" id="basicblack" name="search" >
-
+                <form action="/search/sales" method="post">
+                    {{csrf_field()}}
+                    <th id="customth"><label for="search" id="labeltext">Search</label>
+                        <input type="text" id="basicblack" name="search" >
+                        <input type="submit" id="submitbuttonsales">
+                </form>
                 </th>
-                <th><input type="submit" id="submitbuttonsales"></th>
+
             </tr>
             <tr>
 

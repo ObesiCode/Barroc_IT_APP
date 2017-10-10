@@ -56,10 +56,7 @@ class devcontroller extends Controller
             'contactperson' => 'required|string'
         ]);
 
-        if($request->log == null)
-        {
-            $request->log = "Log";
-        }
+
 
         $dev = new \App\dev();
         $dev->projectname      =   $request->projectname;
@@ -76,10 +73,7 @@ class devcontroller extends Controller
 
         $dev->save();
 
-        $log = \App\log::find(1);
-        $log->log = $request->log;
 
-        $log->save();
 
         return redirect('sales?msg');;
 
@@ -152,10 +146,6 @@ class devcontroller extends Controller
         ]);
 
 
-        if($request->log == null)
-        {
-            $request->log = "Log";
-        }
 
 
         $customerid = $request->projectid;
@@ -180,10 +170,6 @@ class devcontroller extends Controller
 
         $dev->save();
 
-        $log = \App\log::find(1);
-        $log->log = $request->log;
-
-        $log->save();
 
         return redirect('sales?msg');
     }

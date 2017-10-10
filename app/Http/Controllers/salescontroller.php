@@ -112,10 +112,7 @@ class salescontroller extends Controller
             ]);
 
 
-        if($request->log == null)
-        {
-            $request->log = "Log";
-        }
+
 
             $sales = new \App\sales();
             $sales->adress              =   $request->adress;
@@ -138,10 +135,6 @@ class salescontroller extends Controller
 
 
 
-        $log = \App\log::find(1);
-        $log->log = $request->log;
-
-        $log->save();
 
         return redirect('sales?msg');
 
@@ -204,10 +197,7 @@ class salescontroller extends Controller
 
         ]);
 
-        if($request->log == null)
-        {
-            $request->log = "Log";
-        }
+
 
         $customerid = $request->Customer_ID;
 
@@ -226,10 +216,6 @@ class salescontroller extends Controller
         $sales->saldo               =   $request->balance;
         $sales->save();
 
-        $log = \App\log::find(1);
-        $log->log = $request->log;
-
-        $log->save();
 
 
 

@@ -143,8 +143,6 @@
                     <label for="nextaction" id="labeltext">Next Action</label>
                     <input type="text" class="nextaction" id="salesinput" name="nextaction">
 
-                    <label for="log" id="labeltext">Log</label>
-                    <textarea rows="4" cols="50" class="log" id="salesinput" name="log" >{{$log->log}}</textarea>
 
 
 
@@ -198,10 +196,7 @@
                                 <label for="offertenumber" id="labeltext">Offerte number</label>
                                 <input readonly type="number" class="offertenumber" id="salesinput" >
                             </div>
-                            <div class="form-group">
-                                <label for="log" id="labeltext">Log</label>
-                                <textarea rows="4" cols="50" class="log" id="salesinput" name="log" >{{$log->log}}</textarea>
-                            </div>
+
                         </div>
                         <div class="col-xs-4">
                             <div class="form-group">
@@ -243,7 +238,8 @@
             <tr >
                 <form action="/search/sales" method="post">
                     {{csrf_field()}}
-                <th id="customth"><label for="search" id="labeltext">Search</label> <input type="text" id="basicblack" name="search" >
+                <th id="customth"><label for="search" id="labeltext">Search</label>
+                    <input type="text" id="basicblack" name="search" >
                     <input type="submit" id="submitbuttonsales">
                 </form>
                 </th>
@@ -280,6 +276,15 @@
 
             </tbody>
         </table>
+
+        </div>
+        <div class="form-group">
+            <form action="log" method="post">
+                {{csrf_field()}}
+
+                <textarea rows="4" cols="50" class="log" id="log" name="log" >{{$log->log}}</textarea>
+                <input type="submit" class="btn-primary" >
+            </form>
         </div>
     </div>
 

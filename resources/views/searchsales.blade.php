@@ -17,6 +17,9 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                <form action="/sales">
+                    <input type="submit" class="btn-primary" value="Go Back" />
+                </form>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -65,33 +68,132 @@
 
 
         <ul class="list-group">
-<p>adress</p>
+            <h2>results based on customer adresses</h2>
+            <table class="table table-bordered" id="tableclass">
+                <thead>
+                <tr>
+                    <th>Customer ID</th>
+                    <th>adress</th>
+                    <th>customername</th>
+                    <th>city</th>
+                    <th>number</th>
+                    <th>edit</th>
+                </tr>
+                </thead>
+                <tbody>
 @foreach($adress as $adr)
 
-    <li class="list-group-item">{{$adr->adress}}</li>
+                   <tr>
+                       <td>{{$adr->Customer_ID}}</td>
+                       <td>{{$adr->adress}}</td>
+                       <td>{{$adr->customer_name}}</td>
+                       <td>{{$adr->city}}</td>
+                       <td>{{$adr->phonenumber}}</td>
+                       <td>
+                           <form action="/sales/{{$adr->Customer_ID}}">
+                               <input type="submit" class="btn-primary" value="edit" />
+                           </form>
+                       </td>
+                   </tr>
+
 
     @endforeach
-
+                </tbody>
+            </table>
 </ul>
 
 <ul class="list-group">
-<p>customername</p>
+<h2>results based on customer names</h2>
+    <table class="table table-bordered" id="tableclass">
+        <thead>
+        <tr>
+            <th>Customer ID</th>
+            <th>adress</th>
+            <th>customername</th>
+            <th>city</th>
+            <th>number</th>
+            <th>edit</th>
+        </tr>
+        </thead>
+        <tbody>
     @foreach($user as $usr)
-    <li class="list-group-item">{{$usr->customer_name}} </li>
+
+        <tr>
+            <td>{{$usr->Customer_ID}}</td>
+            <td>{{$usr->adress}}</td>
+            <td>{{$usr->customer_name}}</td>
+            <td>{{$usr->city}}</td>
+            <td>{{$usr->phonenumber}}</td>
+            <td><form action="/sales/{{$usr->Customer_ID}}">
+                    <input type="submit" class="btn-primary" value="edit" />
+                </form></td>
+        </tr>
+
+
+
     @endforeach
+    </tbody>
+        </table>
 </ul>
  <ul class="list-group">
-<p>city</p>
+     <h2>results based on customer cities</h2>
+     <table class="table table-bordered" id="tableclass">
+     <thead>
+     <tr>
+         <th>Customer ID</th>
+         <th>adress</th>
+         <th>customername</th>
+         <th>city</th>
+         <th>number</th>
+         <th>edit</th>
+     </tr>
+     </thead>
+     <tbody>
      @foreach($city as $cty)
-        <li class="list-group-item">{{$cty->city}}</li>
+
+         <tr>
+             <td>{{$cty->Customer_ID}}</td>
+             <td>{{$cty->adress}}</td>
+             <td>{{$cty->customer_name}}</td>
+             <td>{{$cty->city}}</td>
+             <td>{{$cty->phonenumber}}</td>
+             <td><form action="/sales/{{$cty->Customer_ID}}">
+                     <input type="submit" class="btn-primary" value="edit" />
+                 </form></td>
+         </tr>
      @endforeach
+     </tbody>
+     </table>
 </ul>
 <ul class="list-group">
-    <p>email</p>
+    <h2>results based on customer emails</h2>
+    <table class="table table-bordered" id="tableclass">
+    <thead>
+    <tr>
+        <th>Customer ID</th>
+        <th>adress</th>
+        <th>customername</th>
+        <th>city</th>
+        <th>number</th>
+        <th>edit</th>
+    </tr>
+    </thead>
+    <tbody>
     @foreach($email as $ml)
-        <li class="list-group-item">{{$ml->email}}</li>
+        <tr>
+            <td>{{$ml->Customer_ID}}</td>
+            <td>{{$ml->adress}}</td>
+            <td>{{$ml->customer_name}}</td>
+            <td>{{$ml->city}}</td>
+            <td>{{$ml->phonenumber}}</td>
+            <td><form action="/sales/{{$ml->Customer_ID}}">
+                    <input type="submit" class="btn-primary" value="edit" />
+                </form></td>
+        </tr>
 
     @endforeach
+    </tbody>
+        </table>
 </ul>
     </div>
 
