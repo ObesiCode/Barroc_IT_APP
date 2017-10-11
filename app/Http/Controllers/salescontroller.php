@@ -248,9 +248,6 @@ class salescontroller extends Controller
 
         $banknm = sales::where('bankaccountnumber','LIKE','%'.$request->search.'%')->get();
 
-
-
-
         return view('searchsales')->with('user',$user)->with('adress',$adress)->with('city',$city)->with('email',$email)->with('id',$id)->with('banknm',$banknm);
     }
 

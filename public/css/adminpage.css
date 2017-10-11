@@ -241,6 +241,12 @@ body {
    overflow:scroll;
     height:500px;
 }
+#scrollablemediumdiv
+{
+    overflow:scroll;
+    height:250px;
+}
+
 
 #scrollablesmalldiv
 {

@@ -85,7 +85,7 @@
                     <h3>Projects</h3>
                 </div>
                 <div class="panel-body">
-            <div id="scrollablediv">
+            <div id="scrollablemediumdiv">
                 
             <table class="table table-bordered" id="tableclass">
                 <thead>
@@ -150,15 +150,16 @@
 
 
         <div class="col-sm-4" id="customertable">
-            <div class="panel panel-default">
+            <div class="panel panel-default" >
 
                 <div class="panel-heading">
+
                     <h3>Customer</h3>
                 </div>
 
                 <div class="panel-body">
 
-                <div id="scrollablediv">
+                <div id="scrollablemediumdiv">
             <table class="table table-bordered" id="tableclass">
                 <thead>
                 <tr>

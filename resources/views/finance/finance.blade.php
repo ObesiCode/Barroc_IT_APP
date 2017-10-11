@@ -67,6 +67,19 @@
         <!--website start hier hierboven header laravel !-->
 
 
+        @if(Auth::user()->name == "admin")
+            <div class="header">
+                <div class="row">
+                    <div class="links">
+                        <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/sales" class="" id="linktext">Sales</a></div>
+                        <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/finance" class="" id="linktext">Finance</a></div>
+                        <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/development" class="" id="linktext">Development</a></div>
+                        <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/admin" class="" id="linktext">Admin</a></div>
+                    </div>
+                </div>
+            </div>
+        @endif
+
 
 
         <div class="input">
@@ -134,5 +147,10 @@
         </table>
         <input type="submit" id="submitbutton" placeholder="Send">
     </form>
+    <script src="{{ asset('js/app.js') }}"></script>
 </div>
 
+
+@endsection
+
+@extends('layouts.layoutbasicbottom')
