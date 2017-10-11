@@ -2,7 +2,7 @@
 
 @section('content')
 
-<<div class="main">
+<div class="main">
     <div class="container">
         <div class="navbar-header">
 
@@ -15,9 +15,7 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
-            </a>
+
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -56,6 +54,19 @@
             </ul>
         </div>
     </div>
+
+    @if(Auth::user()->name == "admin")
+        <div class="header">
+            <div class="row">
+                <div class="links">
+                    <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/sales" class="" id="linktext">Sales</a></div>
+                    <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/finance" class="" id="linktext">Finance</a></div>
+                    <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/development" class="" id="linktext">Development</a></div>
+                    <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/admin" class="" id="linktext">Admin</a></div>
+                </div>
+            </div>
+        </div>
+    @endif
 
     <!--website start hier hierboven header laravel !-->
 
@@ -110,8 +121,9 @@
                      <label for="offerstatus" id="labeltext">Offer_status</label>
                      <input type="text" class="offerstatus" id="salesinput" name="offerstatus">
                         -->
+
                      <label for="doa" id="labeltext">date of action</label>
-                     <input type="date" class="doa" id="salesinput" name="doa" value="{{$customer->date_of_action}}">
+                     <input readonly type="text" class="doa" id="salesinput" value="{{$customer->date_of_action}}" name="doac">
 
                      <label for="city" id="labeltext">city</label>
                      <input type="text" class="city" id="salesinput" name="city" value="{{$customer->city}}">
@@ -141,8 +153,10 @@
                     <label for="balance" id="labeltext">balance</label>
                     <input type="number" class="balance" id="salesinput" name="balance" value="{{$customer->saldo}}">
 
-                    <label for="doa" id="labeltext">date of action</label>
-                    <input readonly type="text" class="doa" id="salesinput" value="{{$customer->date_of_action}}" name="doac">
+
+
+                    <label for="doa" id="labeltext">date of next action</label>
+                    <input type="date" class="doa" id="salesinput" name="doa" value="{{$customer->date_of_action}}">
 
                     <label for="lastaction" id="labeltext">Last Action</label>
                     <input type="text" class="lastaction" id="salesinput" name="lastaction" value="{{$customer->last_action}}" >
@@ -150,12 +164,10 @@
                     <label for="nextaction" id="labeltext">Next Action</label>
                     <input type="text" class="nextaction" id="salesinput" name="nextaction" value="{{$customer->next_action}}">
 
-                    <label for="log" id="labeltext">Log</label>
-                    <textarea rows="4" cols="50" class="log" id="salesinput" name="log" >{{$log->log}}</textarea>
 
 
 
-                    <input type="submit" class="number" id="submitbuttonsales">
+                    <input type="submit" class="number" id="submitbuttonsales" value="Send">
                 </div>
             </form>
         </div>
@@ -218,10 +230,7 @@
                                 <label for="offertenumber" id="labeltext">Offerte number</label>
                                 <input readonly type="number" class="offertenumber" id="salesinput" >
                             </div>
-                            <div class="form-group">
-                                <label for="log" id="labeltext">Log</label>
-                                <textarea rows="4" cols="50" class="log" id="salesinput" name="log" >{{$log->log}}</textarea>
-                            </div>
+
                         </div>
                         <div class="col-xs-4">
                             <div class="form-group">
@@ -249,7 +258,7 @@
                                 <input type="text" class="nextcontact" id="salesinput" name="next_contact">
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="number" id="submitbuttonsales">
+                                <input type="submit" class="number" id="submitbuttonsales" value="Send">
                             </div>
                         </div>
                     </form>
@@ -266,7 +275,7 @@
                     {{csrf_field()}}
                     <th id="customth"><label for="search" id="labeltext">Search</label>
                         <input type="text" id="basicblack" name="search" >
-                        <input type="submit" id="submitbuttonsales">
+                        <input type="submit" id="submitbuttonsales" value="Send">
                 </form>
                 </th>
 
@@ -304,7 +313,16 @@
 
             </tbody>
         </table>
+
     </div>
+        <div class="form-group">
+            <form action="\log" method="post">
+                {{csrf_field()}}
+
+                <textarea rows="4" cols="50" class="log" id="log" name="log" >{{$log->log}}</textarea>
+                <input type="submit" class="btn-primary" value="Send" >
+            </form>
+        </div>
     </div>
 
 

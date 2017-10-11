@@ -244,10 +244,14 @@ class salescontroller extends Controller
 
         $email =  sales::where('email','LIKE','%'.$request->search.'%')->get();
 
+        $id = sales::where('Customer_ID','LIKE',$request->search)->get();
+
+        $banknm = sales::where('bankaccountnumber','LIKE','%'.$request->search.'%')->get();
 
 
 
-        return view('searchsales')->with('user',$user)->with('adress',$adress)->with('city',$city)->with('email',$email);
+
+        return view('searchsales')->with('user',$user)->with('adress',$adress)->with('city',$city)->with('email',$email)->with('id',$id)->with('banknm',$banknm);
     }
 
 }

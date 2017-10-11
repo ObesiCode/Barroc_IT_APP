@@ -104,7 +104,7 @@ class devcontroller extends Controller
             $sales->prospect            =   $faker->name;
             $sales->saldo               =   $faker->numberBetween($min= -1000,$max = 5000);
 
-
+            $sales->save();
 
             $dev = new \App\dev();
             $dev->Customer_ID = $i + 1;

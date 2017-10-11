@@ -1,17 +1,75 @@
 @extends('layouts.layoutbasictop')
 
 @section('content')
-    <div class="header">
-        <div class="row">
-            <div class="links">
-                <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/sales" class="" id="linktext">Sales</a></div>
-                <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/finance" class="" id="linktext">Finance</a></div>
-                <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/development" class="" id="linktext">Development</a></div>
-                <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/admin" class="" id="linktext">Admin</a></div>
+
+
+
+
+
+    <div class="main" id="test">
+        <div class="container">
+            <div class="navbar-header">
+
+                <!-- Collapsed Hamburger -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!-- Branding Image -->
+
+            </div>
+
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <!-- Left Side Of Navbar -->
+                <ul class="nav navbar-nav">
+                    &nbsp;
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Authentication Links -->
+                    @guest
+                        <li><a href="{{ route('login') }}">Login</a></li>
+                        <li><a href="{{ route('register') }}">Register</a></li>
+                        @else
+                            <li class="dropdown btn-link" >
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                            @endguest
+                </ul>
             </div>
         </div>
-    </div>
-    <div class="main" id="test">
+
+        <div class="header">
+            <div class="row">
+                <div class="links">
+                    <div class="col-sm-4 text-center list-group-item" id="linktext"><a href="/sales" class="" id="linktext">Sales</a></div>
+                    <div class="col-sm-4 text-center list-group-item" id="linktext"><a href="/finance" class="" id="linktext">Finance</a></div>
+                    <div class="col-sm-4 text-center list-group-item" id="linktext"><a href="/development" class="" id="linktext">Development</a></div>
+                </div>
+            </div>
+        </div>
+
+
         @if ($errors->any())
             <div class="col-sm-12">
                 <ul class="list-group">

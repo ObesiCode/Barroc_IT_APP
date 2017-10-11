@@ -15,9 +15,7 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
-            </a>
+
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -57,6 +55,18 @@
         </div>
     </div>
 
+@if(Auth::user()->name == "admin")
+    <div class="header">
+        <div class="row">
+            <div class="links">
+                <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/sales" class="" id="linktext">Sales</a></div>
+                <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/finance" class="" id="linktext">Finance</a></div>
+                <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/development" class="" id="linktext">Development</a></div>
+                <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/admin" class="" id="linktext">Admin</a></div>
+            </div>
+        </div>
+    </div>
+    @endif
     <!--website start hier hierboven header laravel !-->
 
 
@@ -107,8 +117,9 @@
                      <label for="offerstatus" id="labeltext">Offer_status</label>
                      <input type="text" class="offerstatus" id="salesinput" name="offerstatus">
                         -->
+
                      <label for="doa" id="labeltext">date of action</label>
-                     <input type="date" class="doa" id="salesinput" name="doa">
+                     <input readonly type="text" class="doa" id="salesinput" value="{{\Carbon\Carbon::now()->format('l j F Y ')}}" name="doac">
 
                      <label for="city" id="labeltext">city</label>
                      <input type="text" class="city" id="salesinput" name="city">
@@ -134,8 +145,8 @@
                     <label for="balance" id="labeltext">balance</label>
                     <input type="number" class="balance" id="salesinput" name="balance">
 
-                    <label for="doa" id="labeltext">date of action</label>
-                    <input readonly type="text" class="doa" id="salesinput" value="{{\Carbon\Carbon::now()->format('l j F Y ')}}" name="doac">
+                    <label for="doa" id="labeltext">date of  next action</label>
+                    <input type="date" class="doa" id="salesinput" name="doa">
 
                     <label for="lastaction" id="labeltext">Last Action</label>
                     <input type="text" class="lastaction" id="salesinput" name="lastaction">
@@ -147,7 +158,7 @@
 
 
 
-                    <input type="submit" class="number" id="submitbuttonsales">
+                    <input type="submit" class="number" id="submitbuttonsales" value="Send">
                 </div>
             </form>
         </div>
@@ -224,7 +235,7 @@
                                 <input type="text" class="nextcontact" id="salesinput" name="next_contact">
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="number" id="submitbuttonsales">
+                                <input type="submit" class="number" id="submitbuttonsales" value="Send">
                             </div>
                         </div>
                     </form>
@@ -240,7 +251,7 @@
                     {{csrf_field()}}
                 <th id="customth"><label for="search" id="labeltext">Search</label>
                     <input type="text" id="basicblack" name="search" >
-                    <input type="submit" id="submitbuttonsales">
+                    <input type="submit" id="submitbuttonsales" value="Send">
                 </form>
                 </th>
 
@@ -278,12 +289,13 @@
         </table>
 
         </div>
+
         <div class="form-group">
             <form action="log" method="post">
                 {{csrf_field()}}
 
                 <textarea rows="4" cols="50" class="log" id="log" name="log" >{{$log->log}}</textarea>
-                <input type="submit" class="btn-primary" >
+                <input type="submit" class="btn-primary" id="button" value="Send">
             </form>
         </div>
     </div>

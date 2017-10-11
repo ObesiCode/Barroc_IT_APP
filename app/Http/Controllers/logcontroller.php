@@ -19,10 +19,14 @@ class logcontroller extends Controller
 
     public function inputlog(Request $request)
     {
+      
+
         $log = \App\log::find(1);
         $log->log = $request->log;
 
         $log->save();
+
+        return redirect('/sales');
     }
     /**
      * Show the form for creating a new resource.
