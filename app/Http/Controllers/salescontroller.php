@@ -26,6 +26,7 @@ class salescontroller extends Controller
         $log = $log->first();
 
 
+
         return view('sales/sales')->with('a',$sales)->with('log',$log);
     }
     public function view($id)

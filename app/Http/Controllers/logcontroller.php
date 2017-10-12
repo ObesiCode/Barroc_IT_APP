@@ -26,7 +26,7 @@ class logcontroller extends Controller
 
         $log->save();
 
-        return redirect('/sales');
+        return Back();
     }
     /**
      * Show the form for creating a new resource.

@@ -89,41 +89,72 @@
                     <h1>Customer</h1>
                 </div>
                 <div class="panel-body">
-                    <form action="finance" method="post">
+                    <form action="finance/store" method="post">
                         <div class="col-xs-4">
                             <!--<label for="invoice_id"> Invoice Id</label>
                             <input type="text" id="invoice_id">
                             -->
-
+                            {{csrf_field()}}
                             <div class="form-group">
                                 <label for="Customer">Customer</label>
-                                <select name="Customer" id="Customer">
-                                        @foreach()
-
+                                <select name="Customer" id="Customer" class="form-control">
+                                        @foreach($Customers as $customer)
+                                        <option value="{{$customer->Customer_ID}}">{{$customer->customer_name}}</option>
                                         @endforeach
+                                </select>
+
+                            </div>
+                            <script>
+                                 function findcustid() {
+                                    var cus = document.getElementById('Customer');
+                                    var Project = cus.options[cus.selectedIndex].value;
+                                    global_var = Project;
+                                    return Project;
+                                }
+                            </script>
+
+                            <div class="form-group">
+                                <label for="Project">Project</label>
+                                <select name="Project" id="Project" class="form-control">
+                                    <script>
+                                        function findcustid() {
+                                            var cus = document.getElementById('Customer');
+                                            var Project = cus.options[cus.selectedIndex].value;
+                                            global_var = Project;
+                                            return Project;
+                                        }
+
+
+                                    </script>
+                                    {{dd($projects)}}
+
+
+                                    @foreach($projects as $project)
+
+                                        <option value="{{$project->Project_ID}}">{{$project->projectname}}</option>
+                                    @endforeach
+
+
+
                                 </select>
 
                             </div>
 
                             <div class="form-group">
                                 <label for="Doa"> Date Of Action</label>
-                                <input type="date" id="Doa" class="form-control">
+                                <input type="date" id="Doa" class="form-control" name="Doa" >
                             </div>
 
                             <div class="form-group">
-                                <label for="Payment">Payment Data</label>
-                                <input type="text" id="Payment" class="form-control">
+                                <label for="Payment">Payment Date</label>
+                                <input type="date" id="Payment" class="form-control" name="Payment">
 
                             </div>
-                            <div class="form-group">
-                                <label for="Cus_id">Customer ID</label>
-                                <input type="text" id="Cus_id" class="form-Control">
 
-                            </div>
 
                             <div class="form-group">
                                 <label for="Email"> Email</label>
-                                <input type="email" id="Email" class="form-control">
+                                <input type="email" id="Email" class="form-control" name="Email">
 
                             </div>
 
@@ -134,6 +165,17 @@
 
                             <input type="submit" class="form-control">
                         </div>
+                        @if ($errors->any())
+                            <div class="col-sm-12">
+                                <ul class="list-group">
+                                    @foreach($errors->all() as $error)
+                                        <li class="list-group-item list-group-item-danger">{{$error}}</li>
+
+                                    @endforeach
+                                </ul>
+                            </div>
+
+                        @endif
                     </form>
                 </div>
             </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Project;
 use Illuminate\Http\Request;
 
 class financecontroller extends Controller
@@ -15,7 +16,11 @@ class financecontroller extends Controller
     {
         $log = \App\log::all();
         $log = $log->first();
-        return view('finance/finance')->with('log',$log);;
+        $customers = \App\Customer::all();
+        $projects = \App\Project::all();
+
+        return view('finance/finance')->with('log',$log)->with('Customers',$customers)
+            ->with('projects', $projects);
     }
 
     /**
@@ -36,7 +41,7 @@ class financecontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+
 
         $this->validate($request,[
 
@@ -45,37 +50,47 @@ class financecontroller extends Controller
 
             'Doa' => 'required|Date',
             'Email' => 'required|Email',
-            'payment' => 'required|int',
-            'cus_id' => 'required|Int'
+            'Payment' => 'required|Date',
+            'Customer' => 'required|Int',
+            'Project' => 'required|Int'
+
+
+
 
 
         ]);
-        if($request->log == null)
-        {
-            $request->log = "Log";
-        }
+
 
         $finance = new \App\finance();
-        $finance->date_of_action       =   $request->Doa;
-        $finance->Customer_ID       =   $request->cus_id;
-        $finance->email             =   $request->email;
-        $finance->payement_data          =   $request->payment;
+        $finance->date_of_action        =    $request->Doa;
+        $finance->Customer_ID           =    $request->customer;
+        $finance->Project_ID            =    $request->project;
+        $finance->email                 =    $request->email;
+        $finance->payement_date         =    $request->payment;
+        $finance->invoice_ID            =    $finance->
 
 
         $finance->save();
 
-        $log = \App\log::find(1);
-        $log->log = $request->log;
 
-        $log->save();
 
-        return redirect('sales?msg');
+        return redirect('finance?msg');
 
 
 
     }
 
+    public function log($request){
+        if($request->log == null)
+        {
+            $request->log = "Log";
+        }
+        $log = \App\log::find(1);
+        $log->log = $request->log;
 
+        $log->save();
+        return redirect('finance?msg');
+    }
 
 
 
