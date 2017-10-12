@@ -13,8 +13,9 @@ class financecontroller extends Controller
      */
     public function index()
     {
-
-        return view('finance/finance');
+        $log = \App\log::all();
+        $log = $log->first();
+        return view('finance/finance')->with('log',$log);;
     }
 
     /**

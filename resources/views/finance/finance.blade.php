@@ -90,31 +90,47 @@
                 </div>
                 <div class="panel-body">
                     <form action="finance" method="post">
-                        <div class="form-group col-xs-4">
+                        <div class="col-xs-4">
                             <!--<label for="invoice_id"> Invoice Id</label>
                             <input type="text" id="invoice_id">
                             -->
 
+                            <div class="form-group">
+                                <label for="Customer">Customer</label>
+                                <select name="" id="">
 
-                            <label for="Doa"> Date Of Action</label>
-                            <input type="text" id="Doa">
+                                </select>
 
-                            <label for="Payment">Payment Data</label>
-                            <input type="text" id="Payment">
+                            </div>
 
-                            <label for="Cus_id">Customer ID</label>
-                            <input type="text" id="Cus_id">
+                            <div class="form-group">
+                                <label for="Doa"> Date Of Action</label>
+                                <input type="date" id="Doa" class="form-control">
+                            </div>
 
+                            <div class="form-group">
+                                <label for="Payment">Payment Data</label>
+                                <input type="text" id="Payment" class="form-control">
 
-                            <label for="Email"> Email</label>
-                            <input type="email" id="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="Cus_id">Customer ID</label>
+                                <input type="text" id="Cus_id" class="form-Control">
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Email"> Email</label>
+                                <input type="email" id="Email" class="form-control">
+
+                            </div>
 
 
 
                         </div>
                         <div class="form-group col-xs-4 submit">
 
-                            <input type="submit">
+                            <input type="submit" class="form-control">
                         </div>
                     </form>
                 </div>
@@ -149,6 +165,14 @@
     </form>
     <script src="{{ asset('js/app.js') }}"></script>
 </div>
+        <div class="form-group">
+            <form action="log" method="post">
+                {{csrf_field()}}
+
+                <textarea rows="4" cols="50" class="log" id="log" name="log" >{{$log->log}}</textarea>
+                <input type="submit" class="btn-primary" id="button" value="Send">
+            </form>
+        </div>
 
 
 @endsection
