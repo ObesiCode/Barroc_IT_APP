@@ -113,7 +113,7 @@
                                 }
                             </script>
 
-                            <div class="form-group">
+                           <!-- <div class="form-group">
                                 <label for="Project">Project</label>
                                 <select name="Project" id="Project" class="form-control">
                                     <script>
@@ -126,7 +126,7 @@
 
 
                                     </script>
-                                    {{dd($projects)}}
+                       -->
 
 
                                     @foreach($projects as $project)

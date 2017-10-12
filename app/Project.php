@@ -10,8 +10,5 @@ class Project extends Model
     protected $table = "tbl_projects";
     protected $primaryKey = "Project_ID";
 
-    public function id($id)
-    {
-        return $this::;
-    }
+
 }

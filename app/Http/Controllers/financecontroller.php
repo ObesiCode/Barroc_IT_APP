@@ -42,41 +42,52 @@ class financecontroller extends Controller
     public function store(Request $request)
     {
 
-
-        $this->validate($request,[
-
-
-
-
-            'Doa' => 'required|Date',
-            'Email' => 'required|Email',
-            'Payment' => 'required|Date',
-            'Customer' => 'required|Int',
-            'Project' => 'required|Int'
+        if (isset($request->Project)){
+            $this->validate($request,[
 
 
 
 
-
-        ]);
-
-
-        $finance = new \App\finance();
-        $finance->date_of_action        =    $request->Doa;
-        $finance->Customer_ID           =    $request->customer;
-        $finance->Project_ID            =    $request->project;
-        $finance->email                 =    $request->email;
-        $finance->payement_date         =    $request->payment;
-        $finance->invoice_ID            =    $finance->
-
-
-        $finance->save();
+                'Doa' => 'required|Date',
+                'Email' => 'required|Email',
+                'Payment' => 'required|Date',
+                'Customer' => 'required|Int',
+                'Project' => 'required|Int'
 
 
 
-        return redirect('finance?msg');
 
 
+            ]);
+
+
+            $finance = new \App\finance();
+            $finance->date_of_action        =    $request->Doa;
+            $finance->Customer_ID           =    $request->customer;
+            $finance->Project_ID            =    $request->project;
+            $finance->email                 =    $request->email;
+            $finance->payement_date         =    $request->payment;
+            $finance->invoice_ID            =    0;
+
+
+            $finance->save();
+
+
+
+            return redirect('finance?msg');
+
+
+
+        }
+        else{
+            $projects = \App\Project::where("Customer_ID", $request->Customer)->take(90000)->get();
+            $log = \App\log::all();
+            $log = $log->first();
+
+            return view('finance\project')->with('projects',$projects)
+                ->with('customer',$request->Customer)
+                ->with('log', $log);
+        }
 
     }
 
@@ -138,5 +149,8 @@ class financecontroller extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function project(){
+
     }
 }

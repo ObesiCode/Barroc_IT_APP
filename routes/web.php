@@ -29,6 +29,8 @@ Route::post('/search/sales','salescontroller@search');
 Route::get('finance','financecontroller@index');
 Route::post('finance','financecontroller@log');
 Route::post('finance/store','financecontroller@store');
+Route::post('finance/project','financecontroller@project');
+
 
 Route::get('admin/cst/{id}','admin@changeuser');
 Route::get('admin/pr/{id}','admin@changeproject');
