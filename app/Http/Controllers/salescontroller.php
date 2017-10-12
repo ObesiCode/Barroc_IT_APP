@@ -104,7 +104,7 @@ class salescontroller extends Controller
                 'phonenumber' => 'required|string',
                 'fax' => 'required|string',
                 'banknm' => 'required|string',
-                'balance' => 'required|string',
+                'balance' => 'required|string|max:10',
                 'doac' => 'required|date',
                 'lastaction' => 'required|string',
                 'nextaction' => 'required|string',
@@ -190,7 +190,7 @@ class salescontroller extends Controller
             'phonenumber' => 'required|string',
             'fax' => 'required|string',
             'banknm' => 'required|string',
-            'balance' => 'required|string',
+            'balance' => 'required|string|max:10',
 
             'lastaction' => 'required|string',
             'nextaction' => 'required|string',

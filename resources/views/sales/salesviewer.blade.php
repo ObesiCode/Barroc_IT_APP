@@ -227,7 +227,7 @@
                                 <input type="text" class="phonenumber" id="salesinput" name="phonenumber">
                             </div>
                             <div class="form-group">
-                                <label for="offertenumber" id="labeltext">Offerte number</label>
+                                <label for="offertenumber" id="labeltext">invoice id</label>
                                 <input readonly type="number" class="offertenumber" id="salesinput" >
                             </div>
 

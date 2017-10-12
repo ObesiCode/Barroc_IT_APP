@@ -25,9 +25,31 @@ class admin extends Controller
         $sales = \App\sales::all();
         $dev = \App\dev::all();
         $financ =\App\finance::all();
+        $nega = 0;
+
+        return view('admin/admin')->with('customer',$sales)->with('development',$dev)->with('finance',$financ)->with('nega',$nega);
+    }
+    public function negativeindex()
+    {
+        $sales = \App\sales::where('saldo','<=',-500)->get();
+
+        $q =\App\sales::select('Customer_ID')->where('saldo','<=',-500)->get();
 
 
-        return view('admin/admin')->with('customer',$sales)->with('development',$dev)->with('finance',$financ);
+
+
+    $d = \App\dev::where('Customer_ID', $q->first()->Customer_ID)->get();
+
+
+
+
+
+        $dev = \App\dev::all();
+        $financ =\App\finance::all();
+        $nega = 1;
+
+
+        return view('admin/admin')->with('customer',$sales)->with('development',$dev)->with('finance',$financ)->with('nega',$nega);
     }
 
     /**
@@ -110,7 +132,7 @@ class admin extends Controller
             'phonenumber' => 'required|string',
             'fax' => 'required|string',
             'banknm' => 'required|string',
-            'balance' => 'required|string',
+            'balance' => 'required|integer|max:10',
 
             'lastaction' => 'required|string',
             'nextaction' => 'required|string',
@@ -136,13 +158,74 @@ class admin extends Controller
         $sales->saldo               =   $request->balance;
         $sales->save();
 
+       echo $request->balance;
+        if ($request->balance < -500)
+        {
+            $project = \App\dev::where('Customer_ID',$request->Customer_ID)->get();
+
+            foreach($project as $pr)
+            {
+                $pr->is_active = 0;
+                $pr->save();
+
+            }
+
+                return redirect('admin');
+
+        }
+
+       else if ($request->balance >= -500)
+        {
+            $project = \App\dev::where('Customer_ID',$request->Customer_ID)->get();
+
+            foreach($project as $pr)
+            {
+                $pr->is_active = 1;
+            $pr->save();
+            }
+
+            return redirect('admin');
+
+        }
+
+
+            else
+        {
+            return redirect('admin');
+        }
 
 
 
 
 
-        return redirect('admin');
+
     }
+
+
+    public function search(Request $request)
+    {
+
+
+
+
+
+        $user = sales::where('customer_name','LIKE' ,'%'.$request->search.'%')->get();
+
+        $adress = sales::where('adress','LIKE','%'.$request->search.'%')->get();
+
+        $city = sales::where('city','LIKE','%'.$request->search.'%')->get();
+
+        $email =  sales::where('email','LIKE','%'.$request->search.'%')->get();
+
+        $id = sales::where('Customer_ID','LIKE',$request->search)->get();
+
+        $banknm = sales::where('bankaccountnumber','LIKE','%'.$request->search.'%')->get();
+
+        return view('admin/adminsearch')->with('user',$user)->with('adress',$adress)->with('city',$city)->with('email',$email)->with('id',$id)->with('banknm',$banknm);
+    }
+
+
+
 
     public function changeuser($id)
     {

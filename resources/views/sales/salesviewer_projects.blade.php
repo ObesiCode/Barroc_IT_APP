@@ -202,7 +202,7 @@
                                 <input type="text" class="phonenumber" id="salesinput" name="phonenumber" value={{$customer->phonenumber}}>
                             </div>
                             <div class="form-group">
-                                <label for="offertenumber" id="labeltext">Offerte number</label>
+                                <label for="offertenumber" id="labeltext">invoice id</label>
                                 <input readonly type="number" class="offertenumber" id="salesinput"  value="later invullen vanuit offerte als die af is">
                             </div>
 

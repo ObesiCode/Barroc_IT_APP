@@ -78,7 +78,7 @@
 
         </div>
 
-        <div class="col-sm-4" id="projectable">
+        <div class="col-sm-2" id="projectable">
             <div class="panel panel-default">
 
                 <div class="panel-heading">
@@ -148,13 +148,37 @@
             </div>
         </div>
 
-
-        <div class="col-sm-4" id="customertable">
+        <div class="col-sm-2" id="customertable">
             <div class="panel panel-default" >
+
+
 
                 <div class="panel-heading">
 
+                    @if($nega == 1)
+                        <div class="form-group">
+                            <form action="/admin" method="get">
+                                <input type="submit" class="btn btn-primary" value="all  accounts">
+                            </form>
+                        </div>
+                        @else
+
+
+                        <div class="form-group">
+                            <form action="/admin/negative" method="get">
+                                <input type="submit" class="btn btn-primary" value="all negative saldo  accounts">
+                            </form>
+                        </div>
+
+                    @endif
                     <h3>Customer</h3>
+                    <div class="form-group">
+                    <form action="/search/admin/customer" method="get">
+                        <input type="text" class="form-control" id="search" name="search" placeholder="search here...">
+                        <input type="submit" class="btn btn-success" id="" placeholder="search">
+                    </form>
+                    </div>
+
                 </div>
 
                 <div class="panel-body">
@@ -183,7 +207,7 @@
                             <td id="basicblack" class="alert-success">{{$user->saldo}}</td>
                             @endif
                             <td id="basicblack">
-                                <form action="admin/cst/{{$user->Customer_ID}}">
+                                <form action="\admin/cst/{{$user->Customer_ID}}">
                                     <input type="submit" class="btn-primary" value="edit" />
                                 </form>
 
