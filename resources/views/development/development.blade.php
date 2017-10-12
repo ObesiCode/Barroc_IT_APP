@@ -1,15 +1,8 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Development</title>
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('css/developmentpage.css') }}">
-    </head>
-    <body>
+@extends('layouts.layoutbasictop')
+
+@section('content')
+
+
     <div class="main">
         <div class="container">
             <div class="navbar-header">
@@ -78,7 +71,17 @@
 
         <!--website start hier hierboven header laravel !-->
 
+        @if ($errors->any())
+            <div class="col-sm-12">
+                <ul class="list-group">
+                    @foreach($errors->all() as $error)
+                        <li class="list-group-item list-group-item-danger">{{$error}}</li>
 
+                    @endforeach
+                </ul>
+            </div>
+
+        @endif
 
 
         <div class="col-sm-4" id="testing">
@@ -87,7 +90,7 @@
                         <h1>Development</h1>
                     </div>
                     <div class="panel-body" id="">
-                        <form action="" method="post">
+                        <form action="/dev" method="post">
 
                             {{csrf_field()}}
                             <div class="col-xs-4">
@@ -154,38 +157,57 @@
                 </div>
             </div>
             <div class="col-sm-4" id="testing"></div>
-                <div class="col-sm-4" id="testing">
-                    <form action="">
-                        {{csrf_field()}}
-                        <table class="table table-bordered" id="tableclass">
-                            <thead>
-                            <tr >
-                                <th id="customth"><label for="search" id="labeltext">Search</label> <input type="text" id="search" name="search" >
+        <div class="col-sm-4" id="testing" >
+            <div class="tableview" id="scrollablediv">
 
-                                </th>
-                                <th><input type="submit" id="submitbuttonsales"></th>
-                            </tr>
-                            <tr>
-                                <th id="tabletoptext">invoice-id</th>
-                                <th id="tabletoptext">Customer-id</th>
-                                <th id="tabletoptext">name</th>
-                                <th id="tabletoptext"><p>EDIT</p></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td><input type="text" name="invoicid" id="inputtext"></td>
-                                <td><input type="text" name="customerid" id="inputtext"></td>
-                                <td><input type="text" name="name" id="inputtext"></td>
-                                <td><a href="#">EDIT</a></td>
-                            </tr>
+                <table class="table table-bordered" id="tableclass">
+                    <thead>
+                    <tr>
+                        <form action="/search/sales" method="post">
+                            {{csrf_field()}}
+                            <th id="customth"><label for="search" id="labeltext">Search</label>
+                                <input type="text" id="basicblack" name="search" >
+                                <input type="submit" id="submitbuttonsales" value="Send">
+                        </form>
+                        </th>
+
+                    </tr>
+                    <tr>
+
+                        <th id="tabletoptext">Customer-id</th>
+                        <th id="tabletoptext">Project name</th>
+                        <th id="tabletoptext"><p>EDIT</p></th>
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    @foreach($a as $sales)
+                        <tr>
+                            <td><p id="basicblack">{{$sales->Project_ID}}</p></td>
+                            <td><p id="basicblack">{{$sales->projectname}}</p></td>
+
+
+                            <td>
+                                <form action="/development/{{$sales->Customer_ID}}">
+                                    <input type="submit" class="btn-primary" value="edit" />
+                                </form>
+
+                            </td>
+
+                        </tr>
+
+                    @endforeach
 
 
 
-                            </tbody>
-                        </table>
-                    </form>
-                </div>
+
+                    </tbody>
+                </table>
+
+            </div>
             </div>
         </div>
+@endsection
 @extends('layouts.layoutbasicbottom')

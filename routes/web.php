@@ -26,6 +26,11 @@ Route::get('/bug','devcontroller@fakertest');
 Route::post('/search/sales','salescontroller@search');
 
 
+Route::get('development','devcontroller@index');
+Route::get('development/{projectid}','devcontroller@viewproject');
+
+
+
 Route::get('finance','financecontroller@index');
 Route::post('finance','financecontroller@store');
 
