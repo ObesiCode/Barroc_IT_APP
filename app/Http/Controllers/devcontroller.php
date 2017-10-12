@@ -17,16 +17,51 @@ class devcontroller extends Controller
      */
     public function index()
     {
-        $sales = \App\sales::all();
+        $sales = \App\dev::all();
         $log = \App\log::all();
         $log = $log->first();
 
 
 
 
-        return view('development')->with('a',$sales)->with('log',$log);
+        return view('development/development')->with('a',$sales)->with('log',$log);
     }
+//    public function view($projectid)
+//    {
+//        $sales = \App\sales::all();
+//        $user = sales::where('Customer_ID' ,$id)->get()->first();
+//        $log = \App\log::all();
+//        $log = $log->first();
+//        $dev = dev::where('Customer_ID',$id)->get();
+//
+//
+//
+//        if (empty($user))
+//        {
+//            return redirect('development/development');
+//
+//        }
+//
+//
+//        return view('development/developmentviewer')->with('customer', $user)->with('a',$sales)->with('log',$log)->with('dev',$dev);
+//
+//    }
+    public function viewproject($projectid)
+    {
 
+        $sales = \App\dev::all();
+        $log = \App\log::all();
+        $log = $log->first();
+        $projectid2 = dev::where('Project_ID',$projectid)->get()->first();
+
+        if (empty($projectid2))
+        {
+            return redirect('development/development');
+
+        }
+
+        return view('development/developmentviewer')->with('a',$sales)->with('log',$log)->with('project',$projectid2);
+    }
     /**
      * Show the form for creating a new resource.
      *

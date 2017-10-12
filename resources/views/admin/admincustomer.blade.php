@@ -140,7 +140,7 @@
                 </div>
                 <div class="form-group">
                 <label for="saldo" id="basicblack">saldo</label>
-                <input type="text" id="saldo" class="form-control" name="balance" value="{{$user->saldo}}">
+                <input type="number" id="saldo" class="form-control" name="balance" value="{{$user->saldo}}">
                 </div>
                 <div class="form-group">
                 <input type="submit" class="number" id="submitbuttonsales">
