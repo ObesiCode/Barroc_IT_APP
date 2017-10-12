@@ -97,8 +97,10 @@
 
                             <div class="form-group">
                                 <label for="Customer">Customer</label>
-                                <select name="" id="">
+                                <select name="Customer" id="Customer">
+                                        @foreach()
 
+                                        @endforeach
                                 </select>
 
                             </div>
