@@ -38,6 +38,9 @@ Route::post('admin/updateproject','admin@updateproject');
 Route::get('loginuser','loginuser@loginuserstuf');
 Route::post('log','logcontroller@inputlog');
 
+Route::get('/search/admin/customer','admin@search');
+Route::get('/admin/negative','admin@negativeindex');
+
 
 Route::get('development','devcontroller@index');
 Route::get('/', function () {
