@@ -16,9 +16,9 @@ class loginuser extends Controller
             $sales = \App\sales::all();
             $dev = \App\dev::all();
             $financ =\App\finance::all();
+            $nega = 0;
 
-
-            return view('admin/admin')->with('customer',$sales)->with('development',$dev)->with('finance',$financ);
+            return view('admin/admin')->with('customer',$sales)->with('development',$dev)->with('finance',$financ)->with('nega',$nega);
         }
         if($test == 'sales')
         {
@@ -40,9 +40,14 @@ class loginuser extends Controller
         if($test == 'development')
         {
 
+            $projects = \App\dev::all();
+            $log = \App\log::all();
+            $log = $log->first();
 
 
-            return view('development');
+
+
+            return view('development/development')->with('projects',$projects)->with('log',$log);
         }
 
 

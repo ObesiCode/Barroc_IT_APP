@@ -17,39 +17,21 @@ class devcontroller extends Controller
      */
     public function index()
     {
-        $sales = \App\dev::all();
+
+        $projects = \App\dev::all();
         $log = \App\log::all();
         $log = $log->first();
 
 
 
 
-        return view('development/development')->with('a',$sales)->with('log',$log);
+        return view('development/development')->with('projects',$projects)->with('log',$log);
     }
-//    public function view($projectid)
-//    {
-//        $sales = \App\sales::all();
-//        $user = sales::where('Customer_ID' ,$id)->get()->first();
-//        $log = \App\log::all();
-//        $log = $log->first();
-//        $dev = dev::where('Customer_ID',$id)->get();
-//
-//
-//
-//        if (empty($user))
-//        {
-//            return redirect('development/development');
-//
-//        }
-//
-//
-//        return view('development/developmentviewer')->with('customer', $user)->with('a',$sales)->with('log',$log)->with('dev',$dev);
-//
-//    }
+
     public function viewproject($projectid)
     {
 
-        $sales = \App\dev::all();
+        $projects = \App\dev::all();
         $log = \App\log::all();
         $log = $log->first();
         $projectid2 = dev::where('Project_ID',$projectid)->get()->first();
@@ -60,7 +42,7 @@ class devcontroller extends Controller
 
         }
 
-        return view('development/developmentviewer')->with('a',$sales)->with('log',$log)->with('project',$projectid2);
+        return view('development/developmentviewer')->with('projects',$projects)->with('log',$log)->with('project',$projectid2);
     }
     /**
      * Show the form for creating a new resource.
@@ -82,16 +64,11 @@ class devcontroller extends Controller
     {
 
         $this->validate($request,[
-            'projectname' => 'required|min:3|string',
-
-
-
-            'email' => 'required|E-Mail',
-            'phonenumber' => 'required|string',
-
-
-            'application' => 'required|string',
-            'hardware' => 'required|string',
+            'projectname'       => 'required|min:3|string',
+            'email'             => 'required|E-Mail',
+            'phonenumber'       => 'required|string',
+            'application'       => 'required|string',
+            'hardware'          => 'required|string',
             'operatingsystem' => 'required',
             'last_contact' => 'required|string',
             'next_contact' => 'required|string',
@@ -101,15 +78,15 @@ class devcontroller extends Controller
 
 
         $dev = new \App\dev();
-        $dev->projectname      =   $request->projectname;
-        $dev->contactperson   =   $request->contactperson;
-        $dev->Customer_ID                =   $request->Customer_ID;
-        $dev->email       =   $request->email;
-        $dev->hardware      =   $request->hardware;
-        $dev->last_contact               =   $request->last_contact;
+        $dev->projectname               =   $request->projectname;
+        $dev->contactperson             =   $request->contactperson;
+        $dev->Customer_ID               =   $request->Customer_ID;
+        $dev->email                     =   $request->email;
+        $dev->hardware                  =   $request->hardware;
+        $dev->last_contact              =   $request->last_contact;
         $dev->operatingsystem           =   $request->operatingsystem;
-        $dev->application =             $request->application;
-        $dev->next_contact       =   $request->next_contact;
+        $dev->application               =   $request->application;
+        $dev->next_contact              =   $request->next_contact;
         $dev->is_active = 1;
 
 
@@ -117,7 +94,7 @@ class devcontroller extends Controller
 
 
 
-        return redirect('sales?msg');;
+        return redirect('sales?msg');
 
 
 
