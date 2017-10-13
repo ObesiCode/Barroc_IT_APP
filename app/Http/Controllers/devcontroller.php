@@ -153,7 +153,7 @@ class devcontroller extends Controller
 
 
             'email' => 'required|E-Mail',
-            'phonenumber' => 'required|string',
+
 
 
             'application' => 'required|string',
@@ -168,6 +168,8 @@ class devcontroller extends Controller
 
 
         $customerid = $request->projectid;
+
+
 
         $dev = \App\dev::find($customerid);
 
@@ -190,8 +192,9 @@ class devcontroller extends Controller
         $dev->save();
 
 
-        return redirect('sales?msg');
+        return back();
     }
+
 
     /**
      * Display the specified resource.

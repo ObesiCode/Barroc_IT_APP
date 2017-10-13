@@ -181,7 +181,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
 
-                                <input type="hidden" name="customerid" value="{{$customer->Customer_ID}}">
+                                <input type="hidden" name="customerid" value="{{ $customer->Customer_ID}}">
 
                                 <label for="projectname" id="labeltext">Project name</label>
 

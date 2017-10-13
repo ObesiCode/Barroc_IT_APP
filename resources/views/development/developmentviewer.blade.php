@@ -77,8 +77,10 @@
                 <h4>{{$project->projectname}}</h4>
             </div>
             <div class="panel-body" id="">
-                <form action="/dev" method="post">
+                <form action="/dev/pru" method="post">
                     {{csrf_field()}}
+                    <input type="hidden" name="customerid" value="{{$project->Customer_ID     }}">
+
                     <div class="col-xs-4">
                         <div class="form-group">
                             <label for="projectname" id="labeltext">Project name</label>
