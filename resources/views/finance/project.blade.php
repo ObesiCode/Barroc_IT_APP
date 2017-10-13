@@ -86,10 +86,10 @@
             <div class="col-sm-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h1>Customer</h1>
+                        <h1>Project</h1>
                     </div>
                     <div class="panel-body">
-                        <form action="../finance/store" method="post">
+                        <form action="" method="POST">
                             <div class="col-xs-4">
                                 <!--<label for="invoice_id"> Invoice Id</label>
                                 <input type="text" id="invoice_id">
@@ -102,9 +102,9 @@
 
                                 <div class="form-group">
 
+
                                     <label for="Project">Project</label>
                                     <select name="Project" id="Project" class="form-control">
-
 
 
                                         @foreach($projects as $project)

@@ -101,15 +101,15 @@ class devcontroller extends Controller
 
 
         $dev = new \App\dev();
-        $dev->projectname      =   $request->projectname;
-        $dev->contactperson   =   $request->contactperson;
-        $dev->Customer_ID                =   $request->Customer_ID;
-        $dev->email       =   $request->email;
-        $dev->hardware      =   $request->hardware;
-        $dev->last_contact               =   $request->last_contact;
-        $dev->operatingsystem           =   $request->operatingsystem;
-        $dev->application =             $request->application;
-        $dev->next_contact       =   $request->next_contact;
+        $dev->projectname           =   $request->projectname;
+        $dev->contactperson         =   $request->contactperson;
+        $dev->Customer_ID           =   $request->Customer_ID;
+        $dev->email                 =   $request->email;
+        $dev->hardware              =   $request->hardware;
+        $dev->last_contact          =   $request->last_contact;
+        $dev->operatingsystem       =   $request->operatingsystem;
+        $dev->application           =   $request->application;
+        $dev->next_contact          =   $request->next_contact;
         $dev->is_active = 1;
 
 

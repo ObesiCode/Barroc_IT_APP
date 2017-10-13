@@ -89,7 +89,7 @@
                     <h1>Customer</h1>
                 </div>
                 <div class="panel-body">
-                    <form action="finance/store" method="post">
+                    <form action="../finance/store" method="post">
                         <div class="col-xs-4">
                             <!--<label for="invoice_id"> Invoice Id</label>
                             <input type="text" id="invoice_id">
@@ -104,79 +104,31 @@
                                 </select>
 
                             </div>
-                            <script>
-                                 function findcustid() {
-                                    var cus = document.getElementById('Customer');
-                                    var Project = cus.options[cus.selectedIndex].value;
-                                    global_var = Project;
-                                    return Project;
-                                }
-                            </script>
-
-                           <!-- <div class="form-group">
-                                <label for="Project">Project</label>
-                                <select name="Project" id="Project" class="form-control">
-                                    <script>
-                                        function findcustid() {
-                                            var cus = document.getElementById('Customer');
-                                            var Project = cus.options[cus.selectedIndex].value;
-                                            global_var = Project;
-                                            return Project;
-                                        }
-
-
-                                    </script>
-                       -->
-
-
-                                    @foreach($projects as $project)
-
-                                        <option value="{{$project->Project_ID}}">{{$project->projectname}}</option>
-                                    @endforeach
-
-
-
-                                </select>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Doa"> Date Of Action</label>
-                                <input type="date" id="Doa" class="form-control" name="Doa" >
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Payment">Payment Date</label>
-                                <input type="date" id="Payment" class="form-control" name="Payment">
-
-                            </div>
-
-
-                            <div class="form-group">
-                                <label for="Email"> Email</label>
-                                <input type="email" id="Email" class="form-control" name="Email">
-
-                            </div>
-
-
 
                         </div>
                         <div class="form-group col-xs-4 submit">
 
                             <input type="submit" class="form-control">
                         </div>
-                        @if ($errors->any())
-                            <div class="col-sm-12">
-                                <ul class="list-group">
-                                    @foreach($errors->all() as $error)
-                                        <li class="list-group-item list-group-item-danger">{{$error}}</li>
 
-                                    @endforeach
-                                </ul>
-                            </div>
-
-                        @endif
                     </form>
+                    @if ($errors->any())
+                        <div class="col-sm-12">
+                            <ul class="list-group">
+                                @foreach($errors->all() as $error)
+                                    <li class="list-group-item list-group-item-danger">{{$error}}</li>
+
+                                @endforeach
+                            </ul>
+                        </div>
+
+                    @endif
+
+                    @if(isset($noProject))
+
+                        <h3>{{$noProject}}</h3>
+
+                    @endif
                 </div>
             </div>
         </div>
