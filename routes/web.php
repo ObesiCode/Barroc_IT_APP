@@ -28,7 +28,7 @@ Route::post('/search/sales','salescontroller@search');
 
 Route::get('development','devcontroller@index');
 Route::get('development/{projectid}','devcontroller@viewproject');
-
+Route::post('/dev/pru','devcontroller@updatedev');
 
 
 Route::get('finance','financecontroller@index');

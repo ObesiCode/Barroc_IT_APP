@@ -118,10 +118,6 @@
                                     <label for="offertenumber" id="labeltext">Offerte number</label>
                                     <input readonly type="number" class="offertenumber" id="salesinput">
                                 </div>
-                                <div class="form-group">
-                                    <label for="log" id="labeltext">Log</label>
-                                    <input type="text" class="log" id="salesinput">
-                                </div>
                             </div>
                             <div class="col-xs-4">
                                 <div class="form-group">
@@ -183,14 +179,14 @@
 
                     <tbody>
 
-                    @foreach($a as $sales)
+                    @foreach($projects as $project)
                         <tr>
-                            <td><p id="basicblack">{{$sales->Project_ID}}</p></td>
-                            <td><p id="basicblack">{{$sales->projectname}}</p></td>
+                            <td><p id="basicblack">{{$project->Project_ID}}</p></td>
+                            <td><p id="basicblack">{{$project->projectname}}</p></td>
 
 
                             <td>
-                                <form action="/development/{{$sales->Customer_ID}}">
+                                <form action="/development/{{$project->Customer_ID}}">
                                     <input type="submit" class="btn-primary" value="edit" />
                                 </form>
 
