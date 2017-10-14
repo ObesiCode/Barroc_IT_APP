@@ -89,14 +89,15 @@
                         <h1>Customer</h1>
                     </div>
                     <div class="panel-body">
-                        <form action="../finance/store" method="post">
+                        <form action="addinvoice" method="post">
                             <div class="col-xs-4">
                                 <!--<label for="invoice_id"> Invoice Id</label>
                                 <input type="text" id="invoice_id">
                                 -->
                                 {{csrf_field()}}
 
-                                <input type="hidden" value="{{$customer}}">
+                                <input type="hidden" name="customer_id" value="5">
+
 
 
 

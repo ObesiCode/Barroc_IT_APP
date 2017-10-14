@@ -27,7 +27,7 @@ class loginuser extends Controller
             $log = $log->first();
 
 
-            return view('sales/sales')->with('a',$sales)->with('log',$log);
+            return view('sales/sales')->with('customers',$sales)->with('log',$log);
 
         }
        if($test == 'finance')

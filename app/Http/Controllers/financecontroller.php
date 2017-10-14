@@ -39,6 +39,36 @@ class financecontroller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function invoicestore(Request $request)
+    {
+
+
+        $finance = new \App\finance();
+        $finance->date_of_action        =    $request->Doa;
+        $finance->Customer_ID           =    $request->customer_id;
+        $finance->Project_ID            =    $request->Project;
+        $finance->email                 =    $request->email;
+        $finance->payement_date         =    $request->payment;
+        $finance->Offerte_ID            =    0;
+        $finance->Offerte_number = 0;
+        $finance->email = 'test';
+        $finance->payement_date        =    $request->Doa;
+
+        $finance->save();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
     public function store(Request $request)
     {
 
