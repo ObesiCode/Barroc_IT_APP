@@ -27,15 +27,18 @@ class loginuser extends Controller
             $log = $log->first();
 
 
-            return view('sales/sales')->with('a',$sales)->with('log',$log);
+            return view('sales/sales')->with('customers',$sales)->with('log',$log);
 
         }
        if($test == 'finance')
         {
+            $log = \App\log::all();
+            $log = $log->first();
+            $customers = \App\Customer::all();
+            $projects = \App\Project::all();
 
-
-
-            return view('finance/finance');
+            return view('finance/finance')->with('log',$log)->with('Customers',$customers)
+                ->with('projects', $projects);
         }
         if($test == 'development')
         {

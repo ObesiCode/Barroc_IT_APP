@@ -14,7 +14,7 @@
 
 
 
-Route::get('sales','salescontroller@index');
+Route::get('sales','salescontroller@index')->name('sales');
 Route::get('sales/{id}','salescontroller@view');
 Route::get('sales/{id}/{projectid}','salescontroller@viewproject');
 Route::resource('sales','salescontroller');
@@ -26,12 +26,12 @@ Route::get('/bug','devcontroller@fakertest');
 Route::post('/search/sales','salescontroller@search');
 
 
-Route::get('development','devcontroller@index');
+Route::get('development','devcontroller@index')->name('development');;
 Route::get('development/{projectid}','devcontroller@viewproject');
 Route::post('/dev/pru','devcontroller@updatedev');
 
 
-Route::get('finance','financecontroller@index');
+Route::get('finance','financecontroller@index')->name('finance');
 Route::post('finance','financecontroller@log');
 Route::post('finance/store','financecontroller@store');
 Route::get('finance/store','financecontroller@store');
@@ -40,9 +40,11 @@ Route::post('finance/storee','financecontroller@storee');
 Route::post('finance/project','financecontroller@project');
 
 
+Route::post('finance/addinvoice','financecontroller@invoicestore');
+
 Route::get('admin/cst/{id}','admin@changeuser');
 Route::get('admin/pr/{id}','admin@changeproject');
-Route::get('admin','admin@index');
+Route::get('admin','admin@index')->name('admin');
 Route::post('admin/userupdate','admin@updateuseradmin');
 Route::post('admin/updateproject','admin@updateproject');
 
