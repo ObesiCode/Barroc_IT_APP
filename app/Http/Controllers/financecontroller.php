@@ -88,7 +88,8 @@ class financecontroller extends Controller
                         'Email' => 'required|Email',
                         'Payment' => 'required|Date',
                         'Customer' => 'required|Int',
-                        'Project' => 'required|Int'
+                        'Project' => 'required|Int',
+                        'Amount'  => 'required|Int'
 
 
 
@@ -97,7 +98,7 @@ class financecontroller extends Controller
                     ]);
                     $id = DB::table('tbl_offertes')
                         ->select(DB::raw('MAX(invoice_ID)as i'))
-                        ->where('Project_ID', "=" , $request->Project)->get();
+                        ->where('Project_ID', "=" , $request->Projec)->get();
 
 
                     if ($id[0]->i == null){
@@ -113,7 +114,7 @@ class financecontroller extends Controller
                     $finance->Project_ID            =    $request->Project;
                     $finance->email                 =    $request->Email;
                     $finance->payement_date         =    $request->Payment;
-                    $finance->invoice_ID            =    $id;
+                    $finance->invoice_ID            =    $id[0]->i+1;
 
 
                     $finance->save();
@@ -146,8 +147,10 @@ class financecontroller extends Controller
                     ->with("Customers", $customers);
 
 
+
             }
             else{
+
 
 
                 return view('finance/finance')->with('projects',$projects)

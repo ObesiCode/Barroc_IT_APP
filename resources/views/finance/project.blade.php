@@ -2,13 +2,7 @@
 @extends('layouts.layoutbasictop')
 
 @section('content')
-    <style>
-        .submit
-        {
 
-            vertical-align: bottom;
-        }
-    </style>
     <div class="main">
         <div class="container">
             <div class="navbar-header">
@@ -140,6 +134,13 @@
                                     <input type="email" id="Email" class="form-control" name="Email">
 
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="Amount"> Amount</label>
+                                    <input type="number" id="Amount" class="form-control" name="Amount">
+
+                                </div>
+
 
 
 
