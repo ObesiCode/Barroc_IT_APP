@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Monolog\Handler\IFTTTHandler;
 
 class financecontroller extends Controller
 {
@@ -93,15 +95,25 @@ class financecontroller extends Controller
 
 
                     ]);
+                    $id = DB::table('tbl_offertes')
+                        ->select(DB::raw('MAX(invoice_ID)as i'))
+                        ->where('Project_ID', "=" , $request->Project)->get();
+
+
+                    if ($id[0]->i == null){
+                        $id[0]->i = 0;
+                    }
+
+
 
 
                     $finance = new \App\finance();
                     $finance->date_of_action        =    $request->Doa;
-                    $finance->Customer_ID           =    $request->customer;
-                    $finance->Project_ID            =    $request->project;
-                    $finance->email                 =    $request->email;
-                    $finance->payement_date         =    $request->payment;
-                    $finance->invoice_ID            =    $finance->invoice_ID+1;
+                    $finance->Customer_ID           =    $request->Customer;
+                    $finance->Project_ID            =    $request->Project;
+                    $finance->email                 =    $request->Email;
+                    $finance->payement_date         =    $request->Payment;
+                    $finance->invoice_ID            =    $id;
 
 
                     $finance->save();
@@ -126,7 +138,6 @@ class financecontroller extends Controller
 
 
             if (!$projects->isEmpty()){
-                echo "npgger";
 
                 return view('finance\project')
                     ->with('projects',$projects)
@@ -137,7 +148,7 @@ class financecontroller extends Controller
 
             }
             else{
-                echo "nzgger";
+
 
                 return view('finance/finance')->with('projects',$projects)
                     ->with('log', $log)

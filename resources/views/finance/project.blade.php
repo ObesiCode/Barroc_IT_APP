@@ -100,7 +100,7 @@
                                 -->
                                 {{csrf_field()}}
 
-                                <input type="hidden" name="customer_id" value="5">
+                                <input type="hidden" name="Customer" value="{{$customer}}">
 
 
 
