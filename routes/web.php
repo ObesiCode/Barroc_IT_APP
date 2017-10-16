@@ -30,6 +30,7 @@ Route::get('development','devcontroller@index')->name('development');;
 Route::get('development/{projectid}','devcontroller@viewproject');
 Route::post('/dev/pru','devcontroller@updatedev');
 
+Route::post('/search/development','devcontroller@search');
 
 Route::get('finance','financecontroller@index')->name('finance');
 Route::post('finance','financecontroller@log');

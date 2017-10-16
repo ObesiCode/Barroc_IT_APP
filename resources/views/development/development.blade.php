@@ -159,7 +159,7 @@
                 <table class="table table-bordered" id="tableclass">
                     <thead>
                     <tr>
-                        <form action="/search/sales" method="post">
+                        <form action="/search/development" method="post">
                             {{csrf_field()}}
                             <th id="customth"><label for="search" id="labeltext">Search</label>
                                 <input type="text" id="basicblack" name="search" >

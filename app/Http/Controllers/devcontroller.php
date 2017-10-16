@@ -78,7 +78,6 @@ class devcontroller extends Controller
 
 
         $dev = new \App\dev();
-<<<<<<< HEAD
         $dev->projectname           =   $request->projectname;
         $dev->contactperson         =   $request->contactperson;
         $dev->Customer_ID           =   $request->Customer_ID;
@@ -88,7 +87,8 @@ class devcontroller extends Controller
         $dev->operatingsystem       =   $request->operatingsystem;
         $dev->application           =   $request->application;
         $dev->next_contact          =   $request->next_contact;
-=======
+
+
         $dev->projectname               =   $request->projectname;
         $dev->contactperson             =   $request->contactperson;
         $dev->Customer_ID               =   $request->Customer_ID;
@@ -98,7 +98,6 @@ class devcontroller extends Controller
         $dev->operatingsystem           =   $request->operatingsystem;
         $dev->application               =   $request->application;
         $dev->next_contact              =   $request->next_contact;
->>>>>>> master
         $dev->is_active = 1;
 
 
@@ -252,4 +251,15 @@ class devcontroller extends Controller
     {
         //
     }
+    public function search(Request $request)
+    {
+
+        $user = sales::where('customer_name','LIKE' ,'%'.$request->search.'%')->get();
+
+        $id = dev::where('projectname','LIKE','%'.$request->search.'%')->get();
+
+
+        return view('searchdevelopment')->with('user',$user)->with('id',$id);
+    }
+
 }
