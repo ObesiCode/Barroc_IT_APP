@@ -2,13 +2,7 @@
 @extends('layouts.layoutbasictop')
 
 @section('content')
-    <style>
-        .submit
-        {
 
-            vertical-align: bottom;
-        }
-    </style>
     <div class="main">
         <div class="container">
             <div class="navbar-header">
@@ -86,26 +80,30 @@
             <div class="col-sm-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h1>Customer</h1>
+                        <h1>Project</h1>
                     </div>
                     <div class="panel-body">
+<<<<<<< HEAD
+                        <form action="" method="POST">
+=======
                         <form action="addinvoice" method="post">
+>>>>>>> master
                             <div class="col-xs-4">
                                 <!--<label for="invoice_id"> Invoice Id</label>
                                 <input type="text" id="invoice_id">
                                 -->
                                 {{csrf_field()}}
 
-                                <input type="hidden" name="customer_id" value="5">
+                                <input type="hidden" name="Customer" value="{{$customer}}">
 
 
 
 
                                 <div class="form-group">
 
+
                                     <label for="Project">Project</label>
                                     <select name="Project" id="Project" class="form-control">
-
 
 
                                         @foreach($projects as $project)
@@ -136,6 +134,13 @@
                                     <input type="email" id="Email" class="form-control" name="Email">
 
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="Amount"> Amount</label>
+                                    <input type="number" id="Amount" class="form-control" name="Amount">
+
+                                </div>
+
 
 
 

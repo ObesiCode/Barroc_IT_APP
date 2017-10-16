@@ -30,10 +30,14 @@ Route::get('development','devcontroller@index')->name('development');;
 Route::get('development/{projectid}','devcontroller@viewproject');
 Route::post('/dev/pru','devcontroller@updatedev');
 
+Route::post('/search/development','devcontroller@search');
 
 Route::get('finance','financecontroller@index')->name('finance');
 Route::post('finance','financecontroller@log');
 Route::post('finance/store','financecontroller@store');
+Route::get('finance/store','financecontroller@store');
+
+Route::post('finance/storee','financecontroller@storee');
 Route::post('finance/project','financecontroller@project');
 
 
@@ -74,4 +78,4 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+ // op sexy??

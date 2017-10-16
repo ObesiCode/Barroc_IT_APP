@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Monolog\Handler\IFTTTHandler;
 
 class financecontroller extends Controller
 {
@@ -72,51 +74,94 @@ class financecontroller extends Controller
     public function store(Request $request)
     {
 
+
         if (isset($request->Project)){
-            $this->validate($request,[
+
+
+
+                    $this->validate($request,[
 
 
 
 
-                'Doa' => 'required|Date',
-                'Email' => 'required|Email',
-                'Payment' => 'required|Date',
-                'Customer' => 'required|Int',
-                'Project' => 'required|Int'
+                        'Doa' => 'required|Date',
+                        'Email' => 'required|Email',
+                        'Payment' => 'required|Date',
+                        'Customer' => 'required|Int',
+                        'Project' => 'required|Int',
+                        'Amount'  => 'required|Int'
 
 
 
 
 
-            ]);
+                    ]);
+                    $id = DB::table('tbl_offertes')
+                        ->select(DB::raw('MAX(invoice_ID)as i'))
+                        ->where('Project_ID', "=" , $request->Projec)->get();
 
 
-            $finance = new \App\finance();
-            $finance->date_of_action        =    $request->Doa;
-            $finance->Customer_ID           =    $request->customer;
-            $finance->Project_ID            =    $request->project;
-            $finance->email                 =    $request->email;
-            $finance->payement_date         =    $request->payment;
-            $finance->invoice_ID            =    0;
-
-
-            $finance->save();
+                    if ($id[0]->i == null){
+                        $id[0]->i = 0;
+                    }
 
 
 
-            return redirect('finance?msg');
+
+                    $finance = new \App\finance();
+                    $finance->date_of_action        =    $request->Doa;
+                    $finance->Customer_ID           =    $request->Customer;
+                    $finance->Project_ID            =    $request->Project;
+                    $finance->email                 =    $request->Email;
+                    $finance->payement_date         =    $request->Payment;
+                    $finance->invoice_ID            =    $id[0]->i+1;
+
+
+                    $finance->save();
 
 
 
-        }
+                    return back();
+
+
+
+                }
+
+
         else{
-            $projects = \App\Project::where("Customer_ID", $request->Customer)->take(90000)->get();
+            $projects = \App\Project::where("Customer_ID", $request->Customer)->take(9999999)->get();
             $log = \App\log::all();
             $log = $log->first();
 
-            return view('finance\project')->with('projects',$projects)
-                ->with('customer',$request->Customer)
-                ->with('log', $log);
+            $customers = \App\Customer::all();
+
+
+
+
+            if (!$projects->isEmpty()){
+
+                return view('finance\project')
+                    ->with('projects',$projects)
+                    ->with('customer',$request->Customer)
+                    ->with('log', $log)
+                    ->with("Customers", $customers);
+
+
+
+            }
+            else{
+
+
+
+                return view('finance/finance')->with('projects',$projects)
+                    ->with('log', $log)
+                    ->with("noProject","This client has no projects")
+                    ->with("Customers", $customers)
+                    ->with('customer',$request->Customer);
+
+            }
+
+
         }
 
     }
@@ -180,7 +225,6 @@ class financecontroller extends Controller
     {
         //
     }
-    public function project(){
 
-    }
+
 }
