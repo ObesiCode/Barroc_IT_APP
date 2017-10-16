@@ -9,7 +9,11 @@
                 <ul class="list-group">
                 @if(Auth::user()->name == 'admin')
                         <script type="text/javascript">
-                            window.location = "{ url('/admin') }";
+                            <?php
+
+                            redirect()->action('admin@index')
+
+                                ?>
                         </script>
                         <li class="list-group-item"><a href="/admin">ADMIN PAGE</a></li>
                         <li class="list-group-item"><a href="/finance">FINANCE PAGE</a></li>

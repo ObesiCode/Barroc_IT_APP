@@ -153,7 +153,26 @@
                     <label for="balance" id="labeltext">balance</label>
                     <input type="number" class="balance" id="salesinput" name="balance" value="{{$customer->saldo}}">
 
+                    <label for="bkr" id="labeltext">BKR-controle currently = <b>
+                            @if($customer->bkr == 1)
+                                Yes
+                                @else
+                                    No
+                            @endif
+                            </b></label>
+                    <select name="bkr" id="salesinput" class="bkr" >
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
 
+                    <label for="approved" id="labeltext">Approved
+                        currently = <b>{{$customer->approved}}</b>
+                    </label>
+                    <select name="approved" id="salesinput" class="approved" >
+                        <option value="Approved">Approved</option>
+                        <option value="Declined">Declined</option>
+                        <option value="Not yet approved">Not yet approved</option>
+                    </select>
 
                     <label for="doa" id="labeltext">date of next action</label>
                     <input type="date" class="doa" id="salesinput" name="doa" value="{{$customer->date_of_action}}">
@@ -173,6 +192,7 @@
         </div>
     </div>
     </div>
+
     <div class="col-sm-4" id="testing">
             <div class="panel panel-default" id="salespanel">
                 <div class="panel-heading">
@@ -181,14 +201,18 @@
                     <ul class="list-group"  id="scrollablesmalldiv" >
 
 
-                        @foreach($dev as $devel)
 
-                            @if($devel->is_active == 1)
-                                <li class="list-group-item"><a href="\sales/{{$customer->Customer_ID}}/{{$devel->Project_ID}}">{{$devel->projectname}}</a></li>
-                                @endif
+                        @foreach($developmentprojects as $project)
 
 
 
+                            @if($project->is_active == 1)
+
+                                <li class="list-group-item"><a href="\sales/{{$project->Customer_ID}}/{{$project->Project_ID}}">{{$project->projectname}}</a></li>
+                            @else
+
+                                <li class="list-group-item">{{$project->projectname}} is innactive</li>
+                            @endif
                         @endforeach
                     </ul>
                 </div>
@@ -291,7 +315,7 @@
 
             <tbody>
 
-            @foreach($a as $sales)
+            @foreach($customers as $sales)
                 <tr>
                     <td><p id="basicblack">{{$sales->Customer_ID}}</p></td>
                     <td><p id="basicblack">{{$sales->customer_name}}</p></td>

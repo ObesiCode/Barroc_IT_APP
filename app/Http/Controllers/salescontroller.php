@@ -27,7 +27,7 @@ class salescontroller extends Controller
 
 
 
-        return view('sales/sales')->with('a',$sales)->with('log',$log);
+        return view('sales/sales')->with('customers',$sales)->with('log',$log);
     }
     public function view($id)
     {
@@ -46,7 +46,7 @@ class salescontroller extends Controller
         }
 
 
-        return view('sales/salesviewer')->with('customer', $user)->with('a',$sales)->with('log',$log)->with('dev',$dev);
+        return view('sales/salesviewer')->with('customer', $user)->with('customers',$sales)->with('log',$log)->with('developmentprojects',$dev);
 
     }
     public function viewproject($id,$projectid)
@@ -65,7 +65,7 @@ class salescontroller extends Controller
 
         }
 
-        return view('sales/salesviewer_projects')->with('customer', $user)->with('a',$sales)->with('log',$log)->with('dev',$dev)->with('project',$projectid2);
+        return view('sales/salesviewer_projects')->with('customer', $user)->with('customers',$sales)->with('log',$log)->with('dev',$dev)->with('project',$projectid2);
     }
 
     /**
@@ -125,7 +125,8 @@ class salescontroller extends Controller
             $sales->faxnumber           =   $request->fax;
             $sales->last_action         =   $request->lastaction;
             $sales->next_action         =   $request->nextaction;
-
+            $sales->bkr                 =   $request->bkr;
+            $sales->approved            =   $request->approved;
             $sales->phonenumber         =   $request->phonenumber;
             $sales->prospect            =   $request->prospect;
             $sales->saldo               =   $request->balance;
@@ -213,6 +214,8 @@ class salescontroller extends Controller
         $sales->last_action         =   $request->lastaction;
         $sales->next_action         =   $request->nextaction;
         $sales->phonenumber         =   $request->phonenumber;
+        $sales->bkr                 =   $request->bkr;
+        $sales->approved            =   $request->approved;
         $sales->prospect            =   $request->prospect;
         $sales->saldo               =   $request->balance;
         $sales->save();

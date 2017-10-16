@@ -145,6 +145,21 @@
                     <label for="balance" id="labeltext">balance</label>
                     <input type="number" class="balance" id="salesinput" name="balance">
 
+                    <label for="bkr" id="labeltext">BKR-controle</label>
+                    <select name="bkr" id="salesinput" class="bkr" >
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+
+                    <label for="approved" id="labeltext">Approved</label>
+                    <select name="approved" id="salesinput" class="approved" >
+                        <option value="Approved">Approved</option>
+                        <option value="Declined">Declined</option>
+                        <option value="Not yet approved">Not yet approved</option>
+                    </select>
+
+
+
                     <label for="doa" id="labeltext">date of  next action</label>
                     <input type="date" class="doa" id="salesinput" name="doa">
 
@@ -185,7 +200,7 @@
                             <div class="form-group">
                                 <label for="customername" id="labeltext">Customer name</label>
                                 <select name="Customer_ID" id="ctsm">
-                                    @foreach($a as $customerid)
+                                    @foreach($customers as $customerid)
 
 
                                         <option id="basicblack" value={{$customerid->Customer_ID}}>{{$customerid->customer_name}}</option>
@@ -265,7 +280,7 @@
             </thead>
             <tbody>
 
-            @foreach($a as $sales)
+            @foreach($customers as $sales)
                 <tr>
                    <td><p id="basicblack">{{$sales->Customer_ID}}</p></td>
                     <td><p id="basicblack">{{$sales->customer_name}}</p></td>
