@@ -24,10 +24,14 @@ class financecontroller extends Controller
         $customers = \App\Customer::all();
         $projects = \App\Project::all();
         $finance = \App\finance::all();
+        $id_name = DB::table('tbl_projects')->select('Project_ID')->select("projectname")->get();
+        $id_name_a = $id_name->toArray();
 
 
         return view('finance/finance')->with('log',$log)->with('Customers',$customers)->with('invoices',$finance)
-            ->with('projects', $projects);
+            ->with('projects', $projects)
+            ->with('id', $id_name_a);
+
     }
 
     /**
@@ -166,6 +170,8 @@ class financecontroller extends Controller
             $projects = \App\Project::where("Customer_ID", $request->Customer)->take(9999999)->get();
             $log = \App\log::all();
             $log = $log->first();
+            $id_name = DB::table('tbl_projects')->select('Project_ID')->select("projectname")->get();
+            $id_name_a = $id_name->toArray();
 
             $customers = \App\Customer::all();
 
@@ -181,7 +187,8 @@ class financecontroller extends Controller
                     ->with('customer',$request->Customer)
                     ->with('log', $log)
                     ->with("Customers", $customers)
-                    ->with('invoices',$finance);
+                    ->with('invoices',$finance)
+                    ->with('id', $id_name_a);
 
 
 
@@ -196,7 +203,9 @@ class financecontroller extends Controller
                     ->with("noProject","This client has no projects")
                     ->with("Customers", $customers)
                     ->with('customer',$request->Customer)
-                    ->with('invoices',$finance);
+                    ->with('invoices',$finance)
+                    ->with('$id', $id_name_a);
+
 
             }
 

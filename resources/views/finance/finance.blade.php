@@ -152,6 +152,7 @@
                         <th id="tabletoptext">Invoice-id</th>
                         <th id="tabletoptext">Customer-id</th>
                         <th id="tabletoptext">project-id</th>
+                        <th id="tabletoptext">Project Name</th>
                         <th id="tabletoptext">amount</th>
                         <th id="tabletoptext">is payed</th>
                         <th id="tabletoptext"><p>EDIT</p></th>
@@ -159,7 +160,9 @@
                     </thead>
                     <tbody>
 
+
                     @foreach($invoices as $sales)
+
                         <tr class="@if($sales->ispayed == 1)
                                 alert-success
                                 @else
@@ -169,6 +172,7 @@
                             <td><p id="basicblack">{{$sales->invoice_ID}}</p></td>
                             <td><p id="basicblack">{{$sales->Customer_ID}}</p></td>
                             <td><p id="basicblack">{{$sales->Project_ID}}</p></td>
+                            <td><p>{{$id[$sales->Project_ID]->projectname}}</p></td>
                             <td><p id="basicblack">{{$sales->amount}}</p></td>
                             <td><p id="basicblack">
                                     @if($sales->ispayed == 1)
