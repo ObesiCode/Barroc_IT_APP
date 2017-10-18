@@ -183,7 +183,7 @@
             </div>
         </div>
         @foreach($invoice as $invoices)
-            @if($invoices->is_active == 1 )
+
             <div class="col-sm-2">
                 <div class="panel panel-default">
                     <div class="panel-heading"><h3>invoices</h3></div>
@@ -226,55 +226,14 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="is_active">Currently:@if($invoices->is_active == 1 )
-                                    Active
-                                @else
-                                    Not Active
-                                @endif</label>
-                            <select name="is_active" id="is_active" class="form-control">
-                                <option value="0">Nonactive</option>
-                                <option value="1">Active</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
                             <input type="submit" class="form-control btn-primary" id="submitbuttonsales">
                         </div>
                     </form>
                 </div>
             </div>
-                @else
-                <div class="col-sm-2">
-                    <div class="panel panel-default">
-                        <div class="panel-heading"><h3>invoices</h3></div>
-                        <div class="panel-body">
-                            <form action="\admin/updateinvoicestatus" method="post">
-                                <div class="form-group">
-                                    {{csrf_field()}}
-                                    <div class="form-group">
-                                    <label for="invoiceid">invoiceid</label>
-                                    <input readonly type="text" class="form-control" id="invoiceid" name="invoiceid" value="{{$invoices->invoice_ID}}">
-                                    </div>
-                                    <label for="is_active">Currently:@if($invoices->is_active == 1 )
-                                            Active
-                                        @else
-                                            Not Active
-                                        @endif</label>
-                                    <select name="is_active" id="is_active" class="form-control">
-                                        <option value="0">Nonactive</option>
-                                        <option value="1">Active</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" class="form-control btn-primary" id="submitbuttonsales">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                </div>
 
-            @endif
+
+
 
         @endforeach
 

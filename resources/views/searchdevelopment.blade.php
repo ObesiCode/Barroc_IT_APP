@@ -109,11 +109,11 @@
             <td>{{$usr->Project_ID}}</td>
             <td>{{$usr->projectname}}</td>
             @if(Auth::user()->name == "admin")
-                <td><form action="\admin/pr/{{$projectsid->Project_ID}}">
+                <td><form action="\admin/pr/{{$usr->Project_ID}}">
                         <input type="submit" class="btn-primary" value="edit" />
                     </form></td>
             @else
-                <td><form action="/development/{{$projectsid->Project_ID}}">
+                <td><form action="/development/{{$usr->Project_ID}}">
                         <input type="submit" class="btn-primary" value="edit" />
                     </form></td>
             @endif
@@ -131,6 +131,7 @@
                 <table class="table table-bordered" id="tableclass">
                     <thead>
                     <tr>
+
                         <th>Project_ID</th>
                         <th>projectname</th>
                     </tr>
@@ -141,11 +142,11 @@
                             <td>{{$projectid->Project_ID}}</td>
                             <td>{{$projectid->projectname}}</td>
                             @if(Auth::user()->name == "admin")
-                                <td><form action="\admin/pr/{{$projectsid->Project_ID}}">
+                                <td><form action="\admin/pr/{{$projectid->Project_ID}}">
                                         <input type="submit" class="btn-primary" value="edit" />
                                     </form></td>
                             @else
-                                <td><form action="/development/{{$projectsid->Project_ID}}">
+                                <td><form action="/development/{{$projectid->Project_ID}}">
                                         <input type="submit" class="btn-primary" value="edit" />
                                     </form></td>
                             @endif
@@ -154,37 +155,8 @@
                     </tbody>
                 </table>
             </ul>
-            </div>
-            <div class="col-sm-6">
-                <h2>results based on project id</h2>
-                <ul class="list-group" id="scrollablediv">
-                    <table class="table table-bordered" id="tableclass">
-                        <thead>
-                        <tr>
-                            <th>Project_ID</th>
-                            <th>projectname</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($projectid as $projectsid)
-                            <tr>
-                                <td>{{$projectsid->Project_ID}}</td>
-                                <td>{{$projectsid->projectname}}</td>
-                                @if(Auth::user()->name == "admin")
-                                    <td><form action="\admin/pr/{{$projectsid->Project_ID}}">
-                                            <input type="submit" class="btn-primary" value="edit" />
-                                        </form></td>
-                                   @else
-                                <td><form action="/development/{{$projectsid->Project_ID}}">
-                                        <input type="submit" class="btn-primary" value="edit" />
-                                    </form></td>
-                                @endif
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </ul>
-            </div>
+
+
     </div>
 
 

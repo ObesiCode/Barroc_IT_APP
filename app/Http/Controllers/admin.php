@@ -137,16 +137,7 @@ class admin extends Controller
 
         return back();
     }
-    public function setactiveinvoice(Request $request)
-    {
-        $finance =  \App\finance::find($request->invoiceid);
 
-        $finance->is_active = $request->is_active;
-
-
-        $finance->save();
-       return back();
-    }
 
     public function updateuseradmin(Request $request)
     {
