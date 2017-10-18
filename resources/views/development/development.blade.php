@@ -96,7 +96,7 @@
                             <div class="col-xs-4">
                                 <div class="form-group">
                                     <label for="projectname" id="labeltext">Project name</label>
-                                    <input type="text" class="projectname" id="salesinput">
+                                    <input readonly type="text" class="projectname" id="salesinput">
                                 </div>
                                 <div class="form-group">
                                     <label for="projectid" id="labeltext">Project-ID</label>
@@ -104,54 +104,58 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="customername" id="labeltext">Customer name</label>
-                                    <input type="text" class="customername" id="salesinput">
+                                    <input readonly type="text" class="customername" id="salesinput">
                                 </div>
                                 <div class="form-group">
                                     <label for="email" id="labeltext">Email</label>
-                                    <input type="email" class="email" id="salesinput">
-                                </div>
-                                <div class="form-group">
-                                    <label for="phonenumber" id="labeltext">Phone number</label>
-                                    <input type="text" class="phonenumber" id="salesinput">
-                                </div>
-                                <div class="form-group">
-                                    <label for="offertenumber" id="labeltext">Offerte number</label>
-                                    <input readonly type="number" class="offertenumber" id="salesinput">
+                                    <input readonly type="email" class="email" id="salesinput">
                                 </div>
                             </div>
                             <div class="col-xs-4">
                                 <div class="form-group">
                                     <label for="application" id="labeltext">Application</label>
-                                    <input type="text" class="application" id="salesinput">
+                                    <input readonly type="text" class="application" id="salesinput">
                                 </div>
                                 <div class="form-group">
                                     <label for="hardware" id="labeltext">Hardware</label>
-                                    <input type="text" class="hardware" id="salesinput">
+                                    <input readonly type="text" class="hardware" id="salesinput">
                                 </div>
                                 <div class="form-group">
                                     <label for="opsystem" id="labeltext">Operating system</label>
-                                    <input type="text" class="opsystem" id="salesinput">
+                                    <input readonly type="text" class="opsystem" id="salesinput">
                                 </div>
                                 <div class="form-group">
                                     <label for="contactperson" id="labeltext">Contact person</label>
-                                    <input type="text" class="contactperson" id="salesinput">
+                                    <input readonly type="text" class="contactperson" id="salesinput">
                                 </div>
                                 <div class="form-group">
                                     <label for="lastcontact" id="labeltext">Last contact</label>
-                                    <input type="text" class="lastcontact" id="salesinput">
+                                    <input readonly type="text" class="lastcontact" id="salesinput">
                                 </div>
                                 <div class="form-group">
                                     <label for="nextcontact" id="labeltext">Next contact</label>
-                                    <input type="text" class="nextcontact" id="salesinput">
+                                    <input readonly type="text" class="nextcontact" id="salesinput">
                                 </div>
+                                <!--
                                 <div class="form-group">
                                 <input type="submit" class="number" id="submitbuttonsales">
                                 </div>
+                                -->
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <form action="\log" method="post">
+                    {{csrf_field()}}
+
+                    <textarea rows="4" cols="50" class="log" id="log" name="log" >{{$log->log}}</textarea>
+                    <input type="submit" class="btn-primary" id="button" value="Send">
+                </form>
+            </div>
+        </div>
             <div class="col-sm-4" id="testing"></div>
         <div class="col-sm-4" id="testing" >
             <div class="tableview" id="scrollablediv">
@@ -168,42 +172,67 @@
                         </th>
 
                     </tr>
-                    <tr>
 
-                        <th id="tabletoptext">Customer-id</th>
+                    <tr>
+                        <th id="tabletoptext">Project-id</th>
+                        <th id="tabletoptext">Status</th>
                         <th id="tabletoptext">Project name</th>
                         <th id="tabletoptext"><p>EDIT</p></th>
                     </tr>
-
                     </thead>
-
                     <tbody>
-
                     @foreach($projects as $project)
-                        <tr>
-                            <td><p id="basicblack">{{$project->Project_ID}}</p></td>
-                            <td><p id="basicblack">{{$project->projectname}}</p></td>
 
+                        @if($project->is_active == 1)
 
-                            <td>
-                                <form action="/development/{{$project->Customer_ID}}">
-                                    <input type="submit" class="btn-primary" value="edit" />
-                                </form>
+                            @if($project->status == 0)
+                                <tr class="alert-info">
+                                    <td><p id="basicblack">{{$project->Project_ID}}</p></td>
+                                    <td><p id="basicblack">Not Started</p></td>
+                                    <td><p id="basicblack">{{$project->projectname}}</p></td>
+                                    <td>
+                                        <form action="/development/{{$project->Project_ID}}">
+                                            <input type="submit" class="btn-primary" value="edit" />
+                                        </form>
+                                    </td>
+                                </tr>
+                            @elseif($project->status == 1)
+                                <tr class="alert-warning">
+                                    <td><p id="basicblack">{{$project->Project_ID}}</p></td>
+                                    <td><p id="basicblack">In development</p></td>
+                                    <td><p id="basicblack">{{$project->projectname}}</p></td>
+                                    <td>
+                                        <form action="/development/{{$project->Project_ID}}}">
+                                            <input type="submit" class="btn-primary" value="edit" />
+                                        </form>
+                                    </td>
+                                </tr>
 
-                            </td>
+                            @elseif($project->status == 2)
+                                <tr class="alert-success">
+                                    <td><p id="basicblack">{{$project->Project_ID}}</p></td>
+                                    <td><p id="basicblack">Finished</p></td>
+                                    <td><p id="basicblack">{{$project->projectname}}</p></td>
+                                    <td>
+                                        <form action="/development/{{$project->Project_ID}}">
+                                            <input type="submit" class="btn-primary" value="edit" />
+                                        </form>
+                                    </td>
+                                </tr>
 
-                        </tr>
+                            @endif
+                        @else
 
+                        @endif
                     @endforeach
-
-
-
-
                     </tbody>
                 </table>
 
             </div>
+
             </div>
+
         </div>
+
 @endsection
 @extends('layouts.layoutbasicbottom')

@@ -79,12 +79,12 @@
             <div class="panel-body" id="">
                 <form action="/dev/pru" method="post">
                     {{csrf_field()}}
-                    <input type="hidden" name="customerid" value="{{$project->Customer_ID     }}">
+                    <input type="hidden" name="customerid" value="{{$project->Customer_ID}}">
 
                     <div class="col-xs-4">
                         <div class="form-group">
                             <label for="projectname" id="labeltext">Project name</label>
-                            <input type="text" class="projectname" id="salesinput" name="projectname"  value={{$project->projectname}}>
+                            <input type="text" class="projectname" id="salesinput" name="projectname"  value="{{$project->projectname}}">
                         </div>
                         <div class="form-group">
                             <label for="projectid" id="labeltext">Project-ID</label>
@@ -95,8 +95,48 @@
                             <input type="email" class="email" id="salesinput" name="email" value={{$project->email}}>
                         </div>
                         <div class="form-group">
-                            <label for="offertenumber" id="labeltext">Offerte number</label>
-                            <input readonly type="number" class="offertenumber" id="salesinput"  value="later invullen vanuit offerte als die af is">
+                            <label for="invoices" id="labeltext">invoices</label>
+                            @if (!$invoice->isEmpty())
+                                    @foreach($invoice as $item)
+
+                                        @if($item->ispayed == 0)
+                                        <div class="form-group">
+                                            <label for="invoices">not payed</label>
+                                            <input  readonly name="invoices"  type="number"  class="alert-danger" id="salesinput"  value="{{$item->invoice_ID}}">
+                                        </div>
+                                            @else
+                                        <div class="form-group">
+                                            <label for="invoices">payed</label>
+                                            <input readonly name="invoices"  type="number"  class="alert-success" id="salesinput"  value="{{$item->invoice_ID}}">
+                                        </div>
+                                            @endif
+
+
+                                        @endforeach
+                            @else
+                                <input type="text" name="invoices" class="invoices" id="salesinput" value="there are no invoices for this project">
+
+
+                            @endif
+
+
+                        </div>
+                        <div class="form-group">
+                            <label for="status" id="labeltext">
+                                @if ($project->status == 0)
+                                    Currently: Not started
+                                    @elseif($project->status == 1)
+                                    Currently: In Development
+                                    @elseif($project->status == 2)
+                                    Currently: Finished
+                                    @endif
+
+                            </label>
+                            <select name="status" id="status">
+                                <option value="0">Not started</option>
+                                <option value="1">In Development</option>
+                                <option value="2">Finished</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-xs-4">
@@ -132,33 +172,82 @@
             </div>
         </div>
     </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <form action="\log" method="post">
+                {{csrf_field()}}
+
+                <textarea rows="4" cols="50" class="log" id="log" name="log" >{{$log->log}}</textarea>
+                <input type="submit" class="btn-primary" id="button" value="Send">
+            </form>
+        </div>
+    </div>
     <div class="col-sm-4" id="testing" >
         <div class="tableview" id="scrollablediv">
             <table class="table table-bordered" id="tableclass">
                 <thead>
-                <tr >
-                    <th id="customth"><label for="search" id="labeltext">Search</label> <input type="text" id="basicblack" name="search" >
-
-                    </th>
-                    <th><input type="submit" id="submitbuttonsales"></th>
-                </tr>
                 <tr>
-                    <th id="tabletoptext">Customer-id</th>
+                    <form action="/search/development" method="post">
+                        {{csrf_field()}}
+                        <th id="customth"><label for="search" id="labeltext">Search</label>
+                            <input type="text" id="basicblack" name="search" >
+                            <input type="submit" id="submitbuttonsales" value="Send">
+                    </form>
+                    </th>
+
+                </tr>
+
+                <tr>
+                    <th id="tabletoptext">Project-id</th>
+                    <th id="tabletoptext">Status</th>
                     <th id="tabletoptext">Project name</th>
                     <th id="tabletoptext"><p>EDIT</p></th>
                 </tr>
                 </thead>
                 <tbody>
                     @foreach($projects as $project)
-                        <tr>
-                            <td><p id="basicblack">{{$project->Project_ID}}</p></td>
-                            <td><p id="basicblack">{{$project->projectname}}</p></td>
-                            <td>
-                                <form action="/development/{{$project->Customer_ID}}">
-                                    <input type="submit" class="btn-primary" value="edit" />
-                                </form>
-                            </td>
-                        </tr>
+
+                        @if($project->is_active == 1)
+
+                         @if($project->status == 0)
+                              <tr class="alert-info">
+                                   <td><p id="basicblack">{{$project->Project_ID}}</p></td>
+                                   <td><p id="basicblack">Not Started</p></td>
+                                  <td><p id="basicblack">{{$project->projectname}}</p></td>
+                                 <td>
+                                     <form action="/development/{{$project->Project_ID}}">
+                                          <input type="submit" class="btn-primary" value="edit" />
+                                       </form>
+                                   </td>
+                               </tr>
+                           @elseif($project->status == 1)
+                              <tr class="alert-warning">
+                                 <td><p id="basicblack">{{$project->Project_ID}}</p></td>
+                                 <td><p id="basicblack">In development</p></td>
+                                    <td><p id="basicblack">{{$project->projectname}}</p></td>
+                                    <td>
+                                        <form action="/development/{{$project->Project_ID}}}">
+                                            <input type="submit" class="btn-primary" value="edit" />
+                                        </form>
+                                    </td>
+                            </tr>
+
+                             @elseif($project->status == 2)
+                                <tr class="alert-success">
+                                   <td><p id="basicblack">{{$project->Project_ID}}</p></td>
+                                   <td><p id="basicblack">Finished</p></td>
+                                   <td><p id="basicblack">{{$project->projectname}}</p></td>
+                                  <td>
+                                      <form action="/development/{{$project->Project_ID}}">
+                                         <input type="submit" class="btn-primary" value="edit" />
+                                        </form>
+                                 </td>
+                              </tr>
+
+                          @endif
+                         @else
+
+                         @endif
                     @endforeach
                 </tbody>
             </table>

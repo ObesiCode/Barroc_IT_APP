@@ -134,31 +134,70 @@
         </div>
 
     </div>
-<div class="col-sm-4" id="customertable">
-    <form action="">
-        <table class="table table-bordered" id="tableclass">
-            <thead>
-            <tr>
-                <th id="tabletoptext">Invoice ID</th>
-                <th id="tabletoptext">CustomerID</th>
-                <th id="tabletoptext">Name</th>
-                <th id="tabletoptext">Edit</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><input type="text" name="IID" id="inputtext"></td>
-                <td><input type="text" name="cusID" id="inputtext"></td>
-                <td><input type="text" name="cusName" id="inputtext"></td>
-                <td><input type="checkbox" name="Edit" id="inputtext"></td>
-            </tr>
+        <div class="col-sm-4" id="testing">
+            <div class="tableview" id="scrollablediv">
+                <table class="table table-bordered" id="tableclass">
+                    <thead>
+                    <tr >
+                        <form action="/finance/search" method="post">
+                            {{csrf_field()}}
+                            <th id="customth"><label for="search" id="labeltext">Search</label>
+                                <input type="text" id="basicblack" name="search" >
+                                <input type="submit" id="submitbuttonsales" value="Send">
+                        </form>
+                        </th>
+
+                    </tr>
+                    <tr>
+                        <th id="tabletoptext">Invoice-id</th>
+                        <th id="tabletoptext">Customer-id</th>
+                        <th id="tabletoptext">project-id</th>
+                        <th id="tabletoptext">amount</th>
+                        <th id="tabletoptext">is payed</th>
+                        <th id="tabletoptext"><p>EDIT</p></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    @foreach($invoices as $sales)
+                        <tr class="@if($sales->ispayed == 1)
+                                alert-success
+                                @else
+                                alert-danger
+                                @endif
+">
+                            <td><p id="basicblack">{{$sales->invoice_ID}}</p></td>
+                            <td><p id="basicblack">{{$sales->Customer_ID}}</p></td>
+                            <td><p id="basicblack">{{$sales->Project_ID}}</p></td>
+                            <td><p id="basicblack">{{$sales->amount}}</p></td>
+                            <td><p id="basicblack">
+                                    @if($sales->ispayed == 1)
+                                        Yes
+                                        @else
+                                        No
+                                        @endif
+                                </p></td>
 
 
 
-            </tbody>
-        </table>
-        <input type="submit" id="submitbutton" placeholder="Send">
-    </form>
+                            <td>
+                                <form action="\finance/invoice-edit/{{$sales->invoice_ID}}">
+                                    <input type="submit" class="btn-primary" value="edit" />
+                                </form>
+
+                            </td>
+
+                        </tr>
+
+                    @endforeach
+
+
+
+
+                    </tbody>
+                </table>
+
+            </div>
     <script src="{{ asset('js/app.js') }}"></script>
 </div>
         <div class="form-group">
@@ -169,8 +208,9 @@
                 <input type="submit" class="btn-primary" id="button" value="Send">
             </form>
         </div>
+    </div>
 
-
+        <script src="{{ asset('js/app.js') }}"></script>
 @endsection
 
 @extends('layouts.layoutbasicbottom')

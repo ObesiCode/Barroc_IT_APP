@@ -83,6 +83,16 @@
 
                 <div class="panel-heading">
                     <h3>Projects</h3>
+
+
+                    <div class="form-group">
+                        <form action="/search/development" method="post">
+                            {{csrf_field()}}
+                            <input type="text" class="form-control" id="search" name="search" placeholder="search here...">
+                            <input type="submit" class="btn btn-success" id="" placeholder="search">
+                        </form>
+                    </div>
+
                 </div>
                 <div class="panel-body">
             <div id="scrollablemediumdiv">
@@ -92,7 +102,8 @@
             <tr>
                 <th id="tabletoptext">Projectname</th>
                 <th id="tabletoptext">Project_ID</th>
-                <th id="tabletoptext">Offerte_ID</th>
+
+
                 <th id="tabletoptext">active</th>
             </tr>
                 </thead>
@@ -108,15 +119,6 @@
 
                         <td id="tableadmintext">{{$project->Project_ID}}</td>
 
-                        <td id="tableadmintext">
-                        @foreach($finance as $fnc)
-
-                            @if($project->Project_ID == $fnc->Project_ID)
-                          {{$fnc->Offerte_ID}}
-
-                            @endif
-                        @endforeach
-                           </td>
 
                         @if($project->is_active == 1)
                             <td id="basicblack" class="alert-success">Active</td>

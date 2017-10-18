@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\finance;
 use Illuminate\Http\Request;
 use App\dev;
 use App\log;
@@ -112,9 +113,39 @@ class admin extends Controller
         $dev->application =             $request->application;
         $dev->next_contact       =   $request->next_contact;
         $dev->is_active = $request->is_active;
+        $dev->status            =$request->status;
 
         $dev->save();
         return redirect('admin');
+    }
+    public function updateinvoice(Request $request)
+    {
+        $finance =  \App\finance::find($request->invoiceid);
+
+        $finance->Customer_ID           =    $request->customerid;
+        $finance->Project_ID            =    $request->projectid;
+        $finance->email                 =    $request->email;
+        $finance->payement_date         =    $request->payement_date;
+
+        $finance->amount                 =    $request->amount;
+        $finance->ispayed                 = $request->ispayed;
+
+
+        $finance->save();
+
+
+
+        return back();
+    }
+    public function setactiveinvoice(Request $request)
+    {
+        $finance =  \App\finance::find($request->invoiceid);
+
+        $finance->is_active = $request->is_active;
+
+
+        $finance->save();
+       return back();
     }
 
     public function updateuseradmin(Request $request)
@@ -231,19 +262,20 @@ class admin extends Controller
     {
 
         $user = sales::where('Customer_ID' ,$id)->get()->first();
+        $invoice = finance::where('Customer_ID',$id)->get();
 
 
-
-        return view('admin/admincustomer')->with('user',$user);
+        return view('admin/admincustomer')->with('user',$user)->with('invoices',$invoice);
     }
 
     public function changeproject($id)
     {
+        $invoice = finance::where('Project_ID',$id)->get();
         $project = dev::where('Project_ID' ,$id)->get()->first();
 
 
 
-        return view('admin/adminprojects')->with('project',$project);
+        return view('admin/adminprojects')->with('project',$project)->with('invoice',$invoice);
     }
 
     /**

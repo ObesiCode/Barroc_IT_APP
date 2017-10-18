@@ -14,10 +14,13 @@
                 </button>
 
                 <!-- Branding Image -->
-
+                @if(Auth::user()->name != "admin")
                 <form action="/development">
                     <input type="submit" class="btn-primary" value="Go Back" />
                 </form>
+                    @endif
+
+
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -93,11 +96,8 @@
         <thead>
         <tr>
             <th>Customer ID</th>
-            <th>adress</th>
-            <th>customername</th>
-            <th>city</th>
-            <th>number</th>
-            <th>edit</th>
+            <th>Project_ID</th>
+            <th>projectname</th>
         </tr>
         </thead>
         <tbody>
@@ -106,13 +106,17 @@
 
         <tr>
             <td>{{$usr->Customer_ID}}</td>
-            <td>{{$usr->adress}}</td>
-            <td>{{$usr->customer_name}}</td>
-            <td>{{$usr->city}}</td>
-            <td>{{$usr->phonenumber}}</td>
-            <td><form action="/development/{{$projectid->Project_ID}}">
-                    <input type="submit" class="btn-primary" value="edit" />
-                </form></td>
+            <td>{{$usr->Project_ID}}</td>
+            <td>{{$usr->projectname}}</td>
+            @if(Auth::user()->name == "admin")
+                <td><form action="\admin/pr/{{$projectsid->Project_ID}}">
+                        <input type="submit" class="btn-primary" value="edit" />
+                    </form></td>
+            @else
+                <td><form action="/development/{{$projectsid->Project_ID}}">
+                        <input type="submit" class="btn-primary" value="edit" />
+                    </form></td>
+            @endif
         </tr>
 
     @endforeach
@@ -136,14 +140,50 @@
                         <tr>
                             <td>{{$projectid->Project_ID}}</td>
                             <td>{{$projectid->projectname}}</td>
-                            <td><form action="/development/{{$projectid->Project_ID}}">
-                                    <input type="submit" class="btn-primary" value="edit" />
-                                </form></td>
+                            @if(Auth::user()->name == "admin")
+                                <td><form action="\admin/pr/{{$projectsid->Project_ID}}">
+                                        <input type="submit" class="btn-primary" value="edit" />
+                                    </form></td>
+                            @else
+                                <td><form action="/development/{{$projectsid->Project_ID}}">
+                                        <input type="submit" class="btn-primary" value="edit" />
+                                    </form></td>
+                            @endif
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
             </ul>
+            </div>
+            <div class="col-sm-6">
+                <h2>results based on project id</h2>
+                <ul class="list-group" id="scrollablediv">
+                    <table class="table table-bordered" id="tableclass">
+                        <thead>
+                        <tr>
+                            <th>Project_ID</th>
+                            <th>projectname</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($projectid as $projectsid)
+                            <tr>
+                                <td>{{$projectsid->Project_ID}}</td>
+                                <td>{{$projectsid->projectname}}</td>
+                                @if(Auth::user()->name == "admin")
+                                    <td><form action="\admin/pr/{{$projectsid->Project_ID}}">
+                                            <input type="submit" class="btn-primary" value="edit" />
+                                        </form></td>
+                                   @else
+                                <td><form action="/development/{{$projectsid->Project_ID}}">
+                                        <input type="submit" class="btn-primary" value="edit" />
+                                    </form></td>
+                                @endif
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </ul>
             </div>
     </div>
 

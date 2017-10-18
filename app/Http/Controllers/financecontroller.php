@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\dev;
+use App\finance;
 use App\Project;
+use App\sales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Monolog\Handler\IFTTTHandler;
@@ -20,8 +23,10 @@ class financecontroller extends Controller
         $log = $log->first();
         $customers = \App\Customer::all();
         $projects = \App\Project::all();
+        $finance = \App\finance::all();
 
-        return view('finance/finance')->with('log',$log)->with('Customers',$customers)
+
+        return view('finance/finance')->with('log',$log)->with('Customers',$customers)->with('invoices',$finance)
             ->with('projects', $projects);
     }
 
@@ -65,7 +70,33 @@ class financecontroller extends Controller
 
 
 
+    public function updateinvoice(Request $request)
+    {
 
+
+
+
+            $finance =  \App\finance::find($request->invoiceid);
+
+            $finance->Customer_ID           =    $request->customerid;
+            $finance->Project_ID            =    $request->projectid;
+            $finance->email                 =    $request->email;
+            $finance->payement_date         =    $request->payement_date;
+
+            $finance->amount                 =    $request->amount;
+            $finance->ispayed                 = $request->ispayed;
+                  $finance->is_active             =$request->is_active;
+
+            $finance->save();
+
+
+
+            return back();
+
+
+
+
+    }
 
 
 
@@ -114,7 +145,10 @@ class financecontroller extends Controller
                     $finance->Project_ID            =    $request->Project;
                     $finance->email                 =    $request->Email;
                     $finance->payement_date         =    $request->Payment;
-                    $finance->invoice_ID            =    $id[0]->i+1;
+
+                    $finance->amount                 =    $request->Amount;
+                    $finance->ispayed                 = 0;
+                    $finance->is_active             =1;
 
 
                     $finance->save();
@@ -140,11 +174,14 @@ class financecontroller extends Controller
 
             if (!$projects->isEmpty()){
 
+                $finance = \App\finance::all();
+
                 return view('finance\project')
                     ->with('projects',$projects)
                     ->with('customer',$request->Customer)
                     ->with('log', $log)
-                    ->with("Customers", $customers);
+                    ->with("Customers", $customers)
+                    ->with('invoices',$finance);
 
 
 
@@ -152,12 +189,14 @@ class financecontroller extends Controller
             else{
 
 
-
+                $finance = \App\finance::all();
                 return view('finance/finance')->with('projects',$projects)
+
                     ->with('log', $log)
                     ->with("noProject","This client has no projects")
                     ->with("Customers", $customers)
-                    ->with('customer',$request->Customer);
+                    ->with('customer',$request->Customer)
+                    ->with('invoices',$finance);
 
             }
 
@@ -165,6 +204,20 @@ class financecontroller extends Controller
         }
 
     }
+
+
+    public function editinvoice($id)
+    {
+
+
+        $invoices = finance::where('invoice_ID' ,$id)->get()->first();
+
+
+
+        return view('finance/invoice-edit')->with('invoices',$invoices);
+    }
+
+
 
     public function log($request){
         if($request->log == null)
@@ -178,6 +231,45 @@ class financecontroller extends Controller
         return redirect('finance?msg');
     }
 
+    public function search(Request $request)
+    {
+        $user = finance::where('Customer_ID','LIKE' ,'%'.$request->search.'%')->get();
+
+        $projectid = finance::where('Project_ID','LIKE' ,'%'.$request->search.'%')->get();
+
+        $invoice = finance::where('invoice_ID','LIKE' ,'%'.$request->search.'%')->get();
+
+        $name = sales::where('customer_name','LIKE','%'.$request->search.'%')->get();
+
+        $test = sales::where('customer_name','LIKE' ,'%'.$request->search.'%')->get();
+
+
+        $name = array(
+        );
+
+        foreach ($test as $username)
+        {
+            $test = finance::where('Customer_ID','LIKE','%'.$username->Customer_ID.'%')->get()->first();
+
+            if (empty($test))
+            {
+
+
+            }
+            else {
+                array_push($name, $test);
+            }
+        }
+
+
+
+
+
+
+        $projectnames = dev::where('projectname','LIKE','%'.$request->search.'%')->get();
+
+        return view('searchinvoice')->with('users',$user)->with('invoices',$invoice)->with('projectids',$projectid)->with('customers',$name)->with('projects',$projectnames);
+    }
 
 
 
@@ -210,10 +302,7 @@ class financecontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.

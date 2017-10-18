@@ -97,49 +97,53 @@
         <div class="panel-body" id="">
             <form action="/sales" method="post">
                 {{csrf_field()}}
-                 <div class="form-group col-xs-4" >
+                 <div class="col-xs-4" >
 
 
-
+                    <div class="form-group">
                      <label for="customer" id="labeltext">customer name</label>
-                     <input type="text" class="customer" id="salesinput" name="customer" value="{{$customer->customer_name}}">
-
+                     <input type="text" class="form-control" id="salesinput" name="customer" value="{{$customer->customer_name}}">
+                    </div>
+                     <div class="form-group">
                      <label for="prospect" id="labeltext">Prospect</label>
-                     <input type="text" class="prospect" id="salesinput" name="prospect" value="{{$customer->prospect}}">
-                     <!--
-                     <label for="offernum" id="labeltext">Offer_number</label>
-                     <input type="text" class="offernum" id="salesinput" name="offernum">
+                     <input type="text" class="form-control" id="salesinput" name="prospect" value="{{$customer->prospect}}">
+                     </div>
 
-
-                        -->
-
+                    <div class="form-group">
                      <label for="doa" id="labeltext">date of action</label>
-                     <input readonly type="text" class="doa" id="salesinput" value="{{$customer->date_of_action}}" name="doac">
+                     <input readonly type="text" class="form-control" id="salesinput" value="{{$customer->date_of_action}}" name="doac">
+                    </div>
 
-
-
+                    <div class="form-group">
                      <label for="city" id="labeltext">city</label>
-                     <input type="text" class="city" id="salesinput" name="city" value="{{$customer->city}}">
-
+                     <input type="text" class="form-control" id="salesinput" name="city" value="{{$customer->city}}">
+                    </div>
+                     <div class="form-group">
                      <label for="email" id="labeltext">Email</label>
-                     <input type="email" class="email" id="salesinput" name="email" value="{{$customer->email}}">
-
+                     <input type="email" class="form-control" id="salesinput" name="email" value="{{$customer->email}}">
+                     </div>
+                     <div class="form-group">
                      <label for="adress" id="labeltext">Adress</label>
-                     <input type="text" class="adress" id="salesinput" name="adress" value="{{$customer->adress}}">
-
-
+                     <input type="text" class="form-control" id="salesinput" name="adress" value="{{$customer->adress}}">
+                     </div>
+                    <div class="form-group">
                      <label for="phonenumber" id="labeltext">Phone number</label>
-                     <input type="text" class="phonenumber" id="salesinput" name="phonenumber">
+                     <input type="text" class="form-control" id="salesinput" name="phonenumber">
+                    </div>
+                     <div class="form-group">
+                         <label for="fax" id="labeltext">fax</label>
+                         <input type="number" class="form-control" id="salesinput" name="fax" value="{{$customer->faxnumber}}">
+                     </div>
+
                  </div>
-                <div class="form-group col-xs-4">
+                <div class="col-xs-4">
 
+                    <div class="form-group">
+                        <label for="banknm" id="labeltext">bank number</label>
+                        <input type="number" class="form-control" id="salesinput" name="banknm" value="{{$customer->bankaccountnumber}}">
+                    </div>
 
-                    <label for="fax" id="labeltext">fax</label>
-                    <input type="number" class="fax" id="salesinput" name="fax" value="{{$customer->faxnumber}}">
-
-                    <label for="banknm" id="labeltext">bank number</label>
-                    <input type="number" class="banknm" id="salesinput" name="banknm" value="{{$customer->bankaccountnumber}}">
-
+                    <div class="form-group">
                     <label for="bkr" id="labeltext">BKR-controle currently = <b>
                             @if($customer->bkr == 1)
                                 Yes
@@ -147,35 +151,43 @@
                                 No
                             @endif
                         </b></label>
-                    <select name="bkr" id="salesinput" class="bkr" >
+                    <select name="bkr" id="salesinput" class="form-control" >
                         <option value="1">Yes</option>
                         <option value="0">No</option>
                     </select>
-
-                    <label for="approved" id="labeltext">Approved
-                        currently = <b>{{$customer->approved}}</b>
-                    </label>
-                    <select name="approved" id="salesinput" class="approved" >
-                        <option value="Approved">Approved</option>
-                        <option value="Declined">Declined</option>
-                        <option value="Not yet approved">Not yet approved</option>
-                    </select>
-
-                    <label for="balance" id="labeltext">balance</label>
-                    <input type="number" class="balance" id="salesinput" name="balance" value="{{$customer->saldo}}">
-
-                    <label for="doa" id="labeltext">date of next action</label>
-                    <input type="date" class="doa" id="salesinput" name="doa" value="{{$customer->date_of_action}}">
-
-                    <label for="lastaction" id="labeltext">Last Action</label>
-                    <input type="text" class="lastaction" id="salesinput" name="lastaction" value="{{$customer->last_action}}" >
-
-                    <label for="nextaction" id="labeltext">Next Action</label>
-                    <input type="text" class="nextaction" id="salesinput" name="nextaction" value="{{$customer->next_action}}">
-
-
-                    <input type="submit" class="number" id="submitbuttonsales" value="Send">
+                    </div>
+                    <div class="form-group">
+                        <label for="approved" id="labeltext">Approved
+                            currently = <b>{{$customer->approved}}</b>
+                        </label>
+                        <select name="approved" id="salesinput" class="form-control" >
+                            <option value="Approved">Approved</option>
+                            <option value="Declined">Declined</option>
+                            <option value="Not yet approved">Not yet approved</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="balance" id="labeltext">balance</label>
+                        <input type="number" class="form-control" id="salesinput" name="balance" value="{{$customer->saldo}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="doa" id="labeltext">date of next action</label>
+                        <input type="date" class="form-control" id="salesinput" name="doa" value="{{$customer->date_of_action}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastaction" id="labeltext">Last Action</label>
+                        <input type="text" class="form-control" id="salesinput" name="lastaction" value="{{$customer->last_action}}" >
+                    </div>
+                    <div class="form-group">
+                        <label for="nextaction" id="labeltext">Next Action</label>
+                        <input type="text" class="form-control" id="salesinput" name="nextaction" value="{{$customer->next_action}}">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="form-control" id="submitbuttonsales" value="Send">
+                    </div>
                 </div>
+
+
             </form>
         </div>
     </div>
@@ -210,55 +222,52 @@
 
                                 <label for="projectname" id="labeltext">Project name</label>
 
-                                <input type="text" class="projectname" id="salesinput" name="projectname"  value="{{$project->projectname}}">
+                                <input type="text" class="form-control" id="salesinput" name="projectname"  value="{{$project->projectname}}">
                             </div>
                             <div class="form-group">
                                 <label for="projectid" id="labeltext">Project-ID</label>
-                                <input readonly type="text" class="projectid" id="salesinput" name="projectid" value="{{$project->Project_ID}}">
+                                <input readonly type="text" class="form-control" id="salesinput" name="projectid" value="{{$project->Project_ID}}">
                             </div>
 
 
                             <div class="form-group">
                                 <label for="email" id="labeltext">Email</label>
-                                <input type="email" class="email" id="salesinput" name="email" value={{$project->email}}>
+                                <input type="email" class="form-control" id="salesinput" name="email" value={{$project->email}}>
                             </div>
                             <div class="form-group">
                                 <label for="phonenumber" id="labeltext">Phone number</label>
-                                <input type="text" class="phonenumber" id="salesinput" name="phonenumber" value={{$customer->phonenumber}}>
+                                <input type="text" class="form-control" id="salesinput" name="phonenumber" value={{$customer->phonenumber}}>
                             </div>
-                            <div class="form-group">
-                                <label for="offertenumber" id="labeltext">invoice id</label>
-                                <input readonly type="number" class="offertenumber" id="salesinput"  value="later invullen vanuit offerte als die af is">
-                            </div>
+
 
                         </div>
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="application" id="labeltext">Application</label>
-                                <input type="text" class="application" id="salesinput" name="application" value="{{$project->application}}">
+                                <input type="text" class="form-control" id="salesinput" name="application" value="{{$project->application}}">
                             </div>
                             <div class="form-group">
                                 <label for="hardware" id="labeltext">Hardware</label>
-                                <input type="text" class="hardware" id="salesinput" name="hardware" value="{{$project->hardware}}">
+                                <input type="text" class="form-control" id="salesinput" name="hardware" value="{{$project->hardware}}">
                             </div>
                             <div class="form-group">
                                 <label for="opsystem" id="labeltext">Operating system</label>
-                                <input type="text" class="opsystem" id="salesinput" name="operatingsystem" value="{{$project->operatingsystem}}">
+                                <input type="text" class="form-control" id="salesinput" name="operatingsystem" value="{{$project->operatingsystem}}">
                             </div>
                             <div class="form-group">
                                 <label for="contactperson" id="labeltext">Contact person</label>
-                                <input type="text" class="contactperson" id="salesinput" name="contactperson" value="{{$project->contactperson}}">
+                                <input type="text" class="form-control" id="salesinput" name="contactperson" value="{{$project->contactperson}}">
                             </div>
                             <div class="form-group">
                                 <label for="lastcontact" id="labeltext">Last contact</label>
-                                <input type="text" class="lastcontact" id="salesinput" name="last_contact" value="{{$project->last_contact}}">
+                                <input type="text" class="form-control" id="salesinput" name="last_contact" value="{{$project->last_contact}}">
                             </div>
                             <div class="form-group">
                                 <label for="nextcontact" id="labeltext">Next contact</label>
-                                <input type="text" class="nextcontact" id="salesinput" name="next_contact" value="{{$project->next_contact}}">
+                                <input type="text" class="form-control" id="salesinput" name="next_contact" value="{{$project->next_contact}}">
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="number" id="submitbuttonsales" value="Send">
+                                <input type="submit" class="form-control" id="submitbuttonsales" value="Send">
                             </div>
                         </div>
                     </form>
@@ -312,14 +321,17 @@
         </table>
 
         </div>
-        <div class="form-group">
+
             <form action="\log" method="post">
                 {{csrf_field()}}
-
-                <textarea rows="4" cols="50" class="log" id="log" name="log" >{{$log->log}}</textarea>
-                <input type="submit" class="btn-primary" >
+                <div class="form-group">
+                <textarea rows="4" cols="50" class="form-control" id="log" name="log" >{{$log->log}}</textarea>
+                </div>
+                <div class="form-group">
+                <input type="submit" class="btn-primary form-control" value="Send" >
+                </div>
             </form>
-        </div>
+
     </div>
 
 

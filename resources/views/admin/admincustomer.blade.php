@@ -58,9 +58,10 @@
         <div class="header">
             <div class="row">
                 <div class="links">
-                    <div class="col-sm-4 text-center list-group-item" id="linktext"><a href="/sales" class="" id="linktext">Sales</a></div>
-                    <div class="col-sm-4 text-center list-group-item" id="linktext"><a href="/finance" class="" id="linktext">Finance</a></div>
-                    <div class="col-sm-4 text-center list-group-item" id="linktext"><a href="/development" class="" id="linktext">Development</a></div>
+                    <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/sales" class="" id="linktext">Sales</a></div>
+                    <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/finance" class="" id="linktext">Finance</a></div>
+                    <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/development" class="" id="linktext">Development</a></div>
+                    <div class="col-sm-3 text-center list-group-item" id="linktext"><a href="/admin" class="" id="linktext">Admin</a></div>
                 </div>
             </div>
         </div>
@@ -151,6 +152,69 @@
         </div>
     </div>
 </div>
+
+        @foreach($invoices as $invoice)
+            <div class="col-sm-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3>invoices</h3></div>
+                    <form action="\finance/invoiceupdate" method="post">
+                        {{csrf_field()}}
+            <div class="form-group">
+                <label for="invoiceid">invoice id</label>
+                <input  readonly type="text" class="form-control" name="invoiceid" id="invoiceid" value="{{$invoice->invoice_ID}}">
+            </div>
+                    <div class="form-group">
+                        <label for="customerid">Customer id</label>
+                        <input readonly type="text" class="form-control" name="customerid" id="customerid" value="{{$invoice->Customer_ID}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="projectid">project id</label>
+                        <input readonly type="text" class="form-control" name="projectid" id="projectid" value="{{$invoice->Project_ID}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="payementdate">payement date</label>
+                        <input type="text" class="form-control" name="payement_date" id="payementdate" value="{{$invoice->payement_date}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">email</label>
+                        <input type="text" class="form-control" name="email" id="email" value="{{$invoice->email}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">amount</label>
+                        <input type="text" class="form-control" name="amount" id="amount" value="{{$invoice->amount}}">
+                    </div>
+
+                        <label for="ispayed">currently:@if($invoice->ispayed == 1 )
+                                Payed succesfully
+                            @else
+                                not payed
+                            @endif</label>
+                    <div class="form-group">
+                        <select name="ispayed" id="ispayed" class="form-control">
+                            <option value="0">not payed</option>
+                            <option value="1">payed </option>
+                        </select>
+                    </div>
+
+                        <div class="form-group">
+                            <label for="is_active">Currently:@if($invoice->is_active == 1 )
+                                    Active
+                                @else
+                                    Not Active
+                                @endif</label>
+                            <select name="is_active" id="is_active" class="form-control">
+                                <option value="0">Nonactive</option>
+                                <option value="1">Active</option>
+                            </select>
+                        </div>
+                <div class="form-group">
+                    <input type="submit" class="form-control btn-primary" id="submitbuttonsales">
+                </div>
+                    </form>
+                </div>
+            </div>
+            @endforeach
+
 
 
 

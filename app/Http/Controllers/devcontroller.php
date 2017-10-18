@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\dev;
+use App\finance;
 use App\log;
 use App\sales;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ class devcontroller extends Controller
      */
     public function index()
     {
+
 
         $projects = \App\dev::all();
         $log = \App\log::all();
@@ -34,15 +36,17 @@ class devcontroller extends Controller
         $projects = \App\dev::all();
         $log = \App\log::all();
         $log = $log->first();
-        $projectid2 = dev::where('Project_ID',$projectid)->get()->first();
 
-        if (empty($projectid2))
-        {
-            return redirect('development/development');
 
-        }
+        $projectid2 = dev::find($projectid);
 
-        return view('development/developmentviewer')->with('projects',$projects)->with('log',$log)->with('project',$projectid2);
+        $invoice = finance::where('Project_ID',$projectid)->get();
+
+
+
+
+
+        return view('development/developmentviewer')->with('projects',$projects)->with('log',$log)->with('project',$projectid2)->with('invoice',$invoice);
     }
     /**
      * Show the form for creating a new resource.
@@ -99,6 +103,7 @@ class devcontroller extends Controller
         $dev->application               =   $request->application;
         $dev->next_contact              =   $request->next_contact;
         $dev->is_active = 1;
+        $dev->status                    =   0;
 
 
         $dev->save();
@@ -195,6 +200,7 @@ class devcontroller extends Controller
         $dev->application =             $request->application;
         $dev->next_contact       =   $request->next_contact;
         $dev->is_active = 1;
+        $dev->status            =$request->status;
 
 
 
@@ -256,10 +262,29 @@ class devcontroller extends Controller
 
         $user = sales::where('customer_name','LIKE' ,'%'.$request->search.'%')->get();
 
+
+        $customer = array(
+        );
+
+        foreach ($user as $project)
+        {
+            $test = dev::where('Customer_ID','LIKE','%'.$project->Customer_ID.'%')->get()->first();
+
+            if (empty($test))
+            {
+
+
+            }
+            else {
+                array_push($customer, $test);
+            }
+            }
+
         $id = dev::where('projectname','LIKE','%'.$request->search.'%')->get();
 
+        $projectid = dev::where('Project_ID','LIKE','%'.$request->search.'%')->get();
 
-        return view('searchdevelopment')->with('user',$user)->with('id',$id);
+        return view('searchdevelopment')->with('user',$customer)->with('id',$id)->with('projectid',$projectid);
     }
 
 }

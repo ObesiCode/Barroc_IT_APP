@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Auth;
 
 class loginuser extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
    public function loginuserstuf()
    {
         $test = Auth::user()->name;
@@ -27,6 +32,7 @@ class loginuser extends Controller
             $log = $log->first();
 
 
+
             return view('sales/sales')->with('customers',$sales)->with('log',$log);
 
         }
@@ -36,12 +42,15 @@ class loginuser extends Controller
             $log = $log->first();
             $customers = \App\Customer::all();
             $projects = \App\Project::all();
+            $finance = \App\finance::all();
 
-            return view('finance/finance')->with('log',$log)->with('Customers',$customers)
+
+            return view('finance/finance')->with('log',$log)->with('Customers',$customers)->with('invoices',$finance)
                 ->with('projects', $projects);
         }
         if($test == 'development')
         {
+
 
             $projects = \App\dev::all();
             $log = \App\log::all();

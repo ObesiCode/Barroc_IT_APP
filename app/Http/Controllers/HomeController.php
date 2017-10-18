@@ -40,7 +40,7 @@ class HomeController extends Controller
         }
         else if(Auth::user()->name == 'development')
         {
-            return redirect()->route('development');
+            return redirect('development');
         }
 
 

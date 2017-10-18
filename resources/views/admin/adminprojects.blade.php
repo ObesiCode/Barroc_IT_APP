@@ -150,6 +150,28 @@
                             </select>
 
                         </div>
+                        <div class="form-group">
+                            <label for="status">
+                                @if ($project->status == 0)
+                                    Currently: Not started
+                                @elseif($project->status == 1)
+                                    Currently: In Development
+                                @elseif($project->status == 2)
+                                    Currently: Finished
+                                @endif
+
+                            </label>
+                            <select name="status" id="status" class="form-control">
+                                <option value="0">Not started</option>
+                                <option value="1">In Development</option>
+                                <option value="2">Finished</option>
+                            </select>
+                        </div>
+
+
+
+
+                        </div>
 
                         <div class="form-group">
                             <input type="submit" class="number" id="submitbuttonsales">
@@ -160,12 +182,102 @@
                 </div>
             </div>
         </div>
+        @foreach($invoice as $invoices)
+            @if($invoices->is_active == 1 )
+            <div class="col-sm-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3>invoices</h3></div>
+                    <form action="\finance/invoiceupdate" method="post">
+                        {{csrf_field()}}
+                        <div class="form-group">
+                            <label for="invoiceid">invoice id</label>
+                            <input  readonly type="text" class="form-control" name="invoiceid" id="invoiceid" value="{{$invoices->invoice_ID}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="customerid">Customer id</label>
+                            <input readonly type="text" class="form-control" name="customerid" id="customerid" value="{{$invoices->Customer_ID}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="projectid">project id</label>
+                            <input readonly type="text" class="form-control" name="projectid" id="projectid" value="{{$invoices->Project_ID}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="payementdate">payement date</label>
+                            <input type="text" class="form-control" name="payement_date" id="payementdate" value="{{$invoices->payement_date}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">email</label>
+                            <input type="text" class="form-control" name="email" id="email" value="{{$invoices->email}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">amount</label>
+                            <input type="text" class="form-control" name="amount" id="amount" value="{{$invoices->amount}}">
+                        </div>
 
+                        <label for="ispayed">currently:@if($invoices->ispayed == 1 )
+                                Payed succesfully
+                            @else
+                                not payed
+                            @endif</label>
+                        <div class="form-group">
+                            <select name="ispayed" id="ispayed" class="form-control">
+                                <option value="0">not payed</option>
+                                <option value="1">payed </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="is_active">Currently:@if($invoices->is_active == 1 )
+                                    Active
+                                @else
+                                    Not Active
+                                @endif</label>
+                            <select name="is_active" id="is_active" class="form-control">
+                                <option value="0">Nonactive</option>
+                                <option value="1">Active</option>
+                            </select>
+                        </div>
 
+                        <div class="form-group">
+                            <input type="submit" class="form-control btn-primary" id="submitbuttonsales">
+                        </div>
+                    </form>
+                </div>
+            </div>
+                @else
+                <div class="col-sm-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h3>invoices</h3></div>
+                        <div class="panel-body">
+                            <form action="\admin/updateinvoicestatus" method="post">
+                                <div class="form-group">
+                                    {{csrf_field()}}
+                                    <div class="form-group">
+                                    <label for="invoiceid">invoiceid</label>
+                                    <input readonly type="text" class="form-control" id="invoiceid" name="invoiceid" value="{{$invoices->invoice_ID}}">
+                                    </div>
+                                    <label for="is_active">Currently:@if($invoices->is_active == 1 )
+                                            Active
+                                        @else
+                                            Not Active
+                                        @endif</label>
+                                    <select name="is_active" id="is_active" class="form-control">
+                                        <option value="0">Nonactive</option>
+                                        <option value="1">Active</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="form-control btn-primary" id="submitbuttonsales">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </div>
 
+            @endif
 
+        @endforeach
 
-    </div>
 
     <footer>
         <button type="button" class="btn btn-info" id="help">Info</button>
