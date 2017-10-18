@@ -127,7 +127,7 @@
                             @endif
                         <td id="basicblack">
 
-                            <form action="admin/pr/{{$project->Project_ID}}">
+                            <form action="\admin/pr/{{$project->Project_ID}}">
                                 <input type="submit" class="btn-primary" value="edit" />
                             </form>
                         </td>
