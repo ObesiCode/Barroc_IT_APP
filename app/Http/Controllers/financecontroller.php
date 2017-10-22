@@ -21,6 +21,7 @@ class financecontroller extends Controller
     {
         $log = \App\log::all();
         $log = $log->first();
+
         $customers = \App\Customer::all();
         $projects = \App\Project::all();
         $finance = \App\finance::all();
@@ -66,7 +67,7 @@ class financecontroller extends Controller
         $finance->email = 'test';
         $finance->payement_date        =    $request->Doa;
 
-        $finance->save();
+
 
     }
 
@@ -152,14 +153,35 @@ class financecontroller extends Controller
 
                     $finance->amount                 =    $request->Amount;
                     $finance->ispayed                 = 0;
-                    $finance->is_active             =1;
+
 
 
                     $finance->save();
 
+            $finance->save();
+            $customer = \App\sales::find($request->Customer);
+            $eraf = $customer->saldo -$finance->amount;
 
+            $customer->saldo  = $eraf ;
+            $customer->save();
+            $customernew = \App\sales::find($request->Customer);
+            if($customernew->saldo < -500)
+            {
+                $project = \App\dev::where('Customer_ID',$customernew->Customer_ID)->get();
 
-                    return back();
+                foreach($project as $pr)
+                {
+                    $pr->status = 3;
+                    $pr->save();
+
+                }
+            }
+            else
+            {
+
+            }
+
+            return back();
 
 
 

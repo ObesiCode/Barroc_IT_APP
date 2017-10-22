@@ -136,6 +136,7 @@
                                 <option value="0">Not started</option>
                                 <option value="1">In Development</option>
                                 <option value="2">Finished</option>
+                                <option value="3">Paused</option>
                             </select>
                         </div>
                     </div>
@@ -209,42 +210,38 @@
 
                         @if($project->is_active == 1)
 
-                         @if($project->status == 0)
-                              <tr class="alert-info">
-                                   <td><p id="basicblack">{{$project->Project_ID}}</p></td>
-                                   <td><p id="basicblack">Not Started</p></td>
-                                  <td><p id="basicblack">{{$project->projectname}}</p></td>
-                                 <td>
-                                     <form action="/development/{{$project->Project_ID}}">
-                                          <input type="submit" class="btn-primary" value="edit" />
-                                       </form>
-                                   </td>
-                               </tr>
-                           @elseif($project->status == 1)
-                              <tr class="alert-warning">
-                                 <td><p id="basicblack">{{$project->Project_ID}}</p></td>
-                                 <td><p id="basicblack">In development</p></td>
-                                    <td><p id="basicblack">{{$project->projectname}}</p></td>
-                                    <td>
-                                        <form action="/development/{{$project->Project_ID}}}">
-                                            <input type="submit" class="btn-primary" value="edit" />
-                                        </form>
-                                    </td>
-                            </tr>
+                            @if($project->is_active == 1)
 
-                             @elseif($project->status == 2)
-                                <tr class="alert-success">
-                                   <td><p id="basicblack">{{$project->Project_ID}}</p></td>
-                                   <td><p id="basicblack">Finished</p></td>
-                                   <td><p id="basicblack">{{$project->projectname}}</p></td>
-                                  <td>
-                                      <form action="/development/{{$project->Project_ID}}">
-                                         <input type="submit" class="btn-primary" value="edit" />
-                                        </form>
-                                 </td>
-                              </tr>
+                                @if($project->status == 0)
+                                    <tr class="alert-info">
+                                        <td><p id="basicblack">{{$project->Project_ID}}</p></td>
+                                        <td><p id="basicblack">Not Started</p></td>
 
-                          @endif
+                                @elseif($project->status == 1)
+                                    <tr class="alert-warning">
+                                        <td><p id="basicblack">{{$project->Project_ID}}</p></td>
+                                        <td><p id="basicblack">In development</p></td>
+
+
+                                @elseif($project->status == 2)
+                                    <tr class="alert-success">
+                                        <td><p id="basicblack">{{$project->Project_ID}}</p></td>
+                                        <td><p id="basicblack">Finished</p></td>
+                                @elseif($project->status == 3)
+                                    <tr class="alert-dismissible">
+                                        <td><p id="basicblack">{{$project->Project_ID}}</p></td>
+                                        <td><p id="basicblack">Paused</p></td>
+                                        @endif
+                                        <td><p id="basicblack">{{$project->projectname}}</p></td>
+                                        <td>
+                                            <form action="/development/{{$project->Project_ID}}">
+                                                <input type="submit" class="btn-primary" value="edit" />
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @else
+
+                                @endif
                          @else
 
                          @endif
@@ -254,6 +251,76 @@
         </div>
     </div>
 </div>
+<footer>
+
+
+    <!-- The Modal -->
+    <button id="help" class="btn btn-info"  >Help</button>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Help</h2>
+            </div>
+            <div class="model-seperator">
+                <p>Hier kan je de gegevens van aanpassen en updaten</p>
+                <p>Aan de rechterkant van het scherm is een tabel waarin alle projecten staan hun project-id , status en hun naam</p>
+                <p>U kunt naar de project gegevens gaan door op de "Edit" knop te drukken bij de specifieke naam </p>
+                <p>Boven de tabel is een search functie die je kan gebruiken om specifieke projecten te zoeken</p>
+                <p>Je kan het middelveld als uw algemene logboek gebruiken ( deze word gedeeld over alle afdelingen )</p>
+                <p>Updaten via de send knop </p>
+                <p>Je kan teruggaan naar het admin scherm door de navigatiebalk of de Go Back knop linksbovenaan de pagina </p>
+                <p>Om uit te loggen klik je op het blauwe {{Auth::user()->name}} woord bovenaan de pagina en klik je daarna op logout</p>
+            </div>
+            <div class="modal-body">
+                <p>Here you can change/update the info of user </p>
+                <p>On the right side of the screen is a table with all projects with their project-id,status and their projectname</p>
+                <p>U can go to a respective project by clicking it respective "Edit" button </p>
+                <p>Above the table is a search function you can use to search a specific project </p>
+                <p>You can use the middle area as a commen area for youre logg ( it will be used by all departments )</p>
+                <p>Update using the send button</p>
+                <p>You can return to the admin page by clicking the link in the navigationbar or the Go Back button on the top left</p>
+                <p>To logout you have to click the blue {{Auth::user()->name}} word at the top of the page and after that on the logout button beneath it </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <script>
+        var modal = document.getElementById('myModal');
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("help");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</footer>
 
 
 @endsection

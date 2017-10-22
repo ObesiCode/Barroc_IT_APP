@@ -40,13 +40,17 @@ class loginuser extends Controller
         {
             $log = \App\log::all();
             $log = $log->first();
+
             $customers = \App\Customer::all();
             $projects = \App\Project::all();
             $finance = \App\finance::all();
+            $id_name = DB::table('tbl_projects')->select('Project_ID')->select("projectname")->get();
+            $id_name_a = $id_name->toArray();
 
 
             return view('finance/finance')->with('log',$log)->with('Customers',$customers)->with('invoices',$finance)
-                ->with('projects', $projects);
+                ->with('projects', $projects)
+                ->with('id', $id_name_a);
         }
         if($test == 'development')
         {

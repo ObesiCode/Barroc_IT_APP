@@ -68,13 +68,7 @@
 
 
     <div class="col-sm-12" id="dissapear">
-            <ul class="list-group" id="helptext">
-                <li class="list-group-item" >
-                    <p>this page is used to search through all user info</p>
-                    <p>use the <b>edit button</b> in the tables to edit that specific user or project.</p>
-                    <button type="button"  onclick="show();" class="btn btn-info" id="helpbutton2">toggle</button>
-                </li>
-            </ul>
+
 
         </div>
 
@@ -230,27 +224,70 @@
 
 
     </div>
-    <footer>
-        <script>
-
-            document.getElementById("dissapear").style.visibility = "hidden";
+<footer>
 
 
-            function show()
-            {
-                document.getElementById("dissapear").style.visibility = "hidden";
+    <!-- The Modal -->
+    <button id="help" class="btn btn-info"  >Help</button>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Help</h2>
+            </div>
+            <div class="model-seperator">
+                <p>Als een admin kan jij bij de verschillende afdelingen en alle data</p>
+                <p>Als je de edit knop gebruikt kan je de data van die persoon aanpassen </p>
+                <p>je kan ook alle customers die negatieve saldo hebben laten zien met de "all negative saldos" button</p>
+                <p>Bovenaan de pagina zit een nagivatiebalk waarmee jij als admin naar alle andere afdelingen kan gaan </p>
+                <p>Om uit te loggen klik je op het blauwe admin woord bovenaan de pagina en klik je daarna op logout</p>
+            </div>
+            <div class="modal-body">
+                <p>As admin you can acces all data from all of the different company branches</p>
+                <p>by using the edit button in the tables you can edit that specific persons data</p>
+                <p>You can also see all customers that have a negative saldo by clicking the " all negative saldos " button</p>
+                <p>At the top of the page is a navigation bar so you can visit all of the other department pages</p>
+                <p>To logout you have to click the blue admin word at the top of the page and after that on the logout button beneath it </p>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <script>
+        var modal = document.getElementById('myModal');
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("help");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
             }
-            function dissapear()
-            {
+        }
+    </script>
 
+</footer>
 
-                document.getElementById("dissapear").style.visibility = "visible";
-
-            }
-
-        </script>
-        <button type="button"  onclick="dissapear();" class="btn btn-info" id="help">Info</button>
-    </footer>
 
 @endsection
 @extends('layouts.layoutbasicbottom')

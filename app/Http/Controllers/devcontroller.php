@@ -8,6 +8,7 @@ use App\log;
 use App\sales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class devcontroller extends Controller
 {
@@ -117,44 +118,54 @@ class devcontroller extends Controller
     }
 
 
+
     public function fakertest()
     {
 
 
         $faker = \Faker\Factory::create();
-        for ($i=0; $i < 30; $i++) {
 
+
+        for ($i=1; $i < 250; $i++)
+        {
             $sales = new \App\sales();
-            $sales->adress              =   $faker->postcode;
+            $sales->adress              =   $faker->address();
             $sales->bankaccountnumber   =   $faker->creditCardNumber;
-            $sales->city                =   $faker->city;
-            $sales->customer_name       =   $faker->company;
+            $sales->city                =   $faker->city();
+            $sales->customer_name       =   $faker->name();
             $sales->date_of_action      =   $faker->dateTime();
             $sales->email               =   $faker->companyEmail;
             $sales->faxnumber           =   $faker->isbn10;
             $sales->last_action         =   $faker->state;
             $sales->next_action         =   $faker->state;
-
+            $sales->bkr                 =   1;
+            $sales->approved            =   'Approved';
             $sales->phonenumber         =   $faker->numberBetween($min = 1, $max = 9000);
             $sales->prospect            =   $faker->name;
             $sales->saldo               =   $faker->numberBetween($min= -1000,$max = 5000);
 
-            $sales->save();
+
+
+        }
+
+
+
+        for ($i=0; $i < 50; $i++) {
+
 
             $dev = new \App\dev();
-            $dev->Customer_ID = $i + 1;
+            $dev->Customer_ID = $i + 82 ;
             $dev->projectname = $faker->name;
             $dev->email = $faker->email;
             $dev->operatingsystem = "windows";
             $dev->application = $faker->userName;
             $dev->hardware = "pc";
+            $dev->status = 0;
             $dev->contactperson = $faker->name;
             $dev->last_contact         =   $faker->state;
             $dev->next_contact        =   $faker->state;
-            $dev->is_active = $faker->numberBetween($min= 0,$max = 1);
-
+            $dev->is_active = 1;
             $dev->save();
-
         }
         echo "done";
 
@@ -207,6 +218,17 @@ class devcontroller extends Controller
 
 
         $dev->save();
+        $dev = \App\dev::find($customerid);
+        if ($dev->status == 2)
+        {
+            $data = \App\dev::all();
+            $delete = \App\dev::find($customerid)->delete();
+            $projects = \App\dev::all();
+            $log = \App\log::all();
+            $log = $log->first();
+            return view('development/development')->with('projects',$projects)->with('log',$log);
+
+        }
 
 
         return back();

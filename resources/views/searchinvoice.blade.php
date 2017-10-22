@@ -83,6 +83,72 @@
                         <input type="text" id="basicblack" name="search" >
                         <input type="submit" id="submitbuttonsales" value="Send">
                 </form>
+
+
+                <footer>
+
+
+                    <!-- The Modal -->
+                    <button id="help" class="btn btn-info"  >Help</button>
+
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <span class="close">&times;</span>
+                                <h2>Help</h2>
+                            </div>
+                            <div class="model-seperator">
+
+                                <p>Er zijn een totaal van 4 tabellen met potentiele resultaten voor wat u zoekt </p>
+                                <p>Door op een van de resultaton hun Edit knop in te drukken kunt u de specifieke offerte gegevens aanpassen</p>
+                                <p>Er is ook nog een search functie voor als je een nieuwe search wilt uitvoeren</p>
+                                <p>Om uit te loggen klik je op het blauwe {{Auth::user()->name}} woord bovenaan de pagina en klik je daarna op logout</p>
+                            </div>
+                            <div class="modal-body">
+
+                                <p>There are a total of 4 tables with potential results for what you are looking for</p>
+                                <p>By pushing the Edit button at one of the specific invoice results you go to their respective edit page </p>
+                                <p>There is also another search function for if you want tou search something different </p>
+                                <p>To logout you have to click the blue {{Auth::user()->name}} word at the top of the page and after that on the logout button beneath it </p>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <script>
+                        var modal = document.getElementById('myModal');
+
+                        // Get the button that opens the modal
+                        var btn = document.getElementById("help");
+
+                        // Get the <span> element that closes the modal
+                        var span = document.getElementsByClassName("close")[0];
+
+                        // When the user clicks the button, open the modal
+                        btn.onclick = function() {
+                            modal.style.display = "block";
+                        }
+
+                        // When the user clicks on <span> (x), close the modal
+                        span.onclick = function() {
+                            modal.style.display = "none";
+                        }
+
+                        // When the user clicks anywhere outside of the modal, close it
+                        window.onclick = function(event) {
+                            if (event.target == modal) {
+                                modal.style.display = "none";
+                            }
+                        }
+                    </script>
+
+                </footer>
+
             </div>
             <div class="col-sm-6">
 
@@ -244,6 +310,7 @@
 
 
         </div>
+
 
 
 
