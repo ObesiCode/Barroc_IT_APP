@@ -26,9 +26,12 @@ class devcontroller extends Controller
         $log = $log->first();
 
 
+        if (\Auth::user()->name == 'admin' || \Auth::user()->name == 'development') {
 
-
-        return view('development/development')->with('projects',$projects)->with('log',$log);
+            return view('development/development')->with('projects', $projects)->with('log', $log);
+        }
+        else
+            return back();
     }
 
     /**
@@ -48,11 +51,15 @@ class devcontroller extends Controller
 
         $invoice = finance::where('Project_ID',$projectid)->get();
 
+        $total = 0;
+        foreach ($invoice as $iv )
+        {
+            $total += $iv->amount;
+        }
 
 
 
-
-        return view('development/developmentviewer')->with('projects',$projects)->with('log',$log)->with('project',$projectid2)->with('invoice',$invoice);
+        return view('development/developmentviewer')->with('projects',$projects)->with('log',$log)->with('project',$projectid2)->with('invoice',$invoice)->with('totalinvoices',$total);
     }
     /**
      * Show the form for creating a new resource.

@@ -28,7 +28,12 @@ class admin extends Controller
         $financ =\App\finance::all();
         $nega = 0;
 
-        return view('admin/admin')->with('customer',$sales)->with('development',$dev)->with('finance',$financ)->with('nega',$nega);
+        if (\Auth::user()->name == 'admin') {
+
+            return view('admin/admin')->with('customer', $sales)->with('development', $dev)->with('finance', $financ)->with('nega', $nega);
+        }
+        else
+            return back();
     }
 
     /**
@@ -299,9 +304,14 @@ class admin extends Controller
         $invoice = finance::where('Project_ID',$id)->get();
         $project = dev::where('Project_ID' ,$id)->get()->first();
 
+        $total = 0;
+        foreach ($invoice as $iv )
+        {
+            $total += $iv->amount;
+        }
 
 
-        return view('admin/adminprojects')->with('project',$project)->with('invoice',$invoice);
+        return view('admin/adminprojects')->with('project',$project)->with('invoice',$invoice)->with('totalinvoices',$total);
     }
 
     /**

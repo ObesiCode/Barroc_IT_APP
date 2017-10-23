@@ -85,6 +85,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3>project: {{$project->projectname}}</h3>
+                    <h4>total invoices amount: {{$totalinvoices}}</h4>
+
 
                 </div>
                 <div class="panel-body">
@@ -182,6 +184,7 @@
                 </div>
             </div>
         </div>
+
         @foreach($invoice as $invoices)
 
             <div class="col-sm-2">

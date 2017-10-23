@@ -181,7 +181,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($projects as $project)
+                    @foreach($projects->sortBy('status') as $project)
 
                         @if($project->is_active == 1)
 

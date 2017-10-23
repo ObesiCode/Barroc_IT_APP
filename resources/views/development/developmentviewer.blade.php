@@ -75,6 +75,7 @@
                 </form>
                 <h1>Development Update</h1>
                 <h4>{{$project->projectname}}</h4>
+                <h4>total invoices amount: {{$totalinvoices}}</h4>
             </div>
             <div class="panel-body" id="">
                 <form action="/dev/pru" method="post">

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Monolog\Handler\IFTTTHandler;
 
+
 class financecontroller extends Controller
 {
     /**
@@ -19,6 +20,7 @@ class financecontroller extends Controller
      */
     public function index()
     {
+
         $log = \App\log::all();
         $log = $log->first();
 
@@ -28,10 +30,15 @@ class financecontroller extends Controller
         $id_name = DB::table('tbl_projects')->select('Project_ID')->select("projectname")->get();
         $id_name_a = $id_name->toArray();
 
+        if (\Auth::user()->name == 'admin' || \Auth::user()->name == 'finance') {
 
-        return view('finance/finance')->with('log',$log)->with('Customers',$customers)->with('invoices',$finance)
-            ->with('projects', $projects)
-            ->with('id', $id_name_a);
+
+            return view('finance/finance')->with('log', $log)->with('Customers', $customers)->with('invoices', $finance)
+                ->with('projects', $projects)
+                ->with('id', $id_name_a);
+        }
+        else
+            return back();
 
     }
 
