@@ -29,6 +29,12 @@ class salescontroller extends Controller
 
         return view('sales/sales')->with('customers',$sales)->with('log',$log);
     }
+
+    /**
+     * @param $id
+     * returning the salesviewer with the selected user by parameter $id
+     * @return project view
+     */
     public function view($id)
     {
         $sales = \App\sales::all();
@@ -49,7 +55,15 @@ class salescontroller extends Controller
         return view('sales/salesviewer')->with('customer', $user)->with('customers',$sales)->with('log',$log)->with('developmentprojects',$dev);
 
     }
-    public function viewproject($id,$projectid)
+
+    /**
+     * @param $id
+     * @param $projectid
+     * returning the projectview with the selected project by parameter $id
+     * the user data is also returned
+     * @return projectview
+     */
+    public function viewproject($id, $projectid)
     {
 
         $sales = \App\sales::all();
@@ -84,11 +98,6 @@ class salescontroller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-    public function storedev(Request $request)
-    {
-
-    }
 
     public function store(Request $request)
     {
@@ -173,10 +182,6 @@ class salescontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        echo "test";
-    }
 
     public function updateuser(Request $request)
     {
@@ -238,6 +243,13 @@ class salescontroller extends Controller
     {
         //
     }
+
+    /**
+     * @param Request $request
+     *  \search the database on basis of the search request that was given and return
+     * the corrosponding search view
+     * @return $this
+     */
     public function search(Request $request)
     {
         $user = sales::where('customer_name','LIKE' ,'%'.$request->search.'%')->get();

@@ -128,7 +128,7 @@
                      </div>
                     <div class="form-group">
                      <label for="phonenumber" id="labeltext">Phone number</label>
-                     <input type="text" class="form-control" id="salesinput" name="phonenumber">
+                     <input type="number" class="form-control" id="salesinput" name="phonenumber">
                     </div>
                      <div class="form-group">
                          <label for="fax" id="labeltext">fax</label>
@@ -236,7 +236,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="phonenumber" id="labeltext">Phone number</label>
-                                <input type="text" class="form-control" id="salesinput" name="phonenumber" value={{$customer->phonenumber}}>
+                                <input type="number" class="form-control" id="salesinput" name="phonenumber" value={{$customer->phonenumber}}>
                             </div>
 
 

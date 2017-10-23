@@ -12,7 +12,12 @@ class loginuser extends Controller
         $this->middleware('auth');
     }
 
-   public function loginuserstuf()
+    /**
+     * looking at the auth user name and sending them to their
+     * respective view
+     * @return view
+     */
+    public function loginuserstuf()
    {
         $test = Auth::user()->name;
 

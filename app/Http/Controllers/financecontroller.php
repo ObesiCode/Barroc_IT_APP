@@ -72,9 +72,11 @@ class financecontroller extends Controller
     }
 
 
-
-
-
+    /**
+     * @param Request $request
+     * update the invoice in the databse that corrospondes with the info that was given in the request
+     * @return to last view
+     */
     public function updateinvoice(Request $request)
     {
 
@@ -104,9 +106,12 @@ class financecontroller extends Controller
     }
 
 
-
-
-
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
 
@@ -237,6 +242,11 @@ class financecontroller extends Controller
     }
 
 
+    /**
+     * @param $id
+     * ga naar invoice eidt pagina met data die is gehaald uit de megegeven id parameter
+     * @return $invoice-edit
+     */
     public function editinvoice($id)
     {
 
@@ -249,7 +259,11 @@ class financecontroller extends Controller
     }
 
 
-
+    /**
+     * @param $request
+     * de log updaten
+     * @return finance
+     */
     public function log($request){
         if($request->log == null)
         {
@@ -262,6 +276,12 @@ class financecontroller extends Controller
         return redirect('finance?msg');
     }
 
+    /**
+     * @param Request $request
+     *  * search the database on basis of the search request that was given and return
+     * the corrosponding search view
+     * @return mixed
+     */
     public function search(Request $request)
     {
         $user = finance::where('Customer_ID','LIKE' ,'%'.$request->search.'%')->get();

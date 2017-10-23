@@ -30,6 +30,11 @@ class admin extends Controller
 
         return view('admin/admin')->with('customer',$sales)->with('development',$dev)->with('finance',$financ)->with('nega',$nega);
     }
+
+    /**
+     * @return
+     * the admin view with only the negative saldo accounts
+     */
     public function negativeindex()
     {
         $sales = \App\sales::where('saldo','<=',-500)->get();
@@ -74,6 +79,11 @@ class admin extends Controller
         //
     }
 
+    /**
+     * @param Request $request
+     * update the projects table
+     * @return admin view
+     */
     public function updateproject(Request $request)
     {
         $this->validate($request,[
@@ -118,6 +128,12 @@ class admin extends Controller
         $dev->save();
         return redirect('admin');
     }
+
+    /**
+     * @param Request $request
+     * updaten van een bestaande invoice op basis van de megegeven id
+     * @return teruggaan naar laatste veld
+     */
     public function updateinvoice(Request $request)
     {
         $finance =  \App\finance::find($request->invoiceid);
@@ -139,6 +155,11 @@ class admin extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * updaten van de client gegevens op basis van een meegegeven id
+     * @return admin view
+     */
     public function updateuseradmin(Request $request)
     {
 
@@ -224,6 +245,12 @@ class admin extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * search the database on basis of the search request that was given and return
+     * the corrosponding search view
+     * @return adminssearch
+     */
     public function search(Request $request)
     {
 
@@ -247,8 +274,11 @@ class admin extends Controller
     }
 
 
-
-
+    /**
+     * @param $id
+     * alle user data die word meegegeven met request
+     * @return admincustomer
+     */
     public function changeuser($id)
     {
 
@@ -259,6 +289,11 @@ class admin extends Controller
         return view('admin/admincustomer')->with('user',$user)->with('invoices',$invoice);
     }
 
+    /**
+     * @param $id
+     * alle project data halen
+     * @return adminproject
+     */
     public function changeproject($id)
     {
         $invoice = finance::where('Project_ID',$id)->get();

@@ -19,7 +19,7 @@ class HomeController extends Controller
 
     /**
      * Show the application dashboard.
-     *
+     *return the right view on basis of auth user
      * @return \Illuminate\Http\Response
      */
     public function index()

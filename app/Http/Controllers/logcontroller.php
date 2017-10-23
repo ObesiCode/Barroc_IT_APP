@@ -16,7 +16,11 @@ class logcontroller extends Controller
         //
     }
 
-
+    /**
+     * @param $request
+     * de log updaten
+     * @return finance
+     */
     public function inputlog(Request $request)
     {
         $this->validate($request,[

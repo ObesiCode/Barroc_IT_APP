@@ -31,6 +31,11 @@ class devcontroller extends Controller
         return view('development/development')->with('projects',$projects)->with('log',$log);
     }
 
+    /**
+     * @param $projectid
+     * reurning projectview on basis off project-id
+     * @return mixed
+     */
     public function viewproject($projectid)
     {
 
@@ -118,60 +123,11 @@ class devcontroller extends Controller
     }
 
 
-
-    public function fakertest()
-    {
-
-
-        $faker = \Faker\Factory::create();
-
-
-        for ($i=1; $i < 250; $i++)
-        {
-            $sales = new \App\sales();
-            $sales->adress              =   $faker->address();
-            $sales->bankaccountnumber   =   $faker->creditCardNumber;
-            $sales->city                =   $faker->city();
-            $sales->customer_name       =   $faker->name();
-            $sales->date_of_action      =   $faker->dateTime();
-            $sales->email               =   $faker->companyEmail;
-            $sales->faxnumber           =   $faker->isbn10;
-            $sales->last_action         =   $faker->state;
-            $sales->next_action         =   $faker->state;
-            $sales->bkr                 =   1;
-            $sales->approved            =   'Approved';
-            $sales->phonenumber         =   $faker->numberBetween($min = 1, $max = 9000);
-            $sales->prospect            =   $faker->name;
-            $sales->saldo               =   $faker->numberBetween($min= -1000,$max = 5000);
-
-
-
-        }
-
-
-
-        for ($i=0; $i < 50; $i++) {
-
-
-            $dev = new \App\dev();
-            $dev->Customer_ID = $i + 82 ;
-            $dev->projectname = $faker->name;
-            $dev->email = $faker->email;
-            $dev->operatingsystem = "windows";
-            $dev->application = $faker->userName;
-            $dev->hardware = "pc";
-            $dev->status = 0;
-            $dev->contactperson = $faker->name;
-            $dev->last_contact         =   $faker->state;
-            $dev->next_contact        =   $faker->state;
-            $dev->is_active = 1;
-            $dev->save();
-        }
-        echo "done";
-
-    }
-
-
+    /**
+     * @param Request $request
+     * update the dev table on the database
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
     public function updatedev(Request $request)
     {
         $this->validate($request,[
@@ -279,6 +235,13 @@ class devcontroller extends Controller
     {
         //
     }
+
+    /**
+     * @param Request $request
+     * search the database on basis of the search request that was given and return
+     * the corrosponding searchdevelopment view
+     * @return mixed
+     */
     public function search(Request $request)
     {
 
