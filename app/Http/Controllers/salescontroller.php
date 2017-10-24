@@ -190,7 +190,7 @@ class salescontroller extends Controller
             'Customer_ID' => '|required|',
             'customer' => 'required|min:3|string',
             'prospect' => 'required|min:3|string',
-            'doa' => 'required|date',
+
             'city' => 'required|min:1|string',
             'email' => 'required|E-Mail',
             'adress' => 'required|string',
@@ -213,7 +213,7 @@ class salescontroller extends Controller
         $sales->bankaccountnumber   =   $request->banknm;
         $sales->city                =   $request->city;
         $sales->customer_name       =   $request->customer;
-        $sales->date_of_action      =   $request->doa;
+        
         $sales->email               =   $request->email;
         $sales->faxnumber           =   $request->fax;
         $sales->last_action         =   $request->lastaction;

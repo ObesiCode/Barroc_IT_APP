@@ -125,7 +125,7 @@
                         -->
                     <div class="form-group">
                      <label for="doa" id="labeltext">date of action</label>
-                     <input readonly type="text" class="form-control" id="salesinput" value="{{$customer->date_of_action}}" name="doac">
+                     <input readonly type="text"  class="form-control" id="salesinput" value="{{$customer->date_of_action}}" name="doa">
                     </div>
                      <div class="form-group">
                      <label for="city" id="labeltext">city</label>
