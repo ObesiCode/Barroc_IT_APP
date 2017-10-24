@@ -140,7 +140,7 @@
                 <input type="text" id="nextaction" class="form-control" name="nextaction" value="{{$user->next_action}}">
                 </div>
                 <div class="form-group">
-                <label for="saldo" id="basicblack">saldo</label>
+                <label for="saldo" id="basicblack">balance</label>
                 <input type="number" id="saldo" class="form-control" name="balance" value="{{$user->saldo}}">
                 </div>
                 <div class="form-group">

@@ -163,7 +163,7 @@
 
                         <div class="form-group">
                             <form action="/admin/negative" method="get">
-                                <input type="submit" class="btn btn-primary" value="all negative saldo  accounts">
+                                <input type="submit" class="btn btn-primary" value="all negative balance  accounts">
                             </form>
                         </div>
 
@@ -186,7 +186,7 @@
                 <tr>
                     <th id="tabletoptext">CustomerName</th>
                     <th id="tabletoptext">CustomerID</th>
-                    <th id="tabletoptext">saldo</th>
+                    <th id="tabletoptext">balance</th>
 
                 </tr>
                 </thead>
