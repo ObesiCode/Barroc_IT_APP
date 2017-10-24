@@ -61,18 +61,7 @@ Route::get('/admin/negative','admin@negativeindex');
 
 Route::get('development','devcontroller@index');
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/bugtesting',function (){
-    return view('bugtesting');
-});
-
-
-
-
-Route::get('/inlogin', function () {
-    return view('login');
+    return view('auth/login');
 });
 
 
@@ -80,5 +69,3 @@ Route::get('/inlogin', function () {
 Auth::routes();
 
 
-Route::get('/home', 'HomeController@index')->name('home');
- // op sexy??
