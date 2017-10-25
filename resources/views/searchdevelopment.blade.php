@@ -223,6 +223,42 @@
 
 
     </div>
+            <div class="col-sm-6">
+                <h2>results based on projectid</h2>
+                <ul class="list-group" id="scrollablediv">
+
+                    <table class="table table-bordered" id="tableclass">
+                        <thead>
+                        <tr>
+                            <th>Customer ID</th>
+                            <th>Project_ID</th>
+                            <th>projectname</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        @foreach($projectenids as $usr)
+
+                            <tr>
+                                <td>{{$usr->Customer_ID}}</td>
+                                <td>{{$usr->Project_ID}}</td>
+                                <td>{{$usr->projectname}}</td>
+                                @if(Auth::user()->name == "admin")
+                                    <td><form action="\admin/pr/{{$usr->Project_ID}}">
+                                            <input type="submit" class="btn-primary" value="edit" />
+                                        </form></td>
+                                @else
+                                    <td><form action="/development/{{$usr->Project_ID}}">
+                                            <input type="submit" class="btn-primary" value="edit" />
+                                        </form></td>
+                                @endif
+                            </tr>
+
+                        @endforeach
+                        </tbody>
+                    </table>
+                </ul>
+            </div>
 
 
 
