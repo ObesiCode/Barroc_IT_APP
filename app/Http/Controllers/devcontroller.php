@@ -278,7 +278,7 @@ class devcontroller extends Controller
 
         $projectid = dev::where('Project_ID','LIKE','%'.$request->search.'%')->get();
 
-       
+
 
         return view('searchdevelopment')->with('user',$customer)->with('id',$id)->with('projectid',$projectid)->with('projectenids',$projectenid);
     }
