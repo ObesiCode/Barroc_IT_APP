@@ -83,7 +83,7 @@ class devcontroller extends Controller
         $this->validate($request,[
             'projectname'       => 'required|min:3|string',
             'email'             => 'required|E-Mail',
-            'phonenumber'       => 'required|string',
+            'phonenumber'       => 'required|numeric|phone_number|size:11',
             'application'       => 'required|string',
             'hardware'          => 'required|string',
             'operatingsystem' => 'required',
