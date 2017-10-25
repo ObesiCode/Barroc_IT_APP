@@ -52,6 +52,7 @@ Route::post('admin/userupdate','admin@updateuseradmin');
 Route::post('admin/updateproject','admin@updateproject');
 Route::post('admin/updateinvoicestatus','admin@setactiveinvoice');
 
+
 Route::get('loginuser','loginuser@loginuserstuf');
 Route::post('log','logcontroller@inputlog');
 

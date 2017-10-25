@@ -263,6 +263,7 @@ class admin extends Controller
 
 
 
+
         $user = sales::where('customer_name','LIKE' ,'%'.$request->search.'%')->get();
 
         $adress = sales::where('adress','LIKE','%'.$request->search.'%')->get();
@@ -313,6 +314,9 @@ class admin extends Controller
 
         return view('admin/adminprojects')->with('project',$project)->with('invoice',$invoice)->with('totalinvoices',$total);
     }
+
+
+
 
     /**
      * Display the specified resource.

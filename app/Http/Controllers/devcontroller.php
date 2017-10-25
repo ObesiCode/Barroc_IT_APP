@@ -254,6 +254,7 @@ class devcontroller extends Controller
 
         $user = sales::where('customer_name','LIKE' ,'%'.$request->search.'%')->get();
 
+        $projectenid = dev::where('Project_ID','LIKE','%'.$request->search.'%')->get();
 
         $customer = array(
         );
@@ -274,9 +275,12 @@ class devcontroller extends Controller
 
         $id = dev::where('projectname','LIKE','%'.$request->search.'%')->get();
 
+
         $projectid = dev::where('Project_ID','LIKE','%'.$request->search.'%')->get();
 
-        return view('searchdevelopment')->with('user',$customer)->with('id',$id)->with('projectid',$projectid);
+       
+
+        return view('searchdevelopment')->with('user',$customer)->with('id',$id)->with('projectid',$projectid)->with('projectenids',$projectenid);
     }
 
 }
