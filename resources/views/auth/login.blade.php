@@ -1,6 +1,15 @@
-@extends('layouts.app')
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../../public/css/login.css">
+    <title>Login</title>
+</head>
+<body>
 
-@section('content')
 <div class="container">
     @if (count($errors) > 0)
         <div class="row">
@@ -84,4 +93,6 @@
         </div>
     </div>
 </div>
-@endsection
+
+</body>
+</html>
