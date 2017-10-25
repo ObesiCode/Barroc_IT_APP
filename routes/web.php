@@ -62,7 +62,7 @@ Route::get('/admin/negative','admin@negativeindex');
 
 Route::get('development','devcontroller@index');
 Route::get('/', function () {
-    return view('auth/login1');
+    return view('auth/login');
 });
 
 
