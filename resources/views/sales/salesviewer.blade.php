@@ -291,6 +291,7 @@
                                 <label for="nextcontact" id="labeltext">Next contact</label>
                                 <input type="text" class="form-control"id="salesinput" name="next_contact">
                             </div>
+
                             <div class="form-group">
                                 <input type="submit" class="form-control" id="submitbuttonsales" value="Send">
                             </div>

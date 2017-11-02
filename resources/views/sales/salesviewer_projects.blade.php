@@ -178,6 +178,7 @@
                         <label for="lastaction" id="labeltext">Last Action</label>
                         <input type="text" class="form-control" id="salesinput" name="lastaction" value="{{$customer->last_action}}" >
                     </div>
+
                     <div class="form-group">
                         <label for="nextaction" id="labeltext">Next Action</label>
                         <input type="text" class="form-control" id="salesinput" name="nextaction" value="{{$customer->next_action}}">
@@ -261,6 +262,24 @@
                             <div class="form-group">
                                 <label for="lastcontact" id="labeltext">Last contact</label>
                                 <input type="text" class="form-control" id="salesinput" name="last_contact" value="{{$project->last_contact}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="status" id="labeltext">
+                                    @if ($project->status == 0)
+                                        Currently: Not started
+                                    @elseif($project->status == 1)
+                                        Currently: In Development
+                                    @elseif($project->status == 2)
+                                        Currently: Finished
+                                    @endif
+
+                                </label>
+                                <select name="status" id="status">
+                                    <option value="0">Not started</option>
+                                    <option value="1">In Development</option>
+                                    <option value="2">Finished</option>
+                                    <option value="3">Paused</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="nextcontact" id="labeltext">Next contact</label>

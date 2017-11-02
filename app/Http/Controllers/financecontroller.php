@@ -71,7 +71,7 @@ class financecontroller extends Controller
         $finance->payement_date         =    $request->payment;
         $finance->Offerte_ID            =    0;
         $finance->Offerte_number = 0;
-        $finance->email = 'test';
+        $finance->email               =   $request->email;
         $finance->payement_date        =    $request->Doa;
 
 

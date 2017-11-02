@@ -83,7 +83,7 @@ class devcontroller extends Controller
         $this->validate($request,[
             'projectname'       => 'required|min:3|string',
             'email'             => 'required|E-Mail',
-            'phonenumber'       => 'required|numeric|phone_number|size:11',
+            'phonenumber' => 'required|numeric|phone_number|min:0',
             'application'       => 'required|string',
             'hardware'          => 'required|string',
             'operatingsystem' => 'required',
@@ -174,7 +174,7 @@ class devcontroller extends Controller
         $dev->application =             $request->application;
         $dev->next_contact       =   $request->next_contact;
         $dev->is_active = 1;
-        $dev->status            =$request->status;
+        $dev->status            = $request->status;
 
 
 
